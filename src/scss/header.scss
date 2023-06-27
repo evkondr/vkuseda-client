@@ -1,5 +1,8 @@
 .header{
-  padding: 2rem 0;
+  position: absolute;
+  width: 100%;
+  padding: 1rem 0;
+  box-shadow: 1px 1px 30px 1px rgba($color: #000000, $alpha: .8);
 }
 .header__container{
   display: flex;
