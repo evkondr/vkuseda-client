@@ -4,5 +4,26 @@
 .header__container{
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+.header__left-side{
+  display: flex;
   column-gap: 4rem;
+  align-items: center;
+}
+.cart{
+  position: relative;
+  display: inline-block;
+  &__count{
+    position: absolute;
+    right: 0;
+    top: -5px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background-color: $theme-color-2;
+    color: $btn-font-color;
+    text-align: center;
+    font-weight: 300;
+    vertical-align: baseline;
+  }
 }

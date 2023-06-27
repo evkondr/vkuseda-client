@@ -1,0 +1,30 @@
+@media screen and (max-width: 1200px){
+  .container{
+    padding: 0 2rem;
+  }
+}
+@media screen and (max-width: 992px){
+  .nav{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 50%;
+    background-color: $theme-color-3;
+    box-shadow: 0 0 10px;
+    &__list{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;;
+      row-gap: 2rem;
+    }
+  }
+}
+@media screen and (max-width: 768px){
+  
+}
+@media screen and (max-width: 576px){
+  
+}
