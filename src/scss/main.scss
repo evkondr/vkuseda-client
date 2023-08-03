@@ -5,11 +5,12 @@
 @import './common.scss';
 @import './hero.scss';
 @import './menu-section.scss';
+@import './about.scss';
 
 @import './media.scss';
 
 body{
-  font-family: Rubik;
+  font-family: 'Montserrat', sans-serif;
   font-size: 10px;
   color: $font-color;
 }

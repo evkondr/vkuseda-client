@@ -1,0 +1,27 @@
+.about{
+  background-color:#0e111a;
+  background-size: contain;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  min-height: 500px;
+}
+.about__text{
+  width: 700px;
+  font-size: 2rem;
+  line-height: 2.1rem;
+  h3{
+    color: $font-color-2;
+    font-weight: 500;
+    font-size: 2.5rem;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #fff;
+  }
+}
+.about__content{
+  font-weight: 100;
+  color: $btn-font-color;
+  padding: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
