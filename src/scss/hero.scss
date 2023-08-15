@@ -28,8 +28,23 @@
   border-radius: 10px;
 }
 .hero__h1{
-  font-size: 3rem;
+  position: relative;
+  font-size: 4rem;
   margin-bottom: 2rem;
+  &::after, &::before{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100px;
+    height: 2px;
+    right: 105%;
+    bottom: 50%;
+    transform: translateY(2px);
+    background-color: #fff;
+  }
+  &::before{
+    left: 105%
+  }
 }
 .hero__h2{
   font-size: 1.5rem;
