@@ -38,13 +38,13 @@
 .hero__btn{
   font-size: 1.5rem;
   color: $btn-font-color;
-  background: none;
-  border: 1px solid $font-color-2;
+  background-color: rgba($color: $btn-bg-color, $alpha: .9);
   padding: 20px 35px;
   border-radius: 5px;
   cursor: pointer;
   transition: all .2s ease-in-out;
   &:hover{
-    background-color: $font-color;
+    background-color:  rgba($color: $btn-bg-color, $alpha: 1);
+    transform: scale(105%);
   }
 }
