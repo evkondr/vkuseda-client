@@ -5,6 +5,7 @@
   display: flex;
   justify-content: start;
   align-items: center;
+  z-index: -1;
 }
 .filter{
   position: absolute;

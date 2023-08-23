@@ -21,5 +21,9 @@
       }
     }
   }
-
+  .hamburger{
+    &-inner, &-inner::before, &-inner::after{
+      background-color: #fff!important;
+    }
+  }
 }

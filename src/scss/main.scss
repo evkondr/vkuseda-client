@@ -8,6 +8,7 @@
 @import './about.scss';
 @import './contact.scss';
 @import './footer.scss';
+@import '../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss';
 
 @import './media.scss';
 
@@ -19,4 +20,7 @@ body{
 .container{
   max-width: 1200px;
   margin: 0 auto;
+}
+.hamburger{
+  display: none;
 }
