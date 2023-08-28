@@ -12,6 +12,9 @@
 
 @import './media.scss';
 
+html{
+  scroll-behavior: smooth;
+}
 body{
   font-family: 'Montserrat', sans-serif;
   font-size: 10px;
