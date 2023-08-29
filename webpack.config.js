@@ -10,6 +10,7 @@ module.exports = {
     clean: true,
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
+    assetModuleFilename: 'images/[hash][ext][query]'
   },
   mode: "development",
   devServer: {
