@@ -1,9 +1,21 @@
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1170px){
   .container{
     padding: 0 2rem;
   }
+  .about{
+    background-size: cover;
+    background-position: -100px 0;
+    &__text{
+      font-size: 2rem;
+    }
+  }
 }
 @media screen and (max-width: 992px){
+  .hero{
+    &__h2 {
+      text-align: center;
+    }
+  }
   .nav{
     position: fixed;
     left: -110%;
@@ -36,17 +48,54 @@
     width: 100%;
     justify-content: space-between;
   }
+  .mobile-number{
+    display: none;
+  }
+  .about{
+    background-image: none!important;
+    min-height: 0;
+    &__content{
+      width: 100%;
+      padding: 0 2rem;
+    }
+  }
   .footer-menu{
     display: none;
   }
 }
 @media screen and (max-width: 768px){
+  html{
+    font-size: 8px!important;
+  }
   .nav{
     width: 70%;
   }
+  .contact{
+    flex-direction: column;
+    &__map, &__detail{
+      width: 100%;
+    }
+  }
 }
 @media screen and (max-width: 576px){
+  .hero{
+    &__h1{
+      border-top: 2px solid $theme-color-3;
+      border-bottom: 2px solid $theme-color-3;
+      padding: 2rem;
+      &::before, &::after{
+        display: none;
+      }
+    }
+  }
   .nav{
     width: 100%;
+  }
+}
+@media screen and (max-width: 390px){
+  .hero{
+    &__h1{
+      font-size: 5rem;
+    }
   }
 }

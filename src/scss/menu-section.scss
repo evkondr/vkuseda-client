@@ -1,11 +1,11 @@
 .section{
-  padding: 2.5rem 0;
+  padding: 3.5rem 0;
 }
 .section-header{
   border-bottom: 1px solid $font-color;
-  padding-bottom: 1rem;
+  padding-bottom: 3rem;
   h2{
-    font-size: 2rem;
+    font-size: 3rem;
   }
 }
 .menu-content{
@@ -13,8 +13,8 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  padding: 2rem 0;
-  row-gap: 2rem;
+  padding: 3rem 0;
+  row-gap: 3rem;
 }
 .menu-item{
   position: relative;
@@ -33,11 +33,11 @@
     position: absolute;
     bottom: -100%;
     width: 100%;
-    font-size: 1rem;
-    line-height: 1.3rem;
+    font-size: 1.5rem;
+    line-height: 2.3rem;
     background-color: rgba($color: #000000, $alpha: .5);
     color: #fff;
-    padding: 1rem;
+    padding: 2rem;
     transition: all .2s ease-in-out;
     z-index: 1000;
   }
@@ -60,10 +60,10 @@
   display: flex;
   justify-content: center;
   a{
-    font-size: 1.5rem;
+    font-size: 2rem;
     border: 1px solid $font-color;
     border-radius: 5px;
-    padding: 1rem;
+    padding: 2rem;
     box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 1.0);
   }
 }

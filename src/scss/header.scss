@@ -1,7 +1,7 @@
 .header{
   position: absolute;
   width: 100%;
-  padding: 1rem 0;
+  padding: 2rem 0;
   box-shadow: 1px 1px 30px 1px rgba($color: #000000, $alpha: .8);
   background-color: $theme-color-3;
   z-index: 1000;
@@ -15,4 +15,10 @@
   display: flex;
   column-gap: 4rem;
   align-items: center;
+}
+.mobile-number{
+  display: flex;
+  column-gap: .5rem;
+  font-size: 1.5rem;
+  font-weight: 300;
 }

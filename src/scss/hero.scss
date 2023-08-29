@@ -5,7 +5,9 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  z-index: -1;
+  background-position: center;
+  background-size: cover;
+  z-index: 1;
 }
 .filter{
   position: absolute;
@@ -25,13 +27,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 10px;
 }
 .hero__h1{
   position: relative;
-  font-size: 4rem;
-  margin-bottom: 2rem;
+  font-size: 6rem;
+  margin-bottom: 3rem;
   &::after, &::before{
     content: "";
     display: block;
@@ -48,11 +50,13 @@
   }
 }
 .hero__h2{
-  font-size: 1.5rem;
-  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 3.5rem;
+  margin-bottom: 4rem;
 }
 .hero__btn{
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: $btn-font-color;
   background-color: rgba($color: $btn-bg-color, $alpha: .9);
   padding: 20px 35px;
