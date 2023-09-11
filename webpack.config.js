@@ -10,7 +10,7 @@ module.exports = {
     clean: true,
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
-    assetModuleFilename: 'images/[hash][ext][query]'
+    assetModuleFilename: "images/[hash][ext][query]"
   },
   mode: "development",
   devServer: {
@@ -32,12 +32,16 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
        },
+       {
+        test: /\.html$/,
+        use: ["html-loader"],
+      },
     ],
   },
   plugins: [
