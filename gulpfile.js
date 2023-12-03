@@ -29,6 +29,10 @@ exports.dev = series(
   parallel(html, styles, scripts, images),
   parallel(watchFiles, server)
 )
+exports.build = series(
+  clean,
+  parallel(html, styles, scripts, images)
+);
 exports.scripts = scripts;
 exports.styles = styles;
 exports.watchFiles = watchFiles;
