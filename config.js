@@ -17,7 +17,7 @@ module.exports = {
     scripts: {
       src: `${SRC}/scripts/**/*.js`,
       dest: `${DEST}/scripts`,
-      watch: `${SRC}/scripts/**/.js`,
+      watch: `${SRC}/scripts/*.js`,
     },
     images: {
       src: `${SRC}/images/**/*.{png,jpeg,jpg,giff}`,

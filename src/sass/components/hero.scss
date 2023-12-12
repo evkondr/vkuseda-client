@@ -5,8 +5,10 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   background-size: cover;
+  background-blend-mode:color-dodge;
   z-index: 1;
 }
 .filter{
