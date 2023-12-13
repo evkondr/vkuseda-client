@@ -21,6 +21,5 @@ window.addEventListener("scroll", () => {
   const sy = scrollY.toFixed();
   const coef = 5;
   const pos = ((sy/coef).toFixed()) * -1;
-  console.log(pos)
   hero.style.backgroundPositionY=pos+"px"
 });
