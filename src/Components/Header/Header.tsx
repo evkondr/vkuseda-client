@@ -8,9 +8,9 @@ import IconButton from '@mui/material/IconButton';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import './header.scss';
 import Logo from '../Logo/Logo';
-import { TMenuItem } from '../../types';
+import { TMenuItemLink } from '../../types';
 
-const menuItems:TMenuItem[] = [
+const menuItems:TMenuItemLink[] = [
   {
     name: 'Главная',
     link: '#home',
@@ -47,7 +47,7 @@ const Header = () => {
           <PhoneIphoneIcon />
           {phoneNumber}
         </Button>
-        {menuItems.map((item:TMenuItem) => (
+        {menuItems.map((item:TMenuItemLink) => (
           <ListItem key={item.name} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <Link key={item.name} variant="button" underline="none" color="inherit" href={item.link} sx={{ textAlign: 'center', width: '100%' }}>
@@ -60,11 +60,11 @@ const Header = () => {
     </Box>
   );
   return (
-    <AppBar className="header">
+    <AppBar className="header" position="absolute">
       <Container maxWidth="lg" sx={{ display: 'flex' }} className="header__container">
         <Logo />
         <Box component="nav" sx={{ display: { xs: 'none', md: 'block' } }}>
-          {menuItems.map((item:TMenuItem) => (
+          {menuItems.map((item:TMenuItemLink) => (
             <Button key={item.name} href={item.link} color="inherit">
               {item.name}
             </Button>
