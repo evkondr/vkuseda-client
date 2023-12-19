@@ -3,10 +3,12 @@ export type TMenuItemLink = {
   link: string
 };
 export type TMenuItem = {
+  id: string
   name: string,
   image: string,
   ingredients: string,
   category: string,
   weghit: number,
-  price: number
+  price: number,
+  imageAlt?: string
 };

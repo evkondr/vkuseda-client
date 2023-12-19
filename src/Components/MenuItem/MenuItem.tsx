@@ -1,13 +1,17 @@
 import React from 'react';
 import { Card, CardMedia } from '@mui/material/';
+import { TMenuItem } from '../../types';
+import './menu-item.scss';
 
-const MenuItem = () => {
+type TMenuItemProps = {
+  menuItem: TMenuItem
+}
+const MenuItem = ({ menuItem }:TMenuItemProps) => {
+  const { image } = menuItem;
   return (
-    <div>
-      <Card>
-        <CardMedia />
-      </Card>
-    </div>
+    <Card className="menu-item">
+      <CardMedia component="img" className="menu-item__img" image={image} />
+    </Card>
   );
 };
 
