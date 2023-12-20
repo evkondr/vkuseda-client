@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Box, Grid, Container, Button, Typography, Divider,
 } from '@mui/material/';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import MenuItem from '../MenuItem/MenuItem';
 import { menuItems } from '../../tempDB';
 import { TMenuItem } from '../../types';
@@ -25,8 +26,11 @@ const ShortMenu = () => {
             </Grid>
           ))}
         </Grid>
-        <Box>
-          <Button>Открыть все меню</Button>
+        <Box className="short-menu__all-btn">
+          <Button variant="outlined" size="large">
+            <MenuBookIcon color="inherit" sx={{ marginRight: '10px' }} />
+            Открыть все меню
+          </Button>
         </Box>
       </Container>
     </Box>
