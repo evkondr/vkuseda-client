@@ -23,7 +23,7 @@ export const menuItems:TMenuItem[] = [
     id: '2',
     name: 'Котлеты "Непонятные"',
     image: menuItem2,
-    ingredients: 'Мясо, мякушек белого хлеба, специи по акусу',
+    ingredients: 'Мясо, мякушек белого хлеба, специи по вкусу',
     category: 'Второе',
     weghit: 120,
     price: 150,

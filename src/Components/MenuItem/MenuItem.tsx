@@ -1,5 +1,7 @@
 import React from 'react';
-import { Card, CardMedia } from '@mui/material/';
+import {
+  Card, CardMedia, CardContent,
+} from '@mui/material/';
 import { TMenuItem } from '../../types';
 import './menu-item.scss';
 
@@ -11,6 +13,28 @@ const MenuItem = ({ menuItem }:TMenuItemProps) => {
   return (
     <Card className="menu-item">
       <CardMedia component="img" className="menu-item__img" image={image} />
+      <CardContent className="menu-item__content">
+        <h5 className="menu-item__name">{menuItem.name}</h5>
+        <p>
+          <span>Ингредиенты:</span>
+          {' '}
+          {menuItem.ingredients}
+        </p>
+        <p>
+          <span>Вес:</span>
+          {' '}
+          {menuItem.weghit}
+          {' '}
+          г.
+        </p>
+        <p>
+          <span>Цена:</span>
+          {' '}
+          {menuItem.price}
+          {' '}
+          р.
+        </p>
+      </CardContent>
     </Card>
   );
 };

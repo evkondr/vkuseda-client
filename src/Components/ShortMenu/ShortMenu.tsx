@@ -18,7 +18,7 @@ const ShortMenu = () => {
             </Typography>
           </Divider>
         </Box>
-        <Grid container spacing={2}>
+        <Grid container spacing={3} className="short-menu__container">
           {menuItems.map((menuItem:TMenuItem) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>
               <MenuItem menuItem={menuItem} />
