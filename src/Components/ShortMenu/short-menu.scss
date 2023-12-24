@@ -1,0 +1,27 @@
+.short-menu{
+  padding: 20px 10px;
+  &__container{
+    margin-top: 0px!important;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+  &__all-btn{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    button{
+      color: #414141;
+      border-color: #414141;
+      transition: all .3s ease-in-out;
+      &:hover{
+        border-color: inherit;
+        color: inherit;
+        background-color: rgb(0 0 0 / 4%);
+        transform: scale(105%);
+      }
+      svg{
+        color: #ff0000;
+      }
+    }
+  }
+}

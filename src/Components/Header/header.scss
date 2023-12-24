@@ -1,0 +1,11 @@
+.header{
+  padding-top: 15px;
+  padding-bottom: 10px;
+  background-color: #fff!important;
+  color: #414141!important;
+  &__container{
+    display: flex!important;;
+    justify-content: space-between;
+  }
+}
+
