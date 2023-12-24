@@ -4,6 +4,7 @@ import Welcome from './Components/Welcome/Welcome';
 import ShortMenu from './Components/ShortMenu/ShortMenu';
 import Contacts from './Components/Contacts/Contacts';
 import Footer from './Components/Footer/Footer';
+import AboutShort from './Components/About/AboutShort';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Header />
       <Welcome />
       <ShortMenu />
+      <AboutShort />
       <Contacts />
       <Footer />
     </>

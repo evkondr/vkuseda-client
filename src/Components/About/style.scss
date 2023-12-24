@@ -1,0 +1,28 @@
+@import "../../sass/vars.scss";
+.about-short{
+  padding: 20px;
+  min-height: 500px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &__info{
+    color: #fff!important;
+    font-size: 1.5rem!important;
+    font-weight: 300!important;
+  }
+  &__btn{
+    background: none!important;
+    color: $theme-color-2!important;
+    border: 1px solid $theme-color-2!important;
+    transition: all .2s ease-in-out;
+    &:hover{
+      background: $theme-color-2!important;
+      color: $theme-color-1!important;
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  .about-short{
+    background-position: 100% center;
+  }
+}
