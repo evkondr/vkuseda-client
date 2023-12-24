@@ -1,24 +1,21 @@
 import React from 'react';
 import {
-  Box, Grid, Container, Button, Typography, Divider,
+  Box, Grid, Container, Button,
 } from '@mui/material/';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import MenuItem from '../MenuItem/MenuItem';
 import { menuItems } from '../../tempDB';
 import { TMenuItem } from '../../types';
 import './short-menu.scss';
+import SectionHeader from '../SectionHeader/SectionHeader';
 
 const ShortMenu = () => {
   return (
     <Box component="section" className="short-menu">
       <Container maxWidth="lg">
-        <Box component="header" className="section-header">
-          <Divider textAlign="center">
-            <Typography variant="h3">
-              Наше меню
-            </Typography>
-          </Divider>
-        </Box>
+        <SectionHeader>
+          Наше Меню
+        </SectionHeader>
         <Grid container spacing={3} className="short-menu__container">
           {menuItems.map((menuItem:TMenuItem) => (
             <Grid item xs={12} sm={6} md={4} lg={3}>

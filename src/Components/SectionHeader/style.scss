@@ -1,0 +1,17 @@
+@import "../../sass/vars.scss";
+.section-header{
+  padding: 20px 0;
+  h3{
+    color: $theme-color-1;
+    font-size: 2rem;
+    font-weight: 300;
+  }
+}
+.header_color{
+  color: $theme-color-2!important;
+}
+.divider_color{
+  &::after,&::before{
+    border-top: 1px solid $theme-color-2!important;
+  } 
+}

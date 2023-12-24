@@ -4,11 +4,15 @@ import {
 } from '@mui/material/';
 import RoomIcon from '@mui/icons-material/Room';
 import Form from '../Form/Form';
+import SectionHeader from '../SectionHeader/SectionHeader';
 
 const Contacts = () => {
   return (
     <Box>
       <Container maxWidth="lg">
+        <SectionHeader>
+          Контакты
+        </SectionHeader>
         <Grid container>
           <Grid item lg={6} md={6} sm={12} padding={2}>
             <Typography padding={2} sx={{ display: 'flex', alignItems: 'center' }}>
