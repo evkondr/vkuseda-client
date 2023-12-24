@@ -8,7 +8,7 @@ import SectionHeader from '../SectionHeader/SectionHeader';
 
 const Contacts = () => {
   return (
-    <Box>
+    <Box id="contacts">
       <Container maxWidth="lg">
         <SectionHeader>
           Контакты

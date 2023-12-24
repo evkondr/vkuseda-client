@@ -7,7 +7,7 @@ import bgImage from '../../assets/welcome.jpg';
 
 const Welcome = () => {
   return (
-    <Box component="section" className="welcome-section" sx={{ background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${bgImage})` }}>
+    <Box id="home" component="section" className="welcome-section" sx={{ background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${bgImage})` }}>
       <Container maxWidth="lg" className="welcome-section__container">
         <div>
           <Typography variant="h1">

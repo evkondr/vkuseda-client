@@ -11,7 +11,7 @@ import SectionHeader from '../SectionHeader/SectionHeader';
 
 const ShortMenu = () => {
   return (
-    <Box component="section" className="short-menu">
+    <Box id="menu" component="section" className="short-menu">
       <Container maxWidth="lg">
         <SectionHeader>
           Наше Меню
