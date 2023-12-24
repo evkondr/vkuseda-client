@@ -4,17 +4,18 @@ import {
 } from '@mui/material/';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { TMenuItemLink } from '../../types';
+import './style.scss';
 
 type TNavBarProps = {
   menuItems: TMenuItemLink[],
   footer?: boolean
   phoneNumber?: string,
-  drawer: React.ReactNode,
+  children: React.ReactNode,
   mobileOpen: boolean,
   handleDrawerToggle: () => void
 }
 const NavBar = ({
-  menuItems, footer, phoneNumber, drawer, mobileOpen, handleDrawerToggle,
+  menuItems, footer, phoneNumber, children, mobileOpen, handleDrawerToggle,
 }:TNavBarProps) => {
   return (
     <>
@@ -44,7 +45,7 @@ const NavBar = ({
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '70%' },
           }}
         >
-          {drawer}
+          {children}
         </Drawer>
       </nav>
     </>

@@ -7,7 +7,7 @@ import menuItem2 from './assets/menu-item-2.jpeg';
 import menuItem3 from './assets/menu-item-3.jpeg';
 import menuItem4 from './assets/menu-item-4.jpeg';
 import menuItem5 from './assets/menu-item-5.jpeg';
-import { TMenuItem } from './types';
+import { TMenuItem, TMenuItemLink } from './types';
 
 export const menuItems:TMenuItem[] = [
   {
@@ -81,5 +81,23 @@ export const menuItems:TMenuItem[] = [
     category: 'Салаты',
     weghit: 120,
     price: 100,
+  },
+];
+export const menuItemLinks:TMenuItemLink[] = [
+  {
+    name: 'Главная',
+    link: '#home',
+  },
+  {
+    name: 'Наше меню',
+    link: '#menu',
+  },
+  {
+    name: 'О нас',
+    link: '#about',
+  },
+  {
+    name: 'Контакты',
+    link: '#contacts',
   },
 ];
