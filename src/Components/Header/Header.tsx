@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import {
-  Container, Box, Button, Drawer, List, ListItem, ListItemButton, Link, Divider,
+  Container, Box, Button, List, ListItem, ListItemButton, Link, Divider,
 } from '@mui/material/';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import './header.scss';
 import Logo from '../Logo/Logo';
+import NavBar from '../NavBar/NavBar';
 import { TMenuItemLink } from '../../types';
 
 const menuItems:TMenuItemLink[] = [
@@ -63,17 +64,13 @@ const Header = () => {
     <AppBar className="header" position="absolute">
       <Container maxWidth="lg" sx={{ display: 'flex' }} className="header__container">
         <Logo />
-        <Box component="nav" sx={{ display: { xs: 'none', md: 'block' } }}>
-          {menuItems.map((item:TMenuItemLink) => (
-            <Button key={item.name} href={item.link} color="inherit">
-              {item.name}
-            </Button>
-          ))}
-          <Button href="tel:+79023001991" color="inherit">
-            <PhoneIphoneIcon />
-            {phoneNumber}
-          </Button>
-        </Box>
+        <NavBar
+          menuItems={menuItems}
+          drawer={drawer}
+          mobileOpen={mobileOpen}
+          handleDrawerToggle={handleDrawerToggle}
+          phoneNumber={phoneNumber}
+        />
         <IconButton
           color="inherit"
           aria-label="open drawer"
@@ -84,22 +81,6 @@ const Header = () => {
           <MenuIcon />
         </IconButton>
       </Container>
-      <nav>
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          sx={{
-            display: { sm: 'block', md: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '70%' },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
     </AppBar>
   );
 };
