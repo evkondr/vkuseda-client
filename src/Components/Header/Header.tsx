@@ -9,10 +9,18 @@ import './header.scss';
 import Logo from '../Logo/Logo';
 import NavBar from '../NavBar/NavBar';
 import MemuDrawer from '../MenuDrawer/MemuDrawer';
-import { menuItemLinks } from '../../tempDB';
+import { TMenuItemLink } from '../../types';
+import CustomCartIcon from '../Cart/CustomCartIcon';
 
-const phoneNumber = '+7 (902) 300 19 91';
-const Header = () => {
+type THeaderProps = {
+  menuItemsLinks: TMenuItemLink[],
+  phoneNumber?: string,
+  cart?: boolean,
+  position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative' | undefined
+}
+const Header = ({
+  menuItemsLinks, phoneNumber, position, cart,
+}:THeaderProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -20,21 +28,22 @@ const Header = () => {
   };
 
   return (
-    <AppBar className="header" position="absolute">
+    <AppBar className="header" position={position}>
       <Container maxWidth="lg" sx={{ display: 'flex' }} className="header__container">
         <Logo />
         <NavBar
-          menuItems={menuItemLinks}
+          menuItemsLinks={menuItemsLinks}
           mobileOpen={mobileOpen}
           handleDrawerToggle={handleDrawerToggle}
           phoneNumber={phoneNumber}
         >
           <MemuDrawer
             handleDrawerToggle={handleDrawerToggle}
-            menuItemLinks={menuItemLinks}
+            menuItemsLinks={menuItemsLinks}
             phoneNumber={phoneNumber}
           />
         </NavBar>
+        {cart && <CustomCartIcon amount={0} /> }
         <IconButton
           color="inherit"
           aria-label="open drawer"

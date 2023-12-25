@@ -5,11 +5,13 @@ import Footer from '../Footer/Footer';
 import ShortMenu from '../ShortMenu/ShortMenu';
 import Welcome from '../Welcome/Welcome';
 import Contacts from '../Contacts/Contacts';
+import { menuItemsLinks } from '../../tempDB';
 
+const phoneNumber = '+7 (902) 300 19 91';
 const LandingPage = () => {
   return (
     <>
-      <Header />
+      <Header menuItemsLinks={menuItemsLinks} phoneNumber={phoneNumber} />
       <Welcome />
       <ShortMenu />
       <AboutShort />

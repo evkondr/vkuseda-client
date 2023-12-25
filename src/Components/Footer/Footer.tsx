@@ -5,7 +5,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from '../Logo/Logo';
 import './style.scss';
-import { menuItemLinks } from '../../tempDB';
+import { menuItemsLinks } from '../../tempDB';
 import NavBar from '../NavBar/NavBar';
 import MemuDrawer from '../MenuDrawer/MemuDrawer';
 
@@ -22,7 +22,7 @@ const Footer = () => {
       <Container maxWidth="lg" sx={{ display: 'flex' }} className="footer__container">
         <Logo />
         <NavBar
-          menuItems={menuItemLinks}
+          menuItemsLinks={menuItemsLinks}
           mobileOpen={mobileOpen}
           handleDrawerToggle={handleDrawerToggle}
           phoneNumber={phoneNumber}
@@ -30,7 +30,7 @@ const Footer = () => {
         >
           <MemuDrawer
             handleDrawerToggle={handleDrawerToggle}
-            menuItemLinks={menuItemLinks}
+            menuItemsLinks={menuItemsLinks}
             phoneNumber={phoneNumber}
           />
         </NavBar>

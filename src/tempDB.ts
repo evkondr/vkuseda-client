@@ -83,7 +83,7 @@ export const menuItems:TMenuItem[] = [
     price: 100,
   },
 ];
-export const menuItemLinks:TMenuItemLink[] = [
+export const menuItemsLinks:TMenuItemLink[] = [
   {
     name: 'Главная',
     link: '#home',

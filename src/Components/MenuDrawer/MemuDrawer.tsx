@@ -7,11 +7,11 @@ import { TMenuItemLink } from '../../types';
 import Logo from '../Logo/Logo';
 
 type TMemuDrawerProps = {
-  menuItemLinks: TMenuItemLink[],
+  menuItemsLinks: TMenuItemLink[],
   handleDrawerToggle: () => void,
   phoneNumber?: string
 }
-const MemuDrawer = ({ menuItemLinks, handleDrawerToggle, phoneNumber }:TMemuDrawerProps) => {
+const MemuDrawer = ({ menuItemsLinks, handleDrawerToggle, phoneNumber }:TMemuDrawerProps) => {
   return (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }} className="menu-drawer">
       <List>
@@ -27,7 +27,7 @@ const MemuDrawer = ({ menuItemLinks, handleDrawerToggle, phoneNumber }:TMemuDraw
           </Button>
           )
         }
-        {menuItemLinks.map((item:TMenuItemLink) => (
+        {menuItemsLinks.map((item:TMenuItemLink) => (
           <ListItem key={item.name} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <Link key={item.name} variant="button" underline="none" color="inherit" href={item.link} sx={{ textAlign: 'center', width: '100%' }}>
