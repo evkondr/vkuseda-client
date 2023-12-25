@@ -101,3 +101,25 @@ export const menuItemLinks:TMenuItemLink[] = [
     link: '#contacts',
   },
 ];
+export const mainPageMenuItemLinks:TMenuItemLink[] = [
+  {
+    name: 'Главная',
+    link: '/',
+  },
+  {
+    name: 'Меню',
+    link: '/menu',
+  },
+  {
+    name: 'О нас',
+    link: '/about',
+  },
+  {
+    name: 'Доставк',
+    link: '/delivery',
+  },
+  {
+    name: 'Контакты',
+    link: '/contacts',
+  },
+];
