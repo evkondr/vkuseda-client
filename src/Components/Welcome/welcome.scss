@@ -38,9 +38,21 @@
 @media screen and (max-width: 900px) {
   .welcome-section{
     &__container{
-      width: 80%!important;
+      width: 90%!important;
       h1{
         font-size: 3rem;
+      }
+      h2{
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+@media screen and (max-width: 360px) {
+  .welcome-section{
+    &__container{
+      h1{
+        font-size: 2rem;
       }
       h2{
         font-size: 1.5rem;
