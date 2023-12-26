@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Box, Grid, Container, Button,
 } from '@mui/material/';
+import { NavLink } from 'react-router-dom';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import MenuItem from '../MenuItem/MenuItem';
 import { menuItems } from '../../tempDB';
@@ -24,10 +25,12 @@ const ShortMenu = () => {
           ))}
         </Grid>
         <Box className="short-menu__all-btn">
-          <Button variant="outlined" size="large">
-            <MenuBookIcon color="inherit" sx={{ marginRight: '10px' }} />
-            Открыть все меню
-          </Button>
+          <NavLink to="main/menu">
+            <Button variant="outlined" size="large">
+              <MenuBookIcon color="inherit" sx={{ marginRight: '10px' }} />
+              Открыть все меню
+            </Button>
+          </NavLink>
         </Box>
       </Container>
     </Box>
