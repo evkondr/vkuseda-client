@@ -12,3 +12,7 @@ export type TMenuItem = {
   price: number,
   imageAlt?: string
 };
+export type TCategory = {
+  id: string,
+  name: string
+}

@@ -7,7 +7,7 @@ import menuItem2 from './assets/menu-item-2.jpeg';
 import menuItem3 from './assets/menu-item-3.jpeg';
 import menuItem4 from './assets/menu-item-4.jpeg';
 import menuItem5 from './assets/menu-item-5.jpeg';
-import { TMenuItem, TMenuItemLink } from './types';
+import { TCategory, TMenuItem, TMenuItemLink } from './types';
 
 export const menuItems:TMenuItem[] = [
   {
@@ -121,5 +121,27 @@ export const mainPageMenuItemLinks:TMenuItemLink[] = [
   {
     name: 'Контакты',
     link: '/contacts',
+  },
+];
+export const categories: TCategory[] = [
+  {
+    id: '1',
+    name: 'Первые блюда',
+  },
+  {
+    id: '2',
+    name: 'Вторые блюда',
+  },
+  {
+    id: '3',
+    name: 'Гарниры',
+  },
+  {
+    id: '4',
+    name: 'Десерты',
+  },
+  {
+    id: '5',
+    name: 'Салаты',
   },
 ];
