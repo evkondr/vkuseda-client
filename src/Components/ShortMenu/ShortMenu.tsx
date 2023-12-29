@@ -5,12 +5,14 @@ import {
 import { NavLink } from 'react-router-dom';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import MenuItem from '../MenuItem/MenuItem';
-import { menuItems } from '../../tempDB';
 import { TMenuItem } from '../../types';
 import './short-menu.scss';
 import SectionHeader from '../SectionHeader/SectionHeader';
 
-const ShortMenu = () => {
+type TShortMenuProps = {
+  menuItems: TMenuItem[]
+}
+const ShortMenu = ({ menuItems }:TShortMenuProps) => {
   return (
     <Box id="menu" component="section" className="short-menu">
       <Container maxWidth="lg">

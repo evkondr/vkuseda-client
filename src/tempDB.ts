@@ -15,7 +15,7 @@ export const menuItems:TMenuItem[] = [
     name: 'Куриная отбивная "Лепёшка"',
     image: menuItem1,
     ingredients: 'Куриная, отбавная, майонез',
-    category: 'Второе',
+    category: 'Вторые блюда',
     weghit: 120,
     price: 150,
   },
@@ -24,7 +24,7 @@ export const menuItems:TMenuItem[] = [
     name: 'Котлеты "Непонятные"',
     image: menuItem2,
     ingredients: 'Мясо, мякушек белого хлеба, специи по вкусу',
-    category: 'Второе',
+    category: 'Вторые блюда',
     weghit: 120,
     price: 150,
   },
@@ -60,7 +60,7 @@ export const menuItems:TMenuItem[] = [
     name: 'Куриная отбивная "Лепёшка"',
     image: menuItem1,
     ingredients: 'Куриная, отбавная, майонез',
-    category: 'Второе',
+    category: 'Первые блюда',
     weghit: 120,
     price: 150,
   },
@@ -69,7 +69,7 @@ export const menuItems:TMenuItem[] = [
     name: 'Котлеты "Непонятные"',
     image: menuItem2,
     ingredients: 'Мясо, мякушек белого хлеба, специи по акусу',
-    category: 'Второе',
+    category: 'Первые блюда',
     weghit: 120,
     price: 150,
   },
@@ -124,6 +124,10 @@ export const mainPageMenuItemLinks:TMenuItemLink[] = [
   },
 ];
 export const categories: TCategory[] = [
+  {
+    id: '0',
+    name: 'Все',
+  },
   {
     id: '1',
     name: 'Первые блюда',
