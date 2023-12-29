@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { RouterProvider } from 'react-router-dom';
+import { store } from './store';
 import './sass/index.scss';
-import App from './App';
+import router from './router';
 
 const theme = createTheme({
   typography: {
@@ -15,8 +18,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
 );

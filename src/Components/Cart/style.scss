@@ -1,0 +1,18 @@
+.cart-icon{
+  position: relative;
+  margin-top: 10px;
+  span{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color:orangered;
+    color: #fff;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 20px;
+  }
+}

@@ -7,7 +7,7 @@ import { TMenuItemLink } from '../../types';
 import './style.scss';
 
 type TNavBarProps = {
-  menuItems: TMenuItemLink[],
+  menuItemsLinks: TMenuItemLink[],
   footer?: boolean
   phoneNumber?: string,
   children: React.ReactNode,
@@ -15,12 +15,12 @@ type TNavBarProps = {
   handleDrawerToggle: () => void
 }
 const NavBar = ({
-  menuItems, footer, phoneNumber, children, mobileOpen, handleDrawerToggle,
+  menuItemsLinks, footer, phoneNumber, children, mobileOpen, handleDrawerToggle,
 }:TNavBarProps) => {
   return (
     <>
       <Box component="nav" className={footer ? 'nav__footer' : ''} sx={{ display: { xs: 'none', md: 'block' } }}>
-        {menuItems.map((item:TMenuItemLink) => (
+        {menuItemsLinks.map((item:TMenuItemLink) => (
           <Button key={item.name} href={item.link} color="inherit">
             {item.name}
           </Button>

@@ -7,7 +7,7 @@ import menuItem2 from './assets/menu-item-2.jpeg';
 import menuItem3 from './assets/menu-item-3.jpeg';
 import menuItem4 from './assets/menu-item-4.jpeg';
 import menuItem5 from './assets/menu-item-5.jpeg';
-import { TMenuItem, TMenuItemLink } from './types';
+import { TCategory, TMenuItem, TMenuItemLink } from './types';
 
 export const menuItems:TMenuItem[] = [
   {
@@ -15,7 +15,7 @@ export const menuItems:TMenuItem[] = [
     name: 'Куриная отбивная "Лепёшка"',
     image: menuItem1,
     ingredients: 'Куриная, отбавная, майонез',
-    category: 'Второе',
+    category: 'Вторые блюда',
     weghit: 120,
     price: 150,
   },
@@ -24,7 +24,7 @@ export const menuItems:TMenuItem[] = [
     name: 'Котлеты "Непонятные"',
     image: menuItem2,
     ingredients: 'Мясо, мякушек белого хлеба, специи по вкусу',
-    category: 'Второе',
+    category: 'Вторые блюда',
     weghit: 120,
     price: 150,
   },
@@ -60,7 +60,7 @@ export const menuItems:TMenuItem[] = [
     name: 'Куриная отбивная "Лепёшка"',
     image: menuItem1,
     ingredients: 'Куриная, отбавная, майонез',
-    category: 'Второе',
+    category: 'Первые блюда',
     weghit: 120,
     price: 150,
   },
@@ -69,7 +69,7 @@ export const menuItems:TMenuItem[] = [
     name: 'Котлеты "Непонятные"',
     image: menuItem2,
     ingredients: 'Мясо, мякушек белого хлеба, специи по акусу',
-    category: 'Второе',
+    category: 'Первые блюда',
     weghit: 120,
     price: 150,
   },
@@ -83,7 +83,7 @@ export const menuItems:TMenuItem[] = [
     price: 100,
   },
 ];
-export const menuItemLinks:TMenuItemLink[] = [
+export const menuItemsLinks:TMenuItemLink[] = [
   {
     name: 'Главная',
     link: '#home',
@@ -99,5 +99,53 @@ export const menuItemLinks:TMenuItemLink[] = [
   {
     name: 'Контакты',
     link: '#contacts',
+  },
+];
+export const mainPageMenuItemLinks:TMenuItemLink[] = [
+  {
+    name: 'Главная',
+    link: '/',
+  },
+  {
+    name: 'Меню',
+    link: '/menu',
+  },
+  {
+    name: 'О нас',
+    link: '/about',
+  },
+  {
+    name: 'Доставк',
+    link: '/delivery',
+  },
+  {
+    name: 'Контакты',
+    link: '/contacts',
+  },
+];
+export const categories: TCategory[] = [
+  {
+    id: '0',
+    name: 'Все',
+  },
+  {
+    id: '1',
+    name: 'Первые блюда',
+  },
+  {
+    id: '2',
+    name: 'Вторые блюда',
+  },
+  {
+    id: '3',
+    name: 'Гарниры',
+  },
+  {
+    id: '4',
+    name: 'Десерты',
+  },
+  {
+    id: '5',
+    name: 'Салаты',
   },
 ];

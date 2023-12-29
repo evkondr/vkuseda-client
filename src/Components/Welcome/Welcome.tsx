@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Box, Typography, Button, Container,
 } from '@mui/material/';
+import { NavLink } from 'react-router-dom';
 import './welcome.scss';
 import bgImage from '../../assets/welcome.jpg';
 
@@ -16,7 +17,11 @@ const Welcome = () => {
           <Typography variant="h2" gutterBottom>
             Организация и доставка обедов по Нижнему Новгороду
           </Typography>
-          <Button variant="contained" color="success" className="welcome-section__btn" sx={{ marginTop: '20px' }}>Заказать</Button>
+          <NavLink to="/main/menu">
+            <Button variant="contained" color="success" className="welcome-section__btn" sx={{ marginTop: '20px' }}>
+              Заказать
+            </Button>
+          </NavLink>
         </div>
       </Container>
     </Box>
