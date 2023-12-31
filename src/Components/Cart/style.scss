@@ -1,6 +1,7 @@
 .cart-icon{
   position: relative;
   margin-top: 10px;
+  cursor: pointer;
   span{
     position: absolute;
     right: -10px;
@@ -11,7 +12,7 @@
     border-radius: 50%;
     background-color:orangered;
     color: #fff;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     text-align: center;
     line-height: 20px;
   }
