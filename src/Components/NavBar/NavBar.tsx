@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Box, Button, Drawer,
 } from '@mui/material/';
@@ -21,9 +22,11 @@ const NavBar = ({
     <>
       <Box component="nav" className={footer ? 'nav__footer' : ''} sx={{ display: { xs: 'none', md: 'block' } }}>
         {menuItemsLinks.map((item:TMenuItemLink) => (
-          <Button key={item.name} href={item.link} color="inherit">
-            {item.name}
-          </Button>
+          <Link to={item.link}>
+            <Button key={item.name} color="inherit">
+              {item.name}
+            </Button>
+          </Link>
         ))}
         {phoneNumber && (
         <Button href="tel:+79023001991" color="inherit">
