@@ -16,10 +16,10 @@ const MenuPage = () => {
   };
   const addToCartHandelr = (menuItem: TMenuItem) => {
     const {
-      id, name, image, price,
+      id, name, price,
     } = menuItem;
     dispatch(addToCart({
-      id, name, price, image, amount: 1,
+      id, name, price, amount: 1, totalPrice: price,
     }));
   };
   return (

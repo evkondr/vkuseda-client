@@ -19,7 +19,7 @@ export type TCategory = {
 export type TCartItem = {
   id: string,
   name: string,
-  image: string,
   amount: number,
-  price: number
+  price: number,
+  totalPrice: number
 }

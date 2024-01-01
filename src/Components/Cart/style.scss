@@ -17,3 +17,22 @@
     line-height: 20px;
   }
 }
+.cart-item{
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.amount-control{
+  display: flex;
+  align-items: center;
+  svg{
+    cursor: pointer;
+  }
+  p{
+    margin: 0 10px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .amount-control{
+    
+  }
+}
