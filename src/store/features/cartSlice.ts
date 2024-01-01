@@ -1,6 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TCartItem } from '../../types';
+import StorageManager from '../../utils/storageManager';
+
+const storage = new StorageManager();
 
 type TCartState = {
   cartItems: TCartItem[],
@@ -10,9 +13,9 @@ type TCartState = {
 }
 
 const initialState: TCartState = {
-  cartItems: [],
-  amount: 0,
-  total: 0,
+  cartItems: storage.getCartValues().cartItems,
+  amount: storage.getCartValues().amount,
+  total: storage.getCartValues().total,
   loading: false,
 };
 const cartSlice = createSlice({
@@ -36,6 +39,11 @@ const cartSlice = createSlice({
         state.cartItems = [...state.cartItems, payload];
       }
       state.amount += 1;
+      storage.setCartValues({
+        cartItems: state.cartItems,
+        amount: state.amount,
+        total: state.total,
+      });
     },
     changeAmount: (state, { payload }:PayloadAction<{id:string, action:string}>) => {
       state.cartItems = state.cartItems.map((item) => {
@@ -55,6 +63,11 @@ const cartSlice = createSlice({
         }
         return item;
       });
+      storage.setCartValues({
+        cartItems: state.cartItems,
+        amount: state.amount,
+        total: state.total,
+      });
     },
     calculateTotal: (state) => {
       state.total = 0;
@@ -68,6 +81,11 @@ const cartSlice = createSlice({
           state.amount -= item.amount;
         }
         return item.id !== payload;
+      });
+      storage.setCartValues({
+        cartItems: state.cartItems,
+        amount: state.amount,
+        total: state.total,
       });
     },
   },
