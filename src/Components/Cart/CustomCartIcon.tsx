@@ -6,7 +6,7 @@ import './style.scss';
 const CustomCartIcon = ({ amount }:{amount:number}) => {
   return (
     <Box component="div" className="cart-icon">
-      <span>{amount}</span>
+      {amount > 0 && <span>{amount}</span>}
       <ShoppingCartIcon />
     </Box>
   );

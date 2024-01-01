@@ -108,19 +108,19 @@ export const mainPageMenuItemLinks:TMenuItemLink[] = [
   },
   {
     name: 'Меню',
-    link: '/menu',
+    link: '/main/menu',
   },
   {
     name: 'О нас',
-    link: '/about',
+    link: '/main/about',
   },
   {
     name: 'Доставк',
-    link: '/delivery',
+    link: '/main/delivery',
   },
   {
     name: 'Контакты',
-    link: '/contacts',
+    link: '/main/contacts',
   },
 ];
 export const categories: TCategory[] = [

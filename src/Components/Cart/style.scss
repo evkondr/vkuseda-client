@@ -1,6 +1,7 @@
 .cart-icon{
   position: relative;
   margin-top: 10px;
+  cursor: pointer;
   span{
     position: absolute;
     right: -10px;
@@ -11,8 +12,27 @@
     border-radius: 50%;
     background-color:orangered;
     color: #fff;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     text-align: center;
     line-height: 20px;
+  }
+}
+.cart-item{
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.amount-control{
+  display: flex;
+  align-items: center;
+  svg{
+    cursor: pointer;
+  }
+  p{
+    margin: 0 10px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .amount-control{
+    
   }
 }

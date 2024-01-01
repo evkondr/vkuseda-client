@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer';
 import ShortMenu from '../ShortMenu/ShortMenu';
 import Welcome from '../Welcome/Welcome';
 import Contacts from '../Contacts/Contacts';
+import ScrollToAnchor from '../ScrollToAnchor';
 
 const phoneNumber = '+7 (902) 300 19 91';
 const LandingPage = () => {
@@ -13,6 +14,7 @@ const LandingPage = () => {
   const { landingNavLinks } = useAppSelector((state) => state.navigation);
   return (
     <>
+      <ScrollToAnchor />
       <Header menuItemsLinks={landingNavLinks} phoneNumber={phoneNumber} />
       <Welcome />
       <ShortMenu menuItems={allMenuItems} />
