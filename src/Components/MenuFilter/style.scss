@@ -1,6 +1,6 @@
 .filter-lg{
   display: flex;
-  flex-direction: row;
+  flex-direction: row!important;
   flex-wrap: wrap;
   align-items: center;
   column-gap: 10px;
@@ -11,7 +11,7 @@
 }
 @media screen and (max-width: 600px) {
   .filter-lg{
-    display: none;
+    display: none!important;
   }
   .filter-mobile{
     display: block;
