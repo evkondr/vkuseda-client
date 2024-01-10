@@ -4,6 +4,7 @@ import LandingPage from './Components/Pages/LandingPage';
 import MainPage from './Components/Pages/MainPage';
 import MenuPage from './Components/Pages/MenuPage';
 import CartPage from './Components/Pages/CartPage';
+import AdminPage from './Components/Pages/AdminPage';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         element: <CartPage />,
       },
     ],
+  },
+  {
+    path: '/vkuseda-adm',
+    element: <AdminPage />,
   },
 ]);
 export default router;
