@@ -5,10 +5,10 @@ import MainPage from './Components/Pages/MainPage';
 import MenuPage from './Components/Pages/MenuPage';
 import CartPage from './Components/Pages/CartPage';
 import PageNotFound from './Components/Pages/PageNotFound';
-import AdminPage from './Components/Pages/AdminPage';
-import PostsPage from './Components/Pages/PostsPage';
-import CategoriesPage from './Components/Pages/CategoriesPage';
-import SettingsPage from './Components/Pages/SettingsPage';
+import AdminPage from './Components/AdminPart/Pages/AdminPage';
+import PostsPage from './Components/AdminPart/Pages/PostsPage';
+import CategoriesPage from './Components/AdminPart/Pages/CategoriesPage';
+import SettingsPage from './Components/AdminPart/Pages/SettingsPage';
 
 const router = createBrowserRouter([
   {
