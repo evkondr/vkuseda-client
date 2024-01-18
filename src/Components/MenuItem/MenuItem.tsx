@@ -18,11 +18,13 @@ const MenuItem = ({ menuItem, addToCurtHandler }:TMenuItemProps) => {
         <Stack direction="column" justifyContent="space-between" height="100%">
           <Box>
             <h5 className="menu-item__name">{menuItem.name}</h5>
-            <p>
-              <span>Ингредиенты:</span>
-              {' '}
-              {menuItem.ingredients}
-            </p>
+            <Box className="menu-item__description">
+              <p>
+                <span>Ингредиенты:</span>
+                {' '}
+                {menuItem.ingredients}
+              </p>
+            </Box>
             <p>
               <span>Вес:</span>
               {' '}
