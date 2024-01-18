@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable max-len */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Box, Container, Grid, Typography, Button,
 } from '@mui/material/';
@@ -26,7 +27,9 @@ const AboutShort = () => {
                 {/* <Link href="##" underline="hover" className="">Узнать больше</Link> */}
               </Typography>
               <Box sx={{ display: 'flex', justifyContent: 'center' }} padding={2}>
-                <Button variant="contained" className="about-short__btn">Узнать больше</Button>
+                <Button variant="contained" className="about-short__btn">
+                  <Link to="main/about">Узнать больше</Link>
+                </Button>
               </Box>
             </Box>
           </Grid>

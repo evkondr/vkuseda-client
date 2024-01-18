@@ -9,6 +9,9 @@ import AdminPage from './Components/AdminPart/Pages/AdminPage';
 import PostsPage from './Components/AdminPart/Pages/PostsPage';
 import CategoriesPage from './Components/AdminPart/Pages/CategoriesPage';
 import SettingsPage from './Components/AdminPart/Pages/SettingsPage';
+import AboutPage from './Components/Pages/AboutPage';
+import DeliveryPage from './Components/Pages/DeliveryPage';
+import ContactsPage from './Components/Pages/ContactsPage';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +30,18 @@ const router = createBrowserRouter([
       {
         path: 'cart',
         element: <CartPage />,
+      },
+      {
+        path: 'about',
+        element: <AboutPage />,
+      },
+      {
+        path: 'delivery',
+        element: <DeliveryPage />,
+      },
+      {
+        path: 'contacts',
+        element: <ContactsPage />,
       },
     ],
   },
