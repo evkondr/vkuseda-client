@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { Box } from '@mui/material';
 import AdminContainer from '../AdminContainer/AdminContainer';
