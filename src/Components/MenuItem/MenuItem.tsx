@@ -39,7 +39,7 @@ const MenuItem = ({ menuItem, addToCurtHandler }:TMenuItemProps) => {
             </p>
           </Box>
           { addToCurtHandler && (
-          <Box alignSelf="center" marginBottom="20px">
+          <Box alignSelf="center" className="menu-item__btn-box">
             <Button onClick={addToCurtHandler} className="menu-item__add-btn">В корзину</Button>
           </Box>
           ) }
