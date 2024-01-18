@@ -25,10 +25,21 @@
     }
   }
   &__name{
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 1rem;
     font-weight: 300;
     padding-bottom: 5px;
     border-bottom: 1px solid $theme-color-2;
+  }
+  &__description{
+    overflow: hidden;
+    max-height: 100px;
+  }
+  &__btn-box{
+    padding: 0;
+    position: absolute;
+    bottom: 10px;
   }
   &__add-btn{
     padding: 10px;
