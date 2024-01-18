@@ -22,7 +22,7 @@ const NavBar = ({
     <>
       <Box component="nav" className={footer ? 'nav__footer' : ''} sx={{ display: { xs: 'none', md: 'block' } }}>
         {menuItemsLinks.map((item:TMenuItemLink) => (
-          <Link to={item.link}>
+          <Link key={item.name} to={item.link}>
             <Button key={item.name} color="inherit">
               {item.name}
             </Button>
