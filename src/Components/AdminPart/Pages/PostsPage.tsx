@@ -5,6 +5,7 @@ import { useAppSelector } from '../../../hooks';
 import AdminContainer from '../AdminContainer/AdminContainer';
 import PostCard from '../PostCard/PostCard';
 import Modal from '../../Modal/Modal';
+import AddMemuItemForm from '../../MenuItem/AddMemuItemForm';
 
 const PostsPage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -14,7 +15,9 @@ const PostsPage = () => {
       <Box display="flex" flexDirection="column" padding={3} rowGap={2}>
         {allMenuItems.map((item) => <PostCard key={item.id} menuItem={item} />)}
       </Box>
-      <Modal open={open} handleOpen={() => setOpen(!open)} />
+      <Modal open={open} handleOpen={() => setOpen(!open)}>
+        <AddMemuItemForm />
+      </Modal>
     </AdminContainer>
   );
 };

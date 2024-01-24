@@ -1,15 +1,16 @@
 import React from 'react';
 import {
-  Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,
+  Button, Dialog, DialogActions, DialogTitle,
 } from '@mui/material';
 
 type TModelProps = {
     open: boolean,
     // eslint-disable-next-line no-unused-vars
     handleOpen: () => void,
+    children: React.ReactNode
 }
 const Modal = (props:TModelProps) => {
-  const { open, handleOpen } = props;
+  const { open, handleOpen, children } = props;
   const handleClick = () => {
     handleOpen();
   };
@@ -28,22 +29,7 @@ const Modal = (props:TModelProps) => {
       }}
     >
       <DialogTitle>Запись</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          To subscribe to this website, please enter your email address here. We
-          will send updates occasionally.
-        </DialogContentText>
-        <TextField
-          required
-          margin="dense"
-          id="name"
-          name="name"
-          label="Название"
-          type="text"
-          fullWidth
-          variant="standard"
-        />
-      </DialogContent>
+      { children }
       <DialogActions>
         <Button onClick={handleClick}>Отмена</Button>
         <Button type="submit">Создать</Button>
