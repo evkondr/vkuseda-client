@@ -12,6 +12,7 @@ import SettingsPage from './Components/AdminPart/Pages/SettingsPage';
 import AboutPage from './Components/Pages/AboutPage';
 import DeliveryPage from './Components/Pages/DeliveryPage';
 import ContactsPage from './Components/Pages/ContactsPage';
+import AuthPage from './Components/AdminPart/Pages/AuthPage';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: 'contacts',
         element: <ContactsPage />,
+      },
+      {
+        path: 'authorization',
+        element: <AuthPage />,
       },
     ],
   },

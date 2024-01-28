@@ -23,3 +23,9 @@ export type TCartItem = {
   price: number,
   totalPrice: number
 }
+export type TRegistrerFormData = {
+  login: string,
+  email?: string,
+  password: string
+}
+export type TLoginFormData = Omit<TRegistrerFormData, 'email'>
