@@ -1,10 +1,10 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
 
-const http = axios.create({
+const httpRequest = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
-const authHttp = axios.create({
+const authHttpRequest = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
@@ -14,9 +14,9 @@ const authInterceptor = (config:InternalAxiosRequestConfig) => {
   return config;
 };
 
-authHttp.interceptors.request.use(authInterceptor);
+authHttpRequest.interceptors.request.use(authInterceptor);
 
 export {
-  http,
-  authHttp,
+  httpRequest,
+  authHttpRequest,
 };
