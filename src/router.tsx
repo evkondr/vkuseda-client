@@ -44,10 +44,6 @@ const router = createBrowserRouter([
         path: 'contacts',
         element: <ContactsPage />,
       },
-      {
-        path: 'authorization',
-        element: <AuthPage />,
-      },
     ],
   },
   {
@@ -67,6 +63,10 @@ const router = createBrowserRouter([
         element: <SettingsPage />,
       },
     ],
+  },
+  {
+    path: '/vkuseda-adm/authorization',
+    element: <AuthPage />,
   },
 ]);
 export default router;

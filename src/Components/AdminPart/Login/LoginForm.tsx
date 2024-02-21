@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import {
-  Box, Paper, TextField, Button, Typography, Stack,
+  Box, Paper, TextField, Button, Typography, Stack, Alert,
 } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { TRegistrerFormData } from '../../../types';
 import { loginValidationSchema, regValidationSchema } from '../../../utils/validationSchemas';
+import loginUser from '../../../store/thunks/authThunks';
 
 const defaultValues: TRegistrerFormData = {
   login: '',
@@ -14,6 +16,8 @@ const defaultValues: TRegistrerFormData = {
 };
 const LoginForm = () => {
   const [isLogin, setIslogin] = useState<boolean>(true);
+  const { error } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   const res = () => {
     if (isLogin) {
       return loginValidationSchema;
@@ -31,17 +35,17 @@ const LoginForm = () => {
   const passwordRegister = register('password');
   const onSubmit: SubmitHandler<TRegistrerFormData> = (data) => {
     if (isLogin) {
-      console.log('login');
+      dispatch(loginUser(data));
       console.log(data);
     } else {
-      console.log('register');
-      console.log(data);
+      console.log('Регистрация временно закрыта');
     }
     reset(defaultValues);
   };
   useEffect(() => {
     console.log(errors);
-  }, [errors]);
+    console.log(error);
+  }, [errors, error]);
   return (
     <Paper style={{ paddingTop: '20px' }}>
       <Typography variant="h5" textAlign="center">{isLogin ? 'Вход' : 'Регистрация'}</Typography>
@@ -93,7 +97,13 @@ const LoginForm = () => {
         />
         <Box padding={2}>
           <Stack>
-            <Button type="submit" variant="text">{ isLogin ? 'Войти' : 'Отправить'}</Button>
+            {
+              isLogin ? <Button type="submit" variant="text">{ isLogin ? 'Войти' : 'Отправить'}</Button> : (
+                <Alert variant="outlined" severity="error">
+                  Регистрация временно закрыта
+                </Alert>
+              )
+            }
             <Button type="button" variant="text" onClick={() => setIslogin(!isLogin)}>{isLogin ? 'Зарегистрироватья' : 'Войти в систему'}</Button>
           </Stack>
         </Box>

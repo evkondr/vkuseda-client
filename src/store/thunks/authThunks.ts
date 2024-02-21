@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { isAxiosError } from 'axios';
 import { userLogin } from '../../http/authAPI';
 
 // type TLoginResponse = {
@@ -8,7 +9,7 @@ import { userLogin } from '../../http/authAPI';
 //     token: string
 //   }
 // }
-const login = createAsyncThunk<any, {login:string, password:string}, {
+const loginUser = createAsyncThunk<any, {login:string, password:string}, {
   rejectValue:string
 }>(
   'auth/login',
@@ -17,9 +18,15 @@ const login = createAsyncThunk<any, {login:string, password:string}, {
     try {
       const response = await userLogin(loginPayload.login, loginPayload.password);
       return response;
-    } catch (error) {
-      return rejectWithValue('err');
+    } catch (error: unknown) {
+      if (isAxiosError(error)) {
+        return rejectWithValue(error.message);
+      }
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue('Неизвестная ошибка');
     }
   },
 );
-export default login;
+export default loginUser;

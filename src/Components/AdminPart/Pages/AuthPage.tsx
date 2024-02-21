@@ -4,7 +4,7 @@ import LoginForm from '../Login/LoginForm';
 
 const AuthPage = () => {
   return (
-    <Box display="flex" justifyContent="center">
+    <Box paddingTop={3} display="flex" justifyContent="center">
       <LoginForm />
     </Box>
   );
