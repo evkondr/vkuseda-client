@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import loginUser from '../thunks/authThunks';
 
 type authState = {
@@ -25,6 +26,7 @@ const authSlice = createSlice({
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.error = action.payload as string;
+      toast.error(action.payload);
     });
   },
 });

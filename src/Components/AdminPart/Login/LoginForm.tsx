@@ -40,11 +40,12 @@ const LoginForm = () => {
     } else {
       console.log('Регистрация временно закрыта');
     }
-    reset(defaultValues);
+    if (!error) {
+      reset(defaultValues);
+    }
   };
   useEffect(() => {
     console.log(errors);
-    console.log(error);
   }, [errors, error]);
   return (
     <Paper style={{ paddingTop: '20px' }}>
