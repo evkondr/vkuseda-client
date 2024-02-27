@@ -6,23 +6,35 @@ import TokenManager from '../../utils/tokenManager';
 
 type authState = {
   token: null | string,
+  isAuth: boolean,
   loading: boolean,
   error: null | string,
 };
 const initialState:authState = {
   token: null,
+  isAuth: false,
   loading: false,
   error: null,
 };
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    checkAuth: (state) => {
+      const isToken = TokenManager.getValue();
+      if (isToken) {
+        state.isAuth = true;
+      } else {
+        state.isAuth = false;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.token = action.payload.result.token;
       TokenManager.save(state.token);
       toast.success(action.payload.message);
+      state.isAuth = true;
       state.loading = false;
     });
     builder.addCase(loginUser.pending, (state) => {
@@ -36,4 +48,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { checkAuth } = authSlice.actions;
 export default authSlice.reducer;

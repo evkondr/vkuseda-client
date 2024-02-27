@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   AppBar, Typography, Button, Box,
 } from '@mui/material/';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import AdminSidebar from '../AdminSidebar/AdminSidebar';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { checkAuth } from '../../../store/features/authSlice';
 
 const content = {
   marginTop: '69px',
@@ -19,6 +21,14 @@ const aSide = {
 };
 
 const AdminPage = () => {
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(checkAuth());
+  });
+  if (!isAuth) {
+    return <Navigate to="/adm-dashboard/authorization" replace={false} />;
+  }
   return (
     <main style={{ maxHeight: '100vh' }}>
       <AppBar position="fixed">

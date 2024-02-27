@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import {
-  Box, Paper, TextField, Button, Typography, Stack, Alert,
+  Box, Paper, TextField, Typography, Stack, Alert,
 } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { TRegistrerFormData } from '../../../types';
 import { loginValidationSchema, regValidationSchema } from '../../../utils/validationSchemas';
 import loginUser from '../../../store/thunks/authThunks';
+import { checkAuth } from '../../../store/features/authSlice';
 
 const defaultValues: TRegistrerFormData = {
   login: '',
@@ -16,7 +19,9 @@ const defaultValues: TRegistrerFormData = {
 };
 const LoginForm = () => {
   const [isLogin, setIslogin] = useState<boolean>(true);
-  const { error } = useAppSelector((state) => state.auth);
+  const { error, loading, isAuth } = useAppSelector((state) => state.auth);
+  const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
   const res = () => {
     if (isLogin) {
@@ -36,7 +41,6 @@ const LoginForm = () => {
   const onSubmit: SubmitHandler<TRegistrerFormData> = (data) => {
     if (isLogin) {
       dispatch(loginUser(data));
-      console.log(data);
     } else {
       console.log('Регистрация временно закрыта');
     }
@@ -45,8 +49,13 @@ const LoginForm = () => {
     }
   };
   useEffect(() => {
-    console.log(errors);
-  }, [errors, error]);
+    dispatch(checkAuth());
+  }, [dispatch]);
+  useEffect(() => {
+    if (isAuth) {
+      navigate('/adm-dashboard', { replace: false });
+    }
+  }, [navigate, isAuth]);
   return (
     <Paper style={{ paddingTop: '20px' }}>
       <Typography variant="h5" textAlign="center">{isLogin ? 'Вход' : 'Регистрация'}</Typography>
@@ -99,13 +108,13 @@ const LoginForm = () => {
         <Box padding={2}>
           <Stack>
             {
-              isLogin ? <Button type="submit" variant="text">{ isLogin ? 'Войти' : 'Отправить'}</Button> : (
+              isLogin ? <LoadingButton type="submit" loading={loading} disabled={loading} variant="text">{ isLogin ? 'Войти' : 'Отправить'}</LoadingButton> : (
                 <Alert variant="outlined" severity="error">
                   Регистрация временно закрыта
                 </Alert>
               )
             }
-            <Button type="button" variant="text" onClick={() => setIslogin(!isLogin)}>{isLogin ? 'Зарегистрироватья' : 'Войти в систему'}</Button>
+            <LoadingButton type="button" disabled variant="text" onClick={() => setIslogin(!isLogin)}>{isLogin ? 'Зарегистрироватья' : 'Войти в систему'}</LoadingButton>
           </Stack>
         </Box>
       </Box>

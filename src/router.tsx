@@ -47,7 +47,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/vkuseda-adm',
+    path: '/adm-dashboard',
     element: <AdminPage />,
     children: [
       {
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/vkuseda-adm/authorization',
+    path: '/adm-dashboard/authorization',
     element: <AuthPage />,
   },
 ]);
