@@ -5,7 +5,7 @@ import {
 } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { TRegistrerFormData } from '../../../types';
 import { loginValidationSchema, regValidationSchema } from '../../../utils/validationSchemas';
@@ -21,6 +21,7 @@ const LoginForm = () => {
   const [isLogin, setIslogin] = useState<boolean>(true);
   const { error, loading, isAuth } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
+  const { state: { from } } = useLocation();
 
   const dispatch = useAppDispatch();
   const res = () => {
@@ -48,14 +49,15 @@ const LoginForm = () => {
       reset(defaultValues);
     }
   };
+  // EFFECT
   useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);
   useEffect(() => {
     if (isAuth) {
-      navigate('/adm-dashboard', { replace: false });
+      navigate(from, { replace: true });
     }
-  }, [navigate, isAuth]);
+  }, [navigate, isAuth, from]);
   return (
     <Paper style={{ paddingTop: '20px' }}>
       <Typography variant="h5" textAlign="center">{isLogin ? 'Вход' : 'Регистрация'}</Typography>

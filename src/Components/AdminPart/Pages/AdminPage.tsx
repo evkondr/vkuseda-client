@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {
   AppBar, Typography, Button, Box,
 } from '@mui/material/';
-import { Outlet, Navigate } from 'react-router-dom';
+import { Outlet, Navigate, useLocation } from 'react-router-dom';
 import AdminSidebar from '../AdminSidebar/AdminSidebar';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { checkAuth } from '../../../store/features/authSlice';
@@ -23,11 +23,12 @@ const aSide = {
 const AdminPage = () => {
   const { isAuth } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const location = useLocation();
   useEffect(() => {
     dispatch(checkAuth());
   });
   if (!isAuth) {
-    return <Navigate to="/adm-dashboard/authorization" replace={false} />;
+    return <Navigate to="/adm-dashboard/authorization" state={{ from: location.pathname }} />;
   }
   return (
     <main style={{ maxHeight: '100vh' }}>
