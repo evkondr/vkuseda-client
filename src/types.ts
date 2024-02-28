@@ -28,4 +28,8 @@ export type TRegistrerFormData = {
   email?: string,
   password: string
 }
+export interface IStateStdProps {
+  loading: boolean,
+  error: null | string
+}
 export type TLoginFormData = Omit<TRegistrerFormData, 'email'>

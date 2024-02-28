@@ -1,18 +1,25 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { categories } from '../../tempDB';
-import { TCategory } from '../../types';
+import { IStateStdProps, TCategory } from '../../types';
+import getAllCategoriesAsync from '../thunks/categoriesThunk';
 
-type TCategoriesState = {
+interface ICategoriesState extends IStateStdProps {
   categories: TCategory[],
 }
-const initialState:TCategoriesState = {
-  categories,
+const initialState:ICategoriesState = {
+  categories: [],
+  loading: false,
+  error: null,
 };
 const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
-
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getAllCategoriesAsync.fulfilled, (state, action) => {
+      state.categories = action.payload;
+    });
   },
 });
 export default categoriesSlice.reducer;
