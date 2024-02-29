@@ -3,18 +3,18 @@ import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import loginUser from '../thunks/authThunks';
 import TokenManager from '../../utils/tokenManager';
+import { IStateStdProps } from '../../types';
 
-type authState = {
+interface IAuthState extends IStateStdProps{
   token: null | string,
   isAuth: boolean,
-  loading: boolean,
-  error: null | string,
-};
-const initialState:authState = {
+}
+
+const initialState:IAuthState = {
   token: null,
   isAuth: false,
   loading: false,
-  error: null,
+  error: undefined,
 };
 const authSlice = createSlice({
   name: 'auth',
@@ -27,6 +27,10 @@ const authSlice = createSlice({
       } else {
         state.isAuth = false;
       }
+    },
+    logout: (state) => {
+      TokenManager.removeValue();
+      state.isAuth = false;
     },
   },
   extraReducers: (builder) => {
@@ -48,5 +52,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { checkAuth } = authSlice.actions;
+export const { checkAuth, logout } = authSlice.actions;
 export default authSlice.reducer;

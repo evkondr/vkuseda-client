@@ -1,16 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import getAllCategoriesAsync from '../../../store/thunks/categoriesThunk';
+import NotImplemented from '../../NotImplemented/NotImplemented';
+import AdminContainer from '../AdminContainer/AdminContainer';
+import Modal from '../../Modal/Modal';
 
 const CategoriesPage = () => {
-  const { categories } = useAppSelector((state) => state.categories);
+  const [open, setOpen] = useState<boolean>(false);
+  const { categories, error } = useAppSelector((state) => state.categories);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getAllCategoriesAsync());
-    console.log(categories);
-  }, [dispatch, categories]);
+  }, [dispatch]);
+  if (error) {
+    return <Box>{error}</Box>;
+  }
   return (
-    <div>CategoriesPage</div>
+    <AdminContainer headerText="Категории" buttonHandler={() => setOpen(true)}>
+      {
+        categories.length === 0
+          ? <Box padding={2}>Еше не добавлено ни одной категории</Box>
+          : <NotImplemented />
+      }
+      <Modal open={open} handleOpen={() => setOpen(!open)}>
+        <NotImplemented />
+      </Modal>
+    </AdminContainer>
   );
 };
 
