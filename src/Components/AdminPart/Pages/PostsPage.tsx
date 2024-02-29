@@ -5,7 +5,7 @@ import { useAppSelector } from '../../../hooks';
 import AdminContainer from '../AdminContainer/AdminContainer';
 import PostCard from '../PostCard/PostCard';
 import Modal from '../../Modal/Modal';
-import AddMemuItemForm from '../../MenuItem/AddMemuItemForm';
+import AddMemuItemForm from '../MenuItems/AddMemuItemForm';
 
 const PostsPage = () => {
   const [open, setOpen] = useState<boolean>(false);

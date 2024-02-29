@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Modal } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import getAllCategoriesAsync from '../../../store/thunks/categoriesThunk';
 import NotImplemented from '../../NotImplemented/NotImplemented';
 import AdminContainer from '../AdminContainer/AdminContainer';
-import Modal from '../../Modal/Modal';
+import CategoriesAddForm from '../Categories/CategoriesAddForm';
 
 const CategoriesPage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -23,8 +23,8 @@ const CategoriesPage = () => {
           ? <Box padding={2}>Еше не добавлено ни одной категории</Box>
           : <NotImplemented />
       }
-      <Modal open={open} handleOpen={() => setOpen(!open)}>
-        <NotImplemented />
+      <Modal open={open} onClose={() => setOpen(!open)}>
+        <CategoriesAddForm />
       </Modal>
     </AdminContainer>
   );
