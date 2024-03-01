@@ -1,8 +1,18 @@
 import { authHttpRequest } from '.';
 
-const fetchAllCategories = async () => {
-  const response = await authHttpRequest.get('/categories');
-  return response.data;
-};
+const URL = '/categories';
+class CategoriesService {
+  static fetchAllCategories = async () => {
+    const response = await authHttpRequest.get(URL);
+    return response.data;
+  };
 
-export default fetchAllCategories;
+  static addNewCategory = async (name:string) => {
+    const response = await authHttpRequest.post(URL, {
+      name,
+    });
+    return response.data;
+  };
+}
+
+export default CategoriesService;

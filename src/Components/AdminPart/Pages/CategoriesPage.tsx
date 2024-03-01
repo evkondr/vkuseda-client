@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Modal } from '@mui/material';
+import { Box } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import getAllCategoriesAsync from '../../../store/thunks/categoriesThunk';
+import { getAllCategoriesAsync, addNewCategory } from '../../../store/thunks/categoriesThunk';
 import NotImplemented from '../../NotImplemented/NotImplemented';
 import AdminContainer from '../AdminContainer/AdminContainer';
-import CategoriesAddForm from '../Categories/CategoriesAddForm';
+import CategoriesModal from './CategoriesModal';
 
 const CategoriesPage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { categories, error } = useAppSelector((state) => state.categories);
   const dispatch = useAppDispatch();
+  // Submit
+  const submit = (data: {name:string}) => {
+    dispatch(addNewCategory(data.name));
+  };
+  // useEffect
   useEffect(() => {
     dispatch(getAllCategoriesAsync());
   }, [dispatch]);
+  // Component
   if (error) {
     return <Box>{error}</Box>;
   }
@@ -23,9 +29,7 @@ const CategoriesPage = () => {
           ? <Box padding={2}>Еше не добавлено ни одной категории</Box>
           : <NotImplemented />
       }
-      <Modal open={open} onClose={() => setOpen(!open)}>
-        <CategoriesAddForm />
-      </Modal>
+      <CategoriesModal open={open} onClose={() => setOpen(!open)} submit={submit} />
     </AdminContainer>
   );
 };

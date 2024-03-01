@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import { useAppSelector } from '../../../hooks';
 import AdminContainer from '../AdminContainer/AdminContainer';
 import PostCard from '../PostCard/PostCard';
-import Modal from '../../Modal/Modal';
+import DialogModal from '../../Modal/DialogModal';
 import AddMemuItemForm from '../MenuItems/AddMemuItemForm';
 
 const PostsPage = () => {
@@ -15,9 +15,9 @@ const PostsPage = () => {
       <Box display="flex" flexDirection="column" padding={3} rowGap={2}>
         {allMenuItems.map((item) => <PostCard key={item.id} menuItem={item} />)}
       </Box>
-      <Modal open={open} handleOpen={() => setOpen(!open)}>
+      <DialogModal open={open} onClose={() => setOpen(!open)} onSubmit={() => console.log()}>
         <AddMemuItemForm />
-      </Modal>
+      </DialogModal>
     </AdminContainer>
   );
 };

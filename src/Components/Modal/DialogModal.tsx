@@ -5,14 +5,16 @@ import {
 
 type TModelProps = {
     open: boolean,
-    // eslint-disable-next-line no-unused-vars
-    handleOpen: () => void,
-    children: React.ReactNode
+    onClose: () => void,
+    children: React.ReactNode,
+    onSubmit: () => void
 }
-const Modal = (props:TModelProps) => {
-  const { open, handleOpen, children } = props;
+const DialogModal = (props:TModelProps) => {
+  const {
+    open, onClose, children, onSubmit,
+  } = props;
   const handleClick = () => {
-    handleOpen();
+    onClose();
   };
 
   return (
@@ -21,11 +23,7 @@ const Modal = (props:TModelProps) => {
       onClose={handleClick}
       PaperProps={{
         component: 'form',
-        onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-          event.preventDefault();
-          console.log(event);
-          handleClick();
-        },
+        onSubmit,
       }}
     >
       <DialogTitle>Запись</DialogTitle>
@@ -38,4 +36,4 @@ const Modal = (props:TModelProps) => {
   );
 };
 
-export default Modal;
+export default DialogModal;

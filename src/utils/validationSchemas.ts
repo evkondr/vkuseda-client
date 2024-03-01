@@ -9,3 +9,6 @@ export const regValidationSchema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().min(6).required(),
 }).required();
+export const categoryValidationSchema = yup.object({
+  name: yup.string().required(),
+});
