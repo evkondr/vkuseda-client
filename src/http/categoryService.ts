@@ -13,6 +13,11 @@ class CategoriesService {
     });
     return response.data;
   };
+
+  static removeCategory = async (id:string) => {
+    const response = await authHttpRequest.delete(`${URL}/${id}`);
+    return response.data;
+  };
 }
 
 export default CategoriesService;

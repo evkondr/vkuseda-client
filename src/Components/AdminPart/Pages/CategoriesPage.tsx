@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { getAllCategoriesAsync, addNewCategory } from '../../../store/thunks/categoriesThunk';
+import { getAllCategoriesAsync, addNewCategory, removeCategoryAsync } from '../../../store/thunks/categoriesThunk';
 import AdminContainer from '../AdminContainer/AdminContainer';
 import CategoriesModal from './CategoriesModal';
 import CategoryCard from '../Categories/CategoryCard';
@@ -15,12 +15,12 @@ const CategoriesPage = () => {
     dispatch(addNewCategory(data.name));
   };
   const removeItem = (id:string) => {
-    console.log(id);
+    dispatch(removeCategoryAsync(id));
   };
   // useEffect
   useEffect(() => {
     dispatch(getAllCategoriesAsync());
-  }, [dispatch]);
+  }, [dispatch, categories]);
   // Component
   if (error) {
     return <Box>{error}</Box>;
