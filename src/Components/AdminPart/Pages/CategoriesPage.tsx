@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { getAllCategoriesAsync, addNewCategory } from '../../../store/thunks/categoriesThunk';
-import NotImplemented from '../../NotImplemented/NotImplemented';
 import AdminContainer from '../AdminContainer/AdminContainer';
 import CategoriesModal from './CategoriesModal';
+import CategoryCard from '../Categories/CategoryCard';
 
 const CategoriesPage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -13,6 +13,9 @@ const CategoriesPage = () => {
   // Submit
   const submit = (data: {name:string}) => {
     dispatch(addNewCategory(data.name));
+  };
+  const removeItem = (id:string) => {
+    console.log(id);
   };
   // useEffect
   useEffect(() => {
@@ -27,7 +30,17 @@ const CategoriesPage = () => {
       {
         categories.length === 0
           ? <Box padding={2}>Еше не добавлено ни одной категории</Box>
-          : <NotImplemented />
+          : (
+            <Box padding={2} display="flex" flexDirection="column" rowGap={2}>
+              {categories.map((categoryItem) => (
+                <CategoryCard
+                  key={categoryItem.id}
+                  categoryItem={categoryItem}
+                  removeItem={() => removeItem(categoryItem.id)}
+                />
+              ))}
+            </Box>
+          )
       }
       <CategoriesModal open={open} onClose={() => setOpen(!open)} submit={submit} />
     </AdminContainer>
