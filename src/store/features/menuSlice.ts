@@ -2,7 +2,7 @@
 import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { IStateStdProps, TMenuItem } from '../../types';
-import getMenuItemsService from '../thunks/menuItemsThunk';
+import { getMenuItemsService, addNewMenuItem } from '../thunks/menuItemsThunk';
 import { getAllCategoriesAsync } from '../thunks/categoriesThunk';
 
 interface IMenuState extends IStateStdProps {
@@ -33,9 +33,14 @@ const menuSlice = createSlice({
       state.menuItems = action.payload;
       state.loading = false;
     });
+    builder.addCase(addNewMenuItem.fulfilled, (state, action) => {
+      state.menuItems.push(action.payload);
+      state.loading = false;
+    });
     // Matching for loader
     builder.addMatcher(isAnyOf(
       getMenuItemsService.pending,
+      addNewMenuItem.pending,
     ), (state) => {
       state.loading = true;
       state.error = undefined;
@@ -44,6 +49,7 @@ const menuSlice = createSlice({
     builder.addMatcher(
       isAnyOf(
         getAllCategoriesAsync.rejected,
+        addNewMenuItem.rejected,
       ),
       (state, action) => {
         state.loading = false;

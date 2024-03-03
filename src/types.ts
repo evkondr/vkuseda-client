@@ -8,7 +8,7 @@ export type TMenuItem = {
   image: string | undefined,
   ingredients: string,
   category: string,
-  weghit: number,
+  weight: number,
   price: number,
   imageAlt?: string
 };
@@ -27,6 +27,15 @@ export type TRegistrerFormData = {
   login: string,
   email?: string,
   password: string
+}
+export type TMenuItemFomtValues = {
+  name: string,
+  image: File | undefined,
+  ingredients: string,
+  category: string,
+  weight: number,
+  price: number,
+  imageAlt?: string
 }
 export interface IStateStdProps {
   loading: boolean,

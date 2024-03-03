@@ -28,7 +28,7 @@ const MenuItem = ({ menuItem, addToCurtHandler }:TMenuItemProps) => {
             <p>
               <span>Вес:</span>
               {' '}
-              {menuItem.weghit}
+              {menuItem.weight}
               {' '}
               г.
             </p>

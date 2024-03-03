@@ -14,7 +14,7 @@ interface IProps {
     image: UseFormRegisterReturn<'image'>,
     imageAlt: UseFormRegisterReturn<'imageAlt'>,
     price: UseFormRegisterReturn<'price'>,
-    weghit: UseFormRegisterReturn<'weghit'>,
+    weight: UseFormRegisterReturn<'weight'>,
   }
 }
 const VisuallyHiddenInput = styled('input')({
@@ -109,10 +109,10 @@ const AddMemuItemForm = ({ registers }:IProps) => {
         label="Вес"
         type="number"
         variant="standard"
-        name={registers.weghit.name}
-        onBlur={registers.weghit.onBlur}
-        onChange={registers.weghit.onChange}
-        ref={registers.weghit.ref}
+        name={registers.weight.name}
+        onBlur={registers.weight.onBlur}
+        onChange={registers.weight.onChange}
+        ref={registers.weight.ref}
       />
       <TextField
         required

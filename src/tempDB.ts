@@ -18,7 +18,7 @@ export const menuItems:TMenuItem[] = [
     image: menuItem1,
     ingredients: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     category: 'Салаты',
-    weghit: 120,
+    weight: 120,
     price: 150,
   },
   {
@@ -27,7 +27,7 @@ export const menuItems:TMenuItem[] = [
     image: menuItem2,
     ingredients: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
     category: 'Вторые блюда',
-    weghit: 120,
+    weight: 120,
     price: 150,
   },
   {
@@ -36,7 +36,7 @@ export const menuItems:TMenuItem[] = [
     image: menuItem3,
     ingredients: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
     category: 'Первые блюда',
-    weghit: 120,
+    weight: 120,
     price: 100,
   },
   {
@@ -45,7 +45,7 @@ export const menuItems:TMenuItem[] = [
     image: menuItem4,
     ingredients: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
     category: 'Первые блюда',
-    weghit: 120,
+    weight: 120,
     price: 100,
   },
   {
@@ -54,7 +54,7 @@ export const menuItems:TMenuItem[] = [
     image: menuItem5,
     ingredients: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
     category: 'Супы',
-    weghit: 120,
+    weight: 120,
     price: 100,
   },
   {
@@ -63,7 +63,7 @@ export const menuItems:TMenuItem[] = [
     image: menuItem6,
     ingredients: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
     category: 'Вторые блюда',
-    weghit: 120,
+    weight: 120,
     price: 150,
   },
   {
@@ -72,7 +72,7 @@ export const menuItems:TMenuItem[] = [
     image: menuItem7,
     ingredients: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
     category: 'Первые блюда',
-    weghit: 120,
+    weight: 120,
     price: 150,
   },
   {
@@ -81,7 +81,7 @@ export const menuItems:TMenuItem[] = [
     image: menuItem8,
     ingredients: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
     category: 'Супы',
-    weghit: 120,
+    weight: 120,
     price: 100,
   },
 ];

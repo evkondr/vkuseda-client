@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { Box, Typography, CircularProgress } from '@mui/material';
@@ -15,14 +16,14 @@ const PostsPage = () => {
   return (
     <AdminContainer headerText="Записи" buttonHandler={() => setOpen(true)}>
       <Box display="flex" flexDirection="column" padding={3} rowGap={2}>
-        {loading && <CircularProgress />}
-        {menuItems.length === 0
+        {loading ? <CircularProgress /> : menuItems.length === 0
           ? (
             <Typography>
               Записи еще не добалены
             </Typography>
           )
           : menuItems.map((item) => <PostCard key={item.id} menuItem={item} />)}
+
       </Box>
       <PostAddModal open={open} onClose={() => setOpen(!open)} />
     </AdminContainer>
