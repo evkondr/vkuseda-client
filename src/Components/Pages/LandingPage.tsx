@@ -10,14 +10,14 @@ import ScrollToAnchor from '../ScrollToAnchor';
 
 const phoneNumber = '+7 (902) 300 19 91';
 const LandingPage = () => {
-  const { allMenuItems } = useAppSelector((state) => state.menu);
+  const { menuItems } = useAppSelector((state) => state.menu);
   const { landingNavLinks } = useAppSelector((state) => state.navigation);
   return (
     <>
       <ScrollToAnchor />
       <Header menuItemsLinks={landingNavLinks} phoneNumber={phoneNumber} />
       <Welcome />
-      <ShortMenu menuItems={allMenuItems} />
+      <ShortMenu menuItems={menuItems} />
       <AboutShort />
       <Contacts />
       <Footer />
