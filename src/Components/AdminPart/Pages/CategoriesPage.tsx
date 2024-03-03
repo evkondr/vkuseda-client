@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { getAllCategoriesAsync, addNewCategory, removeCategoryAsync } from '../../../store/thunks/categoriesThunk';
+import { getAllCategoriesAsync, removeCategoryAsync } from '../../../store/thunks/categoriesThunk';
 import AdminContainer from '../AdminContainer/AdminContainer';
-import CategoriesModal from './CategoriesModal';
+import CategoriesModal from '../Categories/CategoriesModal';
 import CategoryCard from '../Categories/CategoryCard';
+import { TCategory } from '../../../types';
 
 const CategoriesPage = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const { categories, error } = useAppSelector((state) => state.categories);
+  const { categories, loading, error } = useAppSelector((state) => state.categories);
   const dispatch = useAppDispatch();
-  // Submit
-  const submit = (data: {name:string}) => {
-    dispatch(addNewCategory(data.name));
-  };
+  // Remove item
   const removeItem = (id:string) => {
     dispatch(removeCategoryAsync(id));
   };
   // useEffect
   useEffect(() => {
     dispatch(getAllCategoriesAsync());
-  }, [dispatch, categories]);
+  }, [dispatch]);
   // Component
   if (error) {
     return <Box>{error}</Box>;
   }
+
   return (
     <AdminContainer headerText="Категории" buttonHandler={() => setOpen(true)}>
       {
@@ -32,7 +31,7 @@ const CategoriesPage = () => {
           ? <Box padding={2}>Еше не добавлено ни одной категории</Box>
           : (
             <Box padding={2} display="flex" flexDirection="column" rowGap={2}>
-              {categories.map((categoryItem) => (
+              {loading ? <CircularProgress /> : categories.map((categoryItem:TCategory) => (
                 <CategoryCard
                   key={categoryItem.id}
                   categoryItem={categoryItem}
@@ -42,7 +41,7 @@ const CategoriesPage = () => {
             </Box>
           )
       }
-      <CategoriesModal open={open} onClose={() => setOpen(!open)} submit={submit} />
+      <CategoriesModal open={open} onClose={() => setOpen(!open)} />
     </AdminContainer>
   );
 };
