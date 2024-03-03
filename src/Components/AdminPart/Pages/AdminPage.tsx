@@ -5,7 +5,7 @@ import {
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
 import AdminSidebar from '../AdminSidebar/AdminSidebar';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { checkAuth } from '../../../store/features/authSlice';
+import { checkAuth, logout } from '../../../store/features/authSlice';
 
 const content = {
   marginTop: '69px',
@@ -37,7 +37,7 @@ const AdminPage = () => {
           <Typography>
             Администратор
           </Typography>
-          <Button variant="contained">Выход</Button>
+          <Button variant="contained" onClick={() => dispatch(logout())}>Выход</Button>
         </Box>
       </AppBar>
       <Box
