@@ -5,7 +5,7 @@ export type TMenuItemLink = {
 export type TMenuItem = {
   id: string
   name: string,
-  image: string,
+  image: string | undefined,
   ingredients: string,
   category: string,
   weghit: number,
@@ -33,3 +33,4 @@ export interface IStateStdProps {
   error: string | undefined
 }
 export type TLoginFormData = Omit<TRegistrerFormData, 'email'>
+export type TMenuItemFormData = Omit<TMenuItem, 'id'>

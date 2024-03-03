@@ -1,10 +1,22 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import {
   TextField, Box, DialogContent, DialogContentText, Button, InputLabel, FormControl, NativeSelect,
 } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
+interface IProps {
+  registers: {
+    name: UseFormRegisterReturn<'name'>
+    ingredients: UseFormRegisterReturn<'ingredients'>,
+    category: UseFormRegisterReturn<'category'>,
+    image: UseFormRegisterReturn<'image'>,
+    imageAlt: UseFormRegisterReturn<'imageAlt'>,
+    price: UseFormRegisterReturn<'price'>,
+    weghit: UseFormRegisterReturn<'weghit'>,
+  }
+}
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
   clipPath: 'inset(50%)',
@@ -16,38 +28,61 @@ const VisuallyHiddenInput = styled('input')({
   whiteSpace: 'nowrap',
   width: 1,
 });
-const AddMemuItemForm = () => {
+const AddMemuItemForm = ({ registers }:IProps) => {
   return (
     <DialogContent>
       <DialogContentText>
-        To subscribe to this website, please enter your email address here. We
-        will send updates occasionally.
+        Добавление очередного гулинарного шедевра
       </DialogContentText>
       <Box paddingY={2}>
         <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
           Загрузить изображение
-          <VisuallyHiddenInput type="file" name="vkuseda-img" />
+          <VisuallyHiddenInput
+            type="file"
+            name={registers.image.name}
+            onBlur={registers.image.onBlur}
+            onChange={registers.image.onChange}
+            ref={registers.image.ref}
+          />
         </Button>
       </Box>
+      <TextField
+        margin="dense"
+        id="imageAlt"
+        label="Альтернативный текст для картинки"
+        type="text"
+        fullWidth
+        variant="standard"
+        name={registers.imageAlt.name}
+        onBlur={registers.imageAlt.onBlur}
+        onChange={registers.imageAlt.onChange}
+        ref={registers.imageAlt.ref}
+      />
       <TextField
         required
         margin="dense"
         id="name"
-        name="name"
-        label="Название"
+        label="Название блюда"
         type="text"
         fullWidth
         variant="standard"
+        name={registers.name.name}
+        onBlur={registers.name.onBlur}
+        onChange={registers.name.onChange}
+        ref={registers.name.ref}
       />
       <TextField
         required
         margin="dense"
         id="ingredients"
-        name="ingredients"
         label="Ингредиенты"
         type="text"
         fullWidth
         variant="standard"
+        name={registers.ingredients.name}
+        onBlur={registers.ingredients.onBlur}
+        onChange={registers.ingredients.onChange}
+        ref={registers.ingredients.ref}
       />
       <FormControl fullWidth margin="dense">
         <InputLabel variant="standard" htmlFor="category">
@@ -56,9 +91,11 @@ const AddMemuItemForm = () => {
         <NativeSelect
           defaultValue={30}
           inputProps={{
-            name: 'category',
-            id: 'category',
+            name: registers.category.name,
+            onBlur: registers.category.onBlur,
+            onChange: registers.category.onChange,
           }}
+          ref={registers.category.ref}
         >
           <option value={10}>Супы</option>
           <option value={20}>Вторые блюда</option>
@@ -69,18 +106,24 @@ const AddMemuItemForm = () => {
         sx={{ marginRight: '10px' }}
         required
         id="weight"
-        name="weight"
         label="Вес"
         type="number"
         variant="standard"
+        name={registers.weghit.name}
+        onBlur={registers.weghit.onBlur}
+        onChange={registers.weghit.onChange}
+        ref={registers.weghit.ref}
       />
       <TextField
         required
         id="price"
-        name="price"
         label="Цена"
         type="number"
         variant="standard"
+        name={registers.price.name}
+        onBlur={registers.price.onBlur}
+        onChange={registers.price.onChange}
+        ref={registers.price.ref}
       />
     </DialogContent>
   );

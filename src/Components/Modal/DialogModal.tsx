@@ -7,7 +7,7 @@ type TModelProps = {
     open: boolean,
     onClose: () => void,
     children: React.ReactNode,
-    onSubmit: () => void
+    onSubmit: () => void,
 }
 const DialogModal = (props:TModelProps) => {
   const {

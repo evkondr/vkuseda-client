@@ -24,6 +24,7 @@ const categoriesSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAllCategoriesAsync.fulfilled, (state, action) => {
       state.categories = action.payload;
+      state.loading = false;
     });
     builder.addCase(addNewCategory.fulfilled, (state, action) => {
       state.categories.push(action.payload);

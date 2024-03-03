@@ -4,14 +4,14 @@ import { toast } from 'react-toastify';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import DialogModal from '../../Modal/DialogModal';
-import CategoriesAddForm from '../Categories/CategoriesAddForm';
+import CategoriesAddForm from './CategoriesAddForm';
 import { categoryValidationSchema } from '../../../utils/validationSchemas';
+import { useAppDispatch } from '../../../hooks';
+import { addNewCategory } from '../../../store/thunks/categoriesThunk';
 
 interface IProps {
   open: boolean;
   onClose: () => void,
-  // eslint-disable-next-line no-unused-vars
-  submit: (data:{ name:string }) => void,
 }
 type TFormValues = {
   name: string
@@ -19,7 +19,8 @@ type TFormValues = {
 const defaultValues: TFormValues = {
   name: '',
 };
-const CategoriesModal = ({ open, onClose, submit }:IProps) => {
+const CategoriesModal = ({ open, onClose }:IProps) => {
+  const dispatch = useAppDispatch();
   // useForm
   const {
     register, handleSubmit, reset, formState: { errors },
@@ -31,7 +32,7 @@ const CategoriesModal = ({ open, onClose, submit }:IProps) => {
   const nameRegister = register('name');
   // Submit
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
-    submit(data);
+    dispatch(addNewCategory(data.name));
     reset(defaultValues);
     onClose();
   };
