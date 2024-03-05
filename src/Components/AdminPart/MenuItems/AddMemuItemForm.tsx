@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import {
-  TextField, Box, DialogContent, DialogContentText, Button, InputLabel, FormControl, NativeSelect,
+  TextField, Box, DialogContent,
+  DialogContentText, Button, InputLabel, FormControl, NativeSelect, Typography,
 } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
@@ -29,6 +30,13 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 const AddMemuItemForm = ({ registers }:IProps) => {
+  const [file, setFile] = useState<File | undefined>(undefined);
+  const onImageChage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+      registers.image.onChange(e);
+    }
+  };
   return (
     <DialogContent>
       <DialogContentText>
@@ -41,10 +49,11 @@ const AddMemuItemForm = ({ registers }:IProps) => {
             type="file"
             name={registers.image.name}
             onBlur={registers.image.onBlur}
-            onChange={registers.image.onChange}
+            onChange={onImageChage}
             ref={registers.image.ref}
           />
         </Button>
+        {file && <Typography sx={{ marginTop: '10px' }}>{file.name}</Typography>}
       </Box>
       <TextField
         margin="dense"

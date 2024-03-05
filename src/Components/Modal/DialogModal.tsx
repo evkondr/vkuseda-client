@@ -25,6 +25,7 @@ const DialogModal = (props:TModelProps) => {
         component: 'form',
         onSubmit,
       }}
+      id="add"
     >
       <DialogTitle>Запись</DialogTitle>
       { children }

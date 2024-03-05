@@ -30,7 +30,7 @@ export type TRegistrerFormData = {
 }
 export type TMenuItemFomtValues = {
   name: string,
-  image: File | undefined,
+  image: FileList | File | undefined,
   ingredients: string,
   category: string,
   weight: number,

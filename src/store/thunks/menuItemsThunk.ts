@@ -7,7 +7,7 @@ import MenuItemsService from '../../http/menuItemsService';
 
 const asyncThuncName = createAsyncThunkName('menuItems');
 
-export const getMenuItemsService = createAsyncThunk<TMenuItem[], undefined, { rejectValue: string }>(asyncThuncName('getAllMenuItems'), async (_, { rejectWithValue, dispatch }) => {
+export const getMenuItems = createAsyncThunk<TMenuItem[], undefined, { rejectValue: string }>(asyncThuncName('getAllMenuItems'), async (_, { rejectWithValue, dispatch }) => {
   try {
     const response = await MenuItemsService.fetchAllMenuItems();
     return response.result;
@@ -26,7 +26,7 @@ export const getMenuItemsService = createAsyncThunk<TMenuItem[], undefined, { re
 });
 export const addNewMenuItem = createAsyncThunk<TMenuItem, TMenuItemFomtValues, { rejectValue: string }>(asyncThuncName('addNewMenuItem'), async (data, { rejectWithValue, dispatch }) => {
   try {
-    const response = await MenuItemsService.addNewMenuItem(data);
+    const response = await MenuItemsService.addNewMenuItem(data, 'multipart/form-data');
     return response.result;
   } catch (error) {
     if (isAxiosError(error)) {

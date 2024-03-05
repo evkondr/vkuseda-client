@@ -24,7 +24,7 @@ const PostAddForm = ({ open, onClose }:IProps) => {
   // Std
   const dispatch = useAppDispatch();
   // Init useForm
-  const { handleSubmit, register } = useForm({
+  const { handleSubmit, register, reset } = useForm({
     defaultValues,
   });
   // Registers
@@ -40,10 +40,13 @@ const PostAddForm = ({ open, onClose }:IProps) => {
   // Submit
   const onSubmit: SubmitHandler<TMenuItemFomtValues> = (data) => {
     if (data.image) {
-      dispatch(addNewMenuItem({ ...data, image: data.image }));
+      const image = (data.image as unknown as FileList)[0];
+      dispatch(addNewMenuItem({ ...data, image }));
     } else {
       dispatch(addNewMenuItem(data));
     }
+    reset(defaultValues);
+    onClose();
   };
   return (
     <DialogModal open={open} onClose={onClose} onSubmit={handleSubmit(onSubmit)}>

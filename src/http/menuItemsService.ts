@@ -1,15 +1,19 @@
-import { authHttpRequest, httpRequest } from '.';
+import { authHttpRequest } from '.';
 import { TMenuItemFomtValues } from '../types';
 
 const URL = '/menu';
 class MenuItemsService {
   static fetchAllMenuItems = async () => {
-    const response = await httpRequest.get(URL);
+    const response = await authHttpRequest.get(URL);
     return response.data;
   };
 
-  static addNewMenuItem = async (data:TMenuItemFomtValues) => {
-    const response = await authHttpRequest.post(URL, data);
+  static addNewMenuItem = async (data:TMenuItemFomtValues, contentType?:string) => {
+    const response = await authHttpRequest.post(URL, data, {
+      headers: {
+        'Content-Type': contentType || 'application/json',
+      },
+    });
     return response.data;
   };
 

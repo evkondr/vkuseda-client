@@ -13,19 +13,27 @@ type PostCardProps ={
 
 const PostCard = ({ menuItem }:PostCardProps) => {
   const {
-    name, ingredients, image, imageAlt,
+    name, ingredients, image, imageAlt, category,
   } = menuItem;
   return (
     <Card className="post-card">
       {/* Card image */}
       <Box className="post-card__image">
-        <CardMedia component="img" image={image} alt={imageAlt} />
+        <CardMedia component="img" image={`${process.env.REACT_APP_IMAGE_URL}/${image}`} alt={imageAlt} />
       </Box>
       {/* Card content */}
       <CardContent className="post-card__content">
         <Typography variant="h5">
           {name}
         </Typography>
+        <Box>
+          {/* Card category */}
+          <Typography variant="body2">
+            Категория:
+            {' '}
+            {category}
+          </Typography>
+        </Box>
         <Box>
           {/* Card description */}
           <Typography variant="body2">
