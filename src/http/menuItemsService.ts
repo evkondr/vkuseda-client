@@ -17,7 +17,7 @@ class MenuItemsService {
     return response.data;
   };
 
-  static removeMenuItem = async (id:string) => {
+  static deleteMenuItem = async (id:string) => {
     const response = await authHttpRequest.delete(`${URL}/${id}`);
     return response.data;
   };

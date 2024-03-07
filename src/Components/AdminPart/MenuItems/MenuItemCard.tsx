@@ -8,10 +8,11 @@ import { TMenuItem } from '../../../types';
 import './index.scss';
 
 type PostCardProps ={
-    menuItem: TMenuItem
+    menuItem: TMenuItem,
+    deleteHandler: () => void,
 };
 
-const MenuItemCard = ({ menuItem }:PostCardProps) => {
+const MenuItemCard = ({ menuItem, deleteHandler }:PostCardProps) => {
   const {
     name, ingredients, image, imageAlt, category,
   } = menuItem;
@@ -45,12 +46,16 @@ const MenuItemCard = ({ menuItem }:PostCardProps) => {
         </Typography>
         <Box className="post-card__buttons">
           {/* Card control */}
-          <IconButton aria-label="Edit">
-            <EditNoteIcon />
-          </IconButton>
-          <IconButton aria-label="Delete">
-            <DeleteOutlineIcon />
-          </IconButton>
+          <button type="button" style={{ background: 'none', border: 'none', padding: 0 }}>
+            <IconButton aria-label="Edit">
+              <EditNoteIcon />
+            </IconButton>
+          </button>
+          <button type="button" onClick={deleteHandler} style={{ background: 'none', border: 'none', padding: 0 }}>
+            <IconButton aria-label="Delete">
+              <DeleteOutlineIcon />
+            </IconButton>
+          </button>
         </Box>
       </CardContent>
     </Card>

@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import AdminContainer from '../AdminContainer/AdminContainer';
 import PostCard from '../MenuItems/MenuItemCard';
 import MenuItemModal from '../MenuItems/MenuItemModal';
-import { getMenuItems } from '../../../store/thunks/menuItemsThunk';
+import { deleteMenuItem, getMenuItems } from '../../../store/thunks/menuItemsThunk';
 
 const MenuItemsPage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -29,7 +29,13 @@ const MenuItemsPage = () => {
               Записи еще не добалены
             </Typography>
           )
-          : menuItems.map((item) => <PostCard key={item.id} menuItem={item} />)}
+          : menuItems.map((item) => (
+            <PostCard
+              key={item.id}
+              menuItem={item}
+              deleteHandler={() => dispatch(deleteMenuItem(item.id))}
+            />
+          ))}
 
       </Box>
       <MenuItemModal open={open} onClose={() => setOpen(!open)} />

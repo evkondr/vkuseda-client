@@ -6,7 +6,7 @@ import createAsyncThunkName from '../../utils/createAsyncThunkName';
 import MenuItemsService from '../../http/menuItemsService';
 
 const asyncThuncName = createAsyncThunkName('menuItems');
-
+// GET MENU ITEMS
 export const getMenuItems = createAsyncThunk<TMenuItem[], undefined, { rejectValue: string }>(asyncThuncName('getAllMenuItems'), async (_, { rejectWithValue, dispatch }) => {
   try {
     const response = await MenuItemsService.fetchAllMenuItems();
@@ -24,9 +24,29 @@ export const getMenuItems = createAsyncThunk<TMenuItem[], undefined, { rejectVal
     return rejectWithValue('Неизвестная ошибка');
   }
 });
+// ADD MENU ITEM
 export const addNewMenuItem = createAsyncThunk<TMenuItem, TMenuItemFormValues, { rejectValue: string }>(asyncThuncName('addNewMenuItem'), async (data, { rejectWithValue, dispatch }) => {
   try {
     const response = await MenuItemsService.addNewMenuItem(data, 'multipart/form-data');
+    return response.result;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      if (error.response?.data.message === 'jwt expired') {
+        return dispatch(logout());
+      }
+      return rejectWithValue(error.response?.data.message);
+    }
+    if (error instanceof Error) {
+      return rejectWithValue(error.message);
+    }
+    return rejectWithValue('Неизвестная ошибка');
+  }
+});
+// DELETE MENU ITEM
+export const deleteMenuItem = createAsyncThunk<string, string, { rejectValue: string }>(asyncThuncName('deleteMenuItem'), async (id, { rejectWithValue, dispatch }) => {
+  try {
+    const response = await MenuItemsService.deleteMenuItem(id);
+    dispatch(getMenuItems());
     return response.result;
   } catch (error) {
     if (isAxiosError(error)) {

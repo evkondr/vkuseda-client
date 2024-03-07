@@ -1,7 +1,7 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import DialogModal from '../../Modal/DialogModal';
-import MenuItemCard from './AddMemuItemForm';
+import AddMemuItemForm from './AddMemuItemForm';
 import { useAppDispatch } from '../../../hooks';
 import { addNewMenuItem } from '../../../store/thunks/menuItemsThunk';
 import { TMenuItemFormValues } from '../../../types';
@@ -50,7 +50,7 @@ const MenuItemModal = ({ open, onClose }:IProps) => {
   };
   return (
     <DialogModal open={open} onClose={onClose} onSubmit={handleSubmit(onSubmit)}>
-      <MenuItemCard registers={registers} />
+      <AddMemuItemForm registers={registers} />
     </DialogModal>
   );
 };
