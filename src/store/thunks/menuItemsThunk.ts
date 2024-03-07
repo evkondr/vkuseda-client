@@ -1,6 +1,6 @@
 import { isAxiosError } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { TMenuItem, TMenuItemFomtValues } from '../../types';
+import { TMenuItem, TMenuItemFormValues } from '../../types';
 import { logout } from '../features/authSlice';
 import createAsyncThunkName from '../../utils/createAsyncThunkName';
 import MenuItemsService from '../../http/menuItemsService';
@@ -24,7 +24,7 @@ export const getMenuItems = createAsyncThunk<TMenuItem[], undefined, { rejectVal
     return rejectWithValue('Неизвестная ошибка');
   }
 });
-export const addNewMenuItem = createAsyncThunk<TMenuItem, TMenuItemFomtValues, { rejectValue: string }>(asyncThuncName('addNewMenuItem'), async (data, { rejectWithValue, dispatch }) => {
+export const addNewMenuItem = createAsyncThunk<TMenuItem, TMenuItemFormValues, { rejectValue: string }>(asyncThuncName('addNewMenuItem'), async (data, { rejectWithValue, dispatch }) => {
   try {
     const response = await MenuItemsService.addNewMenuItem(data, 'multipart/form-data');
     return response.result;

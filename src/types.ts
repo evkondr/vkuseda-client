@@ -28,7 +28,7 @@ export type TRegistrerFormData = {
   email?: string,
   password: string
 }
-export type TMenuItemFomtValues = {
+export type TMenuItemFormValues = {
   name: string,
   image: FileList | File | undefined,
   ingredients: string,

@@ -4,14 +4,14 @@ import DialogModal from '../../Modal/DialogModal';
 import MenuItemCard from './AddMemuItemForm';
 import { useAppDispatch } from '../../../hooks';
 import { addNewMenuItem } from '../../../store/thunks/menuItemsThunk';
-import { TMenuItemFomtValues } from '../../../types';
+import { TMenuItemFormValues } from '../../../types';
 
 interface IProps {
   open: boolean;
   onClose: () => void,
 }
 
-const defaultValues:TMenuItemFomtValues = {
+const defaultValues:TMenuItemFormValues = {
   name: '',
   ingredients: '',
   categoryId: '',
@@ -38,7 +38,7 @@ const MenuItemModal = ({ open, onClose }:IProps) => {
     weight: register('weight'),
   };
   // Submit
-  const onSubmit: SubmitHandler<TMenuItemFomtValues> = (data) => {
+  const onSubmit: SubmitHandler<TMenuItemFormValues> = (data) => {
     if (data.image) {
       const image = (data.image as unknown as FileList)[0];
       dispatch(addNewMenuItem({ ...data, image }));
