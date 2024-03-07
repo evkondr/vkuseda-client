@@ -28,9 +28,11 @@ const categoriesSlice = createSlice({
     });
     builder.addCase(addNewCategory.fulfilled, (state, action) => {
       state.categories.push(action.payload);
+      state.loading = false;
       toast.success('Запис добавлена');
     });
-    builder.addCase(removeCategoryAsync.fulfilled, () => {
+    builder.addCase(removeCategoryAsync.fulfilled, (state) => {
+      state.loading = false;
       toast.success('Запис удалена');
     });
     // Matching for loader

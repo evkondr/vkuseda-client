@@ -6,12 +6,13 @@ import {
   DialogContentText, Button, InputLabel, FormControl, NativeSelect, Typography,
 } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { useAppSelector } from '../../../hooks';
 
 interface IProps {
   registers: {
     name: UseFormRegisterReturn<'name'>
     ingredients: UseFormRegisterReturn<'ingredients'>,
-    category: UseFormRegisterReturn<'category'>,
+    categoryId: UseFormRegisterReturn<'categoryId'>,
     image: UseFormRegisterReturn<'image'>,
     imageAlt: UseFormRegisterReturn<'imageAlt'>,
     price: UseFormRegisterReturn<'price'>,
@@ -31,6 +32,8 @@ const VisuallyHiddenInput = styled('input')({
 });
 const AddMemuItemForm = ({ registers }:IProps) => {
   const [file, setFile] = useState<File | undefined>(undefined);
+  const { categories } = useAppSelector((state) => state.categories);
+  // onImageChage hanbdler
   const onImageChage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setFile(e.target.files[0]);
@@ -100,15 +103,21 @@ const AddMemuItemForm = ({ registers }:IProps) => {
         <NativeSelect
           defaultValue={30}
           inputProps={{
-            name: registers.category.name,
-            onBlur: registers.category.onBlur,
-            onChange: registers.category.onChange,
+            name: registers.categoryId.name,
+            onBlur: registers.categoryId.onBlur,
+            onChange: registers.categoryId.onChange,
           }}
-          ref={registers.category.ref}
+          ref={registers.categoryId.ref}
         >
-          <option value={10}>Супы</option>
-          <option value={20}>Вторые блюда</option>
-          <option value={30}>Салаты</option>
+          <option value={undefined}>Выбрать категорию</option>
+          {categories.map((category) => (
+            <option
+              key={category.id}
+              value={category.id}
+            >
+              {category.name}
+            </option>
+          ))}
         </NativeSelect>
       </FormControl>
       <TextField

@@ -2,20 +2,20 @@ export type TMenuItemLink = {
   name: string,
   link: string
 };
+export type TCategory = {
+  id: string,
+  name: string
+}
 export type TMenuItem = {
   id: string
   name: string,
   image: string | undefined,
   ingredients: string,
-  category: string,
+  category: TCategory,
   weight: number,
   price: number,
   imageAlt?: string
 };
-export type TCategory = {
-  id: string,
-  name: string
-}
 export type TCartItem = {
   id: string,
   name: string,
@@ -32,7 +32,7 @@ export type TMenuItemFomtValues = {
   name: string,
   image: FileList | File | undefined,
   ingredients: string,
-  category: string,
+  categoryId: string,
   weight: number,
   price: number,
   imageAlt?: string

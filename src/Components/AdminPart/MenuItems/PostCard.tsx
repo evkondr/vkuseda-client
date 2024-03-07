@@ -31,7 +31,7 @@ const PostCard = ({ menuItem }:PostCardProps) => {
           <Typography variant="body2">
             Категория:
             {' '}
-            {category}
+            {category?.name}
           </Typography>
         </Box>
         <Box>

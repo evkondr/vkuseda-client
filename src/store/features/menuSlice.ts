@@ -24,7 +24,7 @@ const menuSlice = createSlice({
         state.filtered = state.menuItems;
       } else {
         state.filtered = state.menuItems
-          .filter((item:TMenuItem) => item.category === action.payload);
+          .filter((item:TMenuItem) => item.category.name === action.payload);
       }
     },
   },

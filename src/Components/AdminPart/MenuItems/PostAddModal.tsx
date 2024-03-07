@@ -14,7 +14,7 @@ interface IProps {
 const defaultValues:TMenuItemFomtValues = {
   name: '',
   ingredients: '',
-  category: '',
+  categoryId: '',
   image: undefined,
   imageAlt: '',
   price: 0,
@@ -31,7 +31,7 @@ const PostAddForm = ({ open, onClose }:IProps) => {
   const registers = {
     name: register('name'),
     ingredients: register('ingredients'),
-    category: register('category'),
+    categoryId: register('categoryId'),
     image: register('image'),
     imageAlt: register('imageAlt'),
     price: register('price'),
