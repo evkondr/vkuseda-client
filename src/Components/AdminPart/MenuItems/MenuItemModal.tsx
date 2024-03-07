@@ -1,7 +1,7 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import DialogModal from '../../Modal/DialogModal';
-import AddMemuItemForm from './AddMemuItemForm';
+import MenuItemCard from './AddMemuItemForm';
 import { useAppDispatch } from '../../../hooks';
 import { addNewMenuItem } from '../../../store/thunks/menuItemsThunk';
 import { TMenuItemFomtValues } from '../../../types';
@@ -20,7 +20,7 @@ const defaultValues:TMenuItemFomtValues = {
   price: 0,
   weight: 0,
 };
-const PostAddForm = ({ open, onClose }:IProps) => {
+const MenuItemModal = ({ open, onClose }:IProps) => {
   // Std
   const dispatch = useAppDispatch();
   // Init useForm
@@ -50,9 +50,9 @@ const PostAddForm = ({ open, onClose }:IProps) => {
   };
   return (
     <DialogModal open={open} onClose={onClose} onSubmit={handleSubmit(onSubmit)}>
-      <AddMemuItemForm registers={registers} />
+      <MenuItemCard registers={registers} />
     </DialogModal>
   );
 };
 
-export default PostAddForm;
+export default MenuItemModal;

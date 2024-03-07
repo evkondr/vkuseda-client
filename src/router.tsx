@@ -6,7 +6,7 @@ import MenuPage from './Components/Pages/MenuPage';
 import CartPage from './Components/Pages/CartPage';
 import PageNotFound from './Components/Pages/PageNotFound';
 import AdminPage from './Components/AdminPart/Pages/AdminPage';
-import PostsPage from './Components/AdminPart/Pages/PostsPage';
+import MenuItemsPage from './Components/AdminPart/Pages/MenuItemsPage';
 import CategoriesPage from './Components/AdminPart/Pages/CategoriesPage';
 import SettingsPage from './Components/AdminPart/Pages/SettingsPage';
 import AboutPage from './Components/Pages/AboutPage';
@@ -51,8 +51,8 @@ const router = createBrowserRouter([
     element: <AdminPage />,
     children: [
       {
-        path: 'posts',
-        element: <PostsPage />,
+        path: 'menu-items',
+        element: <MenuItemsPage />,
       },
       {
         path: 'categories',

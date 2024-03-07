@@ -4,11 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography, CircularProgress } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import AdminContainer from '../AdminContainer/AdminContainer';
-import PostCard from '../MenuItems/PostCard';
-import PostAddModal from '../MenuItems/PostAddModal';
+import PostCard from '../MenuItems/MenuItemCard';
+import MenuItemModal from '../MenuItems/MenuItemModal';
 import { getMenuItems } from '../../../store/thunks/menuItemsThunk';
 
-const PostsPage = () => {
+const MenuItemsPage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { menuItems, loading, error } = useAppSelector((state) => state.menu);
   const dispatch = useAppDispatch();
@@ -32,9 +32,9 @@ const PostsPage = () => {
           : menuItems.map((item) => <PostCard key={item.id} menuItem={item} />)}
 
       </Box>
-      <PostAddModal open={open} onClose={() => setOpen(!open)} />
+      <MenuItemModal open={open} onClose={() => setOpen(!open)} />
     </AdminContainer>
   );
 };
 
-export default PostsPage;
+export default MenuItemsPage;

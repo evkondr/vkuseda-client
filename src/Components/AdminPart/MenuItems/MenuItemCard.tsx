@@ -11,7 +11,7 @@ type PostCardProps ={
     menuItem: TMenuItem
 };
 
-const PostCard = ({ menuItem }:PostCardProps) => {
+const MenuItemCard = ({ menuItem }:PostCardProps) => {
   const {
     name, ingredients, image, imageAlt, category,
   } = menuItem;
@@ -57,4 +57,4 @@ const PostCard = ({ menuItem }:PostCardProps) => {
   );
 };
 
-export default PostCard;
+export default MenuItemCard;
