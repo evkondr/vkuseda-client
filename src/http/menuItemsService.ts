@@ -1,4 +1,4 @@
-import { authHttpRequest, httpRequest } from '.';
+import { authHttpRequest } from '.';
 import { TMenuItemFormValues } from '../types';
 
 const URL = '/menu';
@@ -24,21 +24,6 @@ class MenuItemsService {
 
   static editMenuItem = async (id:string, changes: Partial<TMenuItemFormValues>) => {
     const response = await authHttpRequest.patch(`${URL}/${id}`, changes);
-    return response.data;
-  };
-
-  static addToPromo = async (id:string) => {
-    const response = await authHttpRequest.post(`${URL}/promo`, { menuItemId: id });
-    return response.data;
-  };
-
-  static deleteFromPromo = async (id:string) => {
-    const response = await authHttpRequest.delete(`${URL}/promo`, { data: { menuItemId: id } });
-    return response.data;
-  };
-
-  static getAllPromos = async () => {
-    const response = await httpRequest.get(`${URL}/promo`);
     return response.data;
   };
 }
