@@ -4,6 +4,7 @@ import navReducer from '../store/features/navSlice';
 import categoriesReducer from './features/categoriesSlice';
 import cartReducer from './features/cartSlice';
 import authReducer from './features/authSlice';
+import promoReducer from './features/promoSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     categories: categoriesReducer,
     cart: cartReducer,
     auth: authReducer,
+    promo: promoReducer,
   },
 });
 
