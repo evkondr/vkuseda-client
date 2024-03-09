@@ -27,6 +27,14 @@ const menuSlice = createSlice({
           .filter((item:TMenuItem) => item.category.name === action.payload);
       }
     },
+    addOrDeleteFromPromo: (state, action: PayloadAction<string>) => {
+      state.menuItems = state.menuItems.map((item) => {
+        if (item.id === action.payload) {
+          return { ...item, isInPromo: !item.isInPromo };
+        }
+        return item;
+      });
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getMenuItems.fulfilled, (state, action) => {
@@ -65,5 +73,5 @@ const menuSlice = createSlice({
     );
   },
 });
-export const { filterMenu } = menuSlice.actions;
+export const { filterMenu, addOrDeleteFromPromo } = menuSlice.actions;
 export default menuSlice.reducer;

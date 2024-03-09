@@ -14,7 +14,8 @@ export type TMenuItem = {
   category: TCategory,
   weight: number,
   price: number,
-  imageAlt?: string
+  imageAlt?: string,
+  isInPromo?: boolean
 };
 export type TCartItem = {
   id: string,
@@ -36,6 +37,10 @@ export type TMenuItemFormValues = {
   weight: number,
   price: number,
   imageAlt?: string
+}
+export type TPromoItem = {
+  id: string,
+  menuItem: TMenuItem,
 }
 export interface IStateStdProps {
   loading: boolean,

@@ -1,6 +1,6 @@
 import { authHttpRequest, httpRequest } from '.';
 
-const URL = '/promo';
+const URL = '/menu/promo';
 class PromoService {
   static getAllPromos = async () => {
     const response = await httpRequest.get(URL);

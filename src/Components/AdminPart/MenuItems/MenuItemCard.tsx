@@ -4,15 +4,18 @@ import {
 } from '@mui/material';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
+import TurnedInIcon from '@mui/icons-material/TurnedIn';
 import { TMenuItem } from '../../../types';
 import './index.scss';
 
 type PostCardProps ={
     menuItem: TMenuItem,
     deleteHandler: () => void,
+    promoHandler: () => void
 };
 
-const MenuItemCard = ({ menuItem, deleteHandler }:PostCardProps) => {
+const MenuItemCard = ({ menuItem, deleteHandler, promoHandler }:PostCardProps) => {
   const {
     name, ingredients, image, imageAlt, category,
   } = menuItem;
@@ -46,16 +49,15 @@ const MenuItemCard = ({ menuItem, deleteHandler }:PostCardProps) => {
         </Typography>
         <Box className="post-card__buttons">
           {/* Card control */}
-          <button type="button" style={{ background: 'none', border: 'none', padding: 0 }}>
-            <IconButton aria-label="Edit">
-              <EditNoteIcon />
-            </IconButton>
-          </button>
-          <button type="button" onClick={deleteHandler} style={{ background: 'none', border: 'none', padding: 0 }}>
-            <IconButton aria-label="Delete">
-              <DeleteOutlineIcon />
-            </IconButton>
-          </button>
+          <IconButton aria-label="Add or delete from promo" onClick={promoHandler}>
+            {menuItem.isInPromo ? <TurnedInIcon /> : <TurnedInNotIcon />}
+          </IconButton>
+          <IconButton aria-label="Edit">
+            <EditNoteIcon />
+          </IconButton>
+          <IconButton aria-label="Delete" onClick={deleteHandler}>
+            <DeleteOutlineIcon />
+          </IconButton>
         </Box>
       </CardContent>
     </Card>

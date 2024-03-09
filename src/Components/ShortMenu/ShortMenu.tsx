@@ -5,16 +5,16 @@ import {
 import { NavLink } from 'react-router-dom';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import MenuItem from '../MenuItem/MenuItem';
-import { TMenuItem } from '../../types';
+import { TPromoItem } from '../../types';
 import './short-menu.scss';
 import SectionHeader from '../SectionHeader/SectionHeader';
 
 type TShortMenuProps = {
-  menuItems: TMenuItem[],
+  promoItems: TPromoItem[],
   error: string | undefined,
   loading: boolean,
 }
-const ShortMenu = ({ menuItems, loading, error }:TShortMenuProps) => {
+const ShortMenu = ({ promoItems, loading, error }:TShortMenuProps) => {
   if (error) {
     return (
       <Box id="menu" component="section" className="short-menu">
@@ -33,7 +33,7 @@ const ShortMenu = ({ menuItems, loading, error }:TShortMenuProps) => {
         <SectionHeader>
           Наше Меню
         </SectionHeader>
-        {menuItems.length < 4
+        {promoItems.length < 4
           ? (
             <Typography fontSize={20} textAlign="center">
               Меню еще не готово. Приносим извинения.
@@ -43,9 +43,9 @@ const ShortMenu = ({ menuItems, loading, error }:TShortMenuProps) => {
             <>
               <Grid container spacing={3} className="short-menu__container">
                 {loading && <Box>Loading...</Box>}
-                {menuItems.map((menuItem: TMenuItem) => (
-                  <Grid key={menuItem.id} item xs={12} sm={6} md={4} lg={3}>
-                    <MenuItem menuItem={menuItem} />
+                {promoItems.map((promoItem) => (
+                  <Grid key={promoItem.id} item xs={12} sm={6} md={4} lg={3}>
+                    <MenuItem menuItem={promoItem.menuItem} />
                   </Grid>
                 ))}
               </Grid>

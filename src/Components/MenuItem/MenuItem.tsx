@@ -10,10 +10,9 @@ type TMenuItemProps = {
   addToCurtHandler?: () => void
 }
 const MenuItem = ({ menuItem, addToCurtHandler }:TMenuItemProps) => {
-  const { image } = menuItem;
   return (
     <Card className="menu-item">
-      <CardMedia component="img" className="menu-item__img" image={image} />
+      <CardMedia component="img" className="menu-item__img" image={`${process.env.REACT_APP_IMAGE_URL}/${menuItem.image}`} />
       <CardContent className="menu-item__content">
         <Stack direction="column" justifyContent="space-between" height="100%">
           <Box>

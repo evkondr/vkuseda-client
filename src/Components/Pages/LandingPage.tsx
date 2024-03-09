@@ -7,7 +7,7 @@ import ShortMenu from '../ShortMenu/ShortMenu';
 import Welcome from '../Welcome/Welcome';
 import Contacts from '../Contacts/Contacts';
 import ScrollToAnchor from '../ScrollToAnchor';
-import getAllPromoAsync from '../../store/thunks/promoThunk';
+import { getAllPromoAsync } from '../../store/thunks/promoThunk';
 
 const phoneNumber = '+7 (902) 300 19 91';
 const LandingPage = () => {
@@ -22,7 +22,7 @@ const LandingPage = () => {
       <ScrollToAnchor />
       <Header menuItemsLinks={landingNavLinks} phoneNumber={phoneNumber} />
       <Welcome />
-      <ShortMenu menuItems={promoItems} loading={loading} error={error} />
+      <ShortMenu promoItems={promoItems} loading={loading} error={error} />
       <AboutShort />
       <Contacts />
       <Footer />

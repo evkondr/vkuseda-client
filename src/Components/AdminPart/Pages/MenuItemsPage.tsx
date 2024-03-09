@@ -7,11 +7,20 @@ import AdminContainer from '../AdminContainer/AdminContainer';
 import PostCard from '../MenuItems/MenuItemCard';
 import MenuItemModal from '../MenuItems/MenuItemModal';
 import { deleteMenuItem, getMenuItems } from '../../../store/thunks/menuItemsThunk';
+import { addToPromoAsync, deleteFromPromoAsync } from '../../../store/thunks/promoThunk';
 
 const MenuItemsPage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { menuItems, loading, error } = useAppSelector((state) => state.menu);
   const dispatch = useAppDispatch();
+  // Handlers
+  const promoHandler = (id:string, isInPromo: boolean) => {
+    if (!isInPromo) {
+      dispatch(addToPromoAsync(id));
+    } else {
+      dispatch(deleteFromPromoAsync(id));
+    }
+  };
   useEffect(() => {
     dispatch(getMenuItems());
   }, [dispatch]);
@@ -34,6 +43,7 @@ const MenuItemsPage = () => {
               key={item.id}
               menuItem={item}
               deleteHandler={() => dispatch(deleteMenuItem(item.id))}
+              promoHandler={() => promoHandler(item.id, item.isInPromo as boolean)}
             />
           ))}
 
