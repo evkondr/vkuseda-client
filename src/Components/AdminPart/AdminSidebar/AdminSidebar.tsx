@@ -13,7 +13,7 @@ const AdminSidebar = () => {
     <nav>
       <List disablePadding>
         <ListItem>
-          <Link to="posts" className="admin-sidebar-link">
+          <Link to="menu-items" className="admin-sidebar-link">
             <ListItemButton>
               <ListItemIcon>
                 <PostAddIcon />
