@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import DialogModal from '../../Modal/DialogModal';
 import AddMemuItemForm from './AddMemuItemForm';
 import { useAppDispatch } from '../../../hooks';
 import { addNewMenuItem } from '../../../store/thunks/menuItemsThunk';
 import { TMenuItemFormValues } from '../../../types';
+import { getAllCategoriesAsync } from '../../../store/thunks/categoriesThunk';
 
 interface IProps {
   open: boolean;
@@ -48,6 +49,9 @@ const MenuItemModal = ({ open, onClose }:IProps) => {
     reset(defaultValues);
     onClose();
   };
+  useEffect(() => {
+    dispatch(getAllCategoriesAsync());
+  });
   return (
     <DialogModal open={open} onClose={onClose} onSubmit={handleSubmit(onSubmit)}>
       <AddMemuItemForm registers={registers} />

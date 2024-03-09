@@ -101,7 +101,7 @@ const AddMemuItemForm = ({ registers }:IProps) => {
           Катекория
         </InputLabel>
         <NativeSelect
-          defaultValue={30}
+          defaultValue=""
           inputProps={{
             name: registers.categoryId.name,
             onBlur: registers.categoryId.onBlur,
@@ -109,7 +109,6 @@ const AddMemuItemForm = ({ registers }:IProps) => {
           }}
           ref={registers.categoryId.ref}
         >
-          <option value={undefined}>Выбрать категорию</option>
           {categories.map((category) => (
             <option
               key={category.id}
