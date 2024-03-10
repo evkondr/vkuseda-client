@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import AdminContainer from '../AdminContainer/AdminContainer';
 import PostCard from '../MenuItems/MenuItemCard';
 import MenuItemModal from '../MenuItems/MenuItemModal';
-import { deleteMenuItem, getMenuItems } from '../../../store/thunks/menuItemsThunk';
+import { deleteMenuItem, getMenuItemsAync } from '../../../store/thunks/menuItemsThunk';
 import { addToPromoAsync, deleteFromPromoAsync } from '../../../store/thunks/promoThunk';
 
 const MenuItemsPage = () => {
@@ -22,7 +22,7 @@ const MenuItemsPage = () => {
     }
   };
   useEffect(() => {
-    dispatch(getMenuItems());
+    dispatch(getMenuItemsAync());
   }, [dispatch]);
   // If error
   if (error) {

@@ -2,7 +2,12 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { IStateStdProps, TCategory } from '../../types';
-import { addNewCategory, getAllCategoriesAsync, removeCategoryAsync } from '../thunks/categoriesThunk';
+import {
+  addNewCategory,
+  getAllCategoriesAsync,
+  getAllCategoriesOnClientAsync,
+  removeCategoryAsync,
+} from '../thunks/categoriesThunk';
 
 interface ICategoriesState extends IStateStdProps {
   categories: TCategory[],
@@ -26,6 +31,10 @@ const categoriesSlice = createSlice({
       state.categories = action.payload;
       state.loading = false;
     });
+    builder.addCase(getAllCategoriesOnClientAsync.fulfilled, (state, action) => {
+      state.categories = action.payload;
+      state.loading = false;
+    });
     builder.addCase(addNewCategory.fulfilled, (state, action) => {
       state.categories.push(action.payload);
       state.loading = false;
@@ -40,6 +49,7 @@ const categoriesSlice = createSlice({
       getAllCategoriesAsync.pending,
       addNewCategory.pending,
       removeCategoryAsync.pending,
+      getAllCategoriesOnClientAsync.pending,
     ), (state) => {
       state.loading = true;
       state.error = undefined;
@@ -50,6 +60,7 @@ const categoriesSlice = createSlice({
         getAllCategoriesAsync.rejected,
         addNewCategory.rejected,
         removeCategoryAsync.rejected,
+        getAllCategoriesOnClientAsync.rejected,
       ),
       (state, action) => {
         state.loading = false;

@@ -2,7 +2,10 @@
 import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { IStateStdProps, TMenuItem } from '../../types';
-import { getMenuItems, addNewMenuItem, deleteMenuItem } from '../thunks/menuItemsThunk';
+import {
+  getMenuItemsAync,
+  addNewMenuItem, deleteMenuItem, getMenuItemsOnClientAync,
+} from '../thunks/menuItemsThunk';
 import { getAllCategoriesAsync } from '../thunks/categoriesThunk';
 
 interface IMenuState extends IStateStdProps {
@@ -30,14 +33,18 @@ const menuSlice = createSlice({
     addOrDeleteFromPromo: (state, action: PayloadAction<string>) => {
       state.menuItems = state.menuItems.map((item) => {
         if (item.id === action.payload) {
-          return { ...item, isInPromo: !item.isInPromo };
+          return { ...item, isInPromo: item.isInPromo };
         }
         return item;
       });
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getMenuItems.fulfilled, (state, action) => {
+    builder.addCase(getMenuItemsAync.fulfilled, (state, action) => {
+      state.menuItems = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(getMenuItemsOnClientAync.fulfilled, (state, action) => {
       state.menuItems = action.payload;
       state.loading = false;
     });
@@ -51,9 +58,10 @@ const menuSlice = createSlice({
     });
     // Matching for loader
     builder.addMatcher(isAnyOf(
-      getMenuItems.pending,
+      getMenuItemsAync.pending,
       addNewMenuItem.pending,
       deleteMenuItem.pending,
+      getMenuItemsOnClientAync.pending,
     ), (state) => {
       state.loading = true;
       state.error = undefined;
@@ -64,6 +72,7 @@ const menuSlice = createSlice({
         getAllCategoriesAsync.rejected,
         addNewMenuItem.rejected,
         deleteMenuItem.rejected,
+        getMenuItemsOnClientAync.rejected,
       ),
       (state, action) => {
         state.loading = false;

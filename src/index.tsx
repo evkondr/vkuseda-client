@@ -19,12 +19,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <RouterProvider router={router} />
-        <ToastContainer autoClose={2000} />
-      </ThemeProvider>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router} />
+      <ToastContainer autoClose={2000} />
+    </ThemeProvider>
+  </Provider>,
 );

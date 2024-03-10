@@ -1,10 +1,15 @@
-import { authHttpRequest } from '.';
+import { authHttpRequest, httpRequest } from '.';
 import { TMenuItemFormValues } from '../types';
 
 const URL = '/menu';
 class MenuItemsService {
   static fetchAllMenuItems = async () => {
     const response = await authHttpRequest.get(URL);
+    return response.data;
+  };
+
+  static fetchAllMenuItemsOnClient = async () => {
+    const response = await httpRequest.get(URL);
     return response.data;
   };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid } from '@mui/material';
 import MenuFilter from '../MenuFilter/MenuFilter';
 import { filterMenu } from '../../store/features/menuSlice';
@@ -6,9 +6,12 @@ import { addToCart } from '../../store/features/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { TMenuItem } from '../../types';
 import MenuItem from '../MenuItem/MenuItem';
+import { getAllCategoriesOnClientAsync } from '../../store/thunks/categoriesThunk';
+import { getMenuItemsOnClientAync } from '../../store/thunks/menuItemsThunk';
 
 const MenuPage = () => {
   const { categories } = useAppSelector((state) => state.categories);
+  const filterCategories = [{ id: '1', name: 'Все' }, ...categories];
   const { filtered } = useAppSelector((state) => state.menu);
   const dispatch = useAppDispatch();
   const handleCategory = (categoryName: string) => {
@@ -22,9 +25,18 @@ const MenuPage = () => {
       id, name, price, amount: 1, totalPrice: price,
     }));
   };
+  useEffect(() => {
+    dispatch(getAllCategoriesOnClientAsync());
+    dispatch(getMenuItemsOnClientAync());
+  }, [dispatch]);
+  // Default filter
+  useEffect(() => {
+    dispatch(filterMenu('Все'));
+  }, [dispatch, categories]);
+  console.log(categories);
   return (
     <div>
-      <MenuFilter categories={categories} handleFilterButton={handleCategory} />
+      <MenuFilter categories={filterCategories} handleFilterButton={handleCategory} />
       <Grid container spacing={3} paddingTop={2}>
         {filtered.map((menuItem:TMenuItem) => (
           <Grid key={menuItem.id} item xs={12} sm={6} md={4} lg={3}>

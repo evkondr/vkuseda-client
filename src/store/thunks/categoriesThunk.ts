@@ -25,6 +25,20 @@ export const getAllCategoriesAsync = createAsyncThunk<TCategory[], undefined, { 
     return rejectWithValue('Неизвестная ошибка');
   }
 });
+export const getAllCategoriesOnClientAsync = createAsyncThunk<TCategory[], undefined, { rejectValue: string }>(asyncThuncName('getAllCategoriesOnClient'), async (_, { rejectWithValue }) => {
+  try {
+    const response = await CategoriesService.fetchCategoriesOnClient();
+    return response.result;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      return rejectWithValue(error.response?.data.message);
+    }
+    if (error instanceof Error) {
+      return rejectWithValue(error.message);
+    }
+    return rejectWithValue('Неизвестная ошибка');
+  }
+});
 // Add category
 export const addNewCategory = createAsyncThunk<TCategory, string, { rejectValue: string }>(asyncThuncName('addNewCategory'), async (name, { rejectWithValue }) => {
   try {
