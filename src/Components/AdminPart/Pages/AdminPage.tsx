@@ -5,7 +5,8 @@ import {
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
 import AdminSidebar from '../AdminSidebar/AdminSidebar';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { checkAuth, logout } from '../../../store/features/authSlice';
+import { logout } from '../../../store/features/authSlice';
+import { checkAuthAsync } from '../../../store/thunks/authThunks';
 
 const content = {
   marginTop: '69px',
@@ -25,8 +26,8 @@ const AdminPage = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   useEffect(() => {
-    dispatch(checkAuth());
-  });
+    dispatch(checkAuthAsync());
+  }, [dispatch]);
   if (!isAuth) {
     return <Navigate to="/adm-dashboard/authorization" state={{ from: location.pathname }} />;
   }

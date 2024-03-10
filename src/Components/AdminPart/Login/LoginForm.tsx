@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { TRegistrerFormData } from '../../../types';
 import { loginValidationSchema, regValidationSchema } from '../../../utils/validationSchemas';
-import loginUser from '../../../store/thunks/authThunks';
+import { loginUser } from '../../../store/thunks/authThunks';
 import { checkAuth } from '../../../store/features/authSlice';
 
 const defaultValues: TRegistrerFormData = {
@@ -24,6 +24,7 @@ const LoginForm = () => {
   const { state: { from } } = useLocation();
 
   const dispatch = useAppDispatch();
+
   const res = () => {
     if (isLogin) {
       return loginValidationSchema;

@@ -42,6 +42,11 @@ export type TPromoItem = {
   id: string,
   menuItem: TMenuItem,
 }
+export type TUser = {
+  id: string,
+  login: string,
+  role: string
+}
 export interface IStateStdProps {
   loading: boolean,
   error: string | undefined

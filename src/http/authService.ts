@@ -21,7 +21,7 @@ class AuthService {
 
   static async chechAuth() {
     const response = await authHttpRequest.get(`${URL}/check`);
-    return response;
+    return response.data;
   }
 }
 export default AuthService;
