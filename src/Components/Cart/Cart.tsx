@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box, Button, Stack, Typography,
 } from '@mui/material';
@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../hooks';
 import { TCartItem } from '../../types';
 import CartItem from './CartItem';
 import { changeAmount, removeCartItem } from '../../store/features/cartSlice';
+import CartModal from './CartModal';
 
 type TCartProps = {
   cartItems: TCartItem[],
@@ -16,6 +17,7 @@ type TCartProps = {
 const Cart = ({
   cartItems, amount, total, loading,
 }:TCartProps) => {
+  const [open, setOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const amountHandler = (value: {id:string, action:string}) => {
     dispatch(changeAmount({ id: value.id, action: value.action }));
@@ -57,9 +59,10 @@ const Cart = ({
           {' '}
           руб.
         </p>
-        <Button variant="contained">Отправить</Button>
+        <Button variant="contained" onClick={() => setOpen(true)}>Отправить</Button>
       </Box>
       )}
+      <CartModal open={open} onClose={() => setOpen(!open)} />
     </>
   );
 };

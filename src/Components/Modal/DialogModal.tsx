@@ -8,10 +8,12 @@ type TModelProps = {
     onClose: () => void,
     children: React.ReactNode,
     onSubmit: () => void,
+    title?: string,
+    buttonTitle?: string,
 }
 const DialogModal = (props:TModelProps) => {
   const {
-    open, onClose, children, onSubmit,
+    open, onClose, children, title, buttonTitle, onSubmit,
   } = props;
   const handleClick = () => {
     onClose();
@@ -27,11 +29,11 @@ const DialogModal = (props:TModelProps) => {
       }}
       id="add"
     >
-      <DialogTitle>Запись</DialogTitle>
+      <DialogTitle>{title || 'Форма'}</DialogTitle>
       { children }
       <DialogActions>
         <Button onClick={handleClick}>Отмена</Button>
-        <Button type="submit">Создать</Button>
+        <Button type="submit">{buttonTitle || 'Создать'}</Button>
       </DialogActions>
     </Dialog>
   );
