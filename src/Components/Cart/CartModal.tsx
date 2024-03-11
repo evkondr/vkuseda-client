@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 // import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-// import { useAppDispatch } from '../../hooks';
 import DialogModal from '../Modal/DialogModal';
 import CartForm from './CartForm';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { clearCart } from '../../store/features/cartSlice';
 
 interface IProps {
   open: boolean;
@@ -25,7 +25,7 @@ const defaultValues: TFormValues = {
 };
 const CartModal = ({ open, onClose }:IProps) => {
   const { cartItems, total } = useAppSelector((state) => state.cart);
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   // useForm
   const {
     register, handleSubmit, reset, formState: { errors },
@@ -44,6 +44,7 @@ const CartModal = ({ open, onClose }:IProps) => {
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
     console.log({ ...data, totalPrice: total, cart: cartItems });
     reset(defaultValues);
+    dispatch(clearCart());
     onClose();
   };
   // UseEffect

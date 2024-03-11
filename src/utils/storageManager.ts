@@ -30,5 +30,9 @@ class StorageManager {
     const cartValuesString = JSON.stringify(cartValues);
     localStorage.setItem(this.menuItemsKey, cartValuesString);
   }
+
+  clearCartValues() {
+    localStorage.removeItem(this.menuItemsKey);
+  }
 }
 export default StorageManager;
