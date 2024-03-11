@@ -47,9 +47,19 @@ export type TUser = {
   login: string,
   role: string
 }
+export type TOrder = {
+  id: string,
+  cart: TCartItem[],
+  totalPrice: number
+  customerName: string,
+  customerAddress: string,
+  customerPhone: string,
+  comment: string,
+}
 export interface IStateStdProps {
   loading: boolean,
   error: string | undefined
 }
 export type TLoginFormData = Omit<TRegistrerFormData, 'email'>
 export type TMenuItemFormData = Omit<TMenuItem, 'id'>
+export type TSendOrderValues = Omit<TOrder, 'id'>

@@ -6,6 +6,7 @@ import DialogModal from '../Modal/DialogModal';
 import CartForm from './CartForm';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { clearCart } from '../../store/features/cartSlice';
+import { sendOrderAsync } from '../../store/thunks/ordersThunk';
 
 interface IProps {
   open: boolean;
@@ -42,7 +43,7 @@ const CartModal = ({ open, onClose }:IProps) => {
   };
   // Submit
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
-    console.log({ ...data, totalPrice: total, cart: cartItems });
+    dispatch(sendOrderAsync({ ...data, totalPrice: total, cart: cartItems }));
     reset(defaultValues);
     dispatch(clearCart());
     onClose();
