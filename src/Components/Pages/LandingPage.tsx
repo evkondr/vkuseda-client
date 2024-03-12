@@ -20,7 +20,7 @@ const LandingPage = () => {
   return (
     <>
       <ScrollToAnchor />
-      <Header menuItemsLinks={landingNavLinks} phoneNumber={phoneNumber} />
+      <Header menuItemsLinks={landingNavLinks} phoneNumber={phoneNumber} position="absolute" />
       <Welcome />
       <ShortMenu promoItems={promoItems} loading={loading} error={error} />
       <AboutShort />
