@@ -1,16 +1,19 @@
 # syntax=docker/dockerfile:1
 
-ARG NODE_VERSION=18.19.1
+ARG NODE_VERSION=20.11.0
 
 ################################################################################
 # Use node image for base image for all stages.
-FROM node:${NODE_VERSION}-bullseye-slim as base
+FROM node:${NODE_VERSION}-bullseye-slim as build
 # Set working directory for all build stages.
 WORKDIR /app
 # Copy files
 COPY --chown=node:node . .
 # Run build
 RUN npm install && npm run build
-# Run the application.
-CMD ["npm", "run", "build"]
-VOLUME ["/react" ]
+
+FROM nginx:1.24.0
+COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
