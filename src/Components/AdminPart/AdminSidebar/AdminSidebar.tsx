@@ -42,6 +42,16 @@ const AdminSidebar = () => {
             </ListItemButton>
           </Link>
         </ListItem>
+        <ListItem>
+          <Link to="orders" className="admin-sidebar-link">
+            <ListItemButton>
+              <ListItemIcon>
+                <SettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Заказы" />
+            </ListItemButton>
+          </Link>
+        </ListItem>
       </List>
     </nav>
   );

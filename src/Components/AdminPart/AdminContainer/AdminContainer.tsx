@@ -6,7 +6,7 @@ import {
 type AdminContainerProps = {
   headerText: string,
   children: React.ReactNode,
-  buttonHandler: () => void
+  buttonHandler?: () => void
 }
 const AdminContainer = ({ headerText, children, buttonHandler }:AdminContainerProps) => {
   return (
@@ -15,7 +15,7 @@ const AdminContainer = ({ headerText, children, buttonHandler }:AdminContainerPr
         <Typography variant="h6">
           {headerText}
         </Typography>
-        <Button onClick={() => buttonHandler()}>Создать</Button>
+        {buttonHandler && <Button onClick={() => buttonHandler()}>Создать</Button>}
       </Stack>
       <Divider />
       <Box>

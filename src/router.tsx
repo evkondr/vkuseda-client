@@ -13,6 +13,7 @@ import AboutPage from './Components/Pages/AboutPage';
 import DeliveryPage from './Components/Pages/DeliveryPage';
 import ContactsPage from './Components/Pages/ContactsPage';
 import AuthPage from './Components/AdminPart/Pages/AuthPage';
+import OrdersPage from './Components/AdminPart/Pages/OrdersPage';
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: 'settings',
         element: <SettingsPage />,
+      },
+      {
+        path: 'orders',
+        element: <OrdersPage />,
       },
     ],
   },

@@ -49,12 +49,15 @@ export type TUser = {
 }
 export type TOrder = {
   id: string,
-  cart: TCartItem[],
+  orderNumber: string,
+  cart: string | TCartItem[],
   totalPrice: number
   customerName: string,
   customerAddress: string,
   customerPhone: string,
   comment: string,
+  date: string,
+  isDone: boolean,
 }
 export interface IStateStdProps {
   loading: boolean,
@@ -62,4 +65,4 @@ export interface IStateStdProps {
 }
 export type TLoginFormData = Omit<TRegistrerFormData, 'email'>
 export type TMenuItemFormData = Omit<TMenuItem, 'id'>
-export type TSendOrderValues = Omit<TOrder, 'id'>
+export type TSendOrderValues = Omit<TOrder, 'id' | 'orderNumber' | 'date' | 'isDone'>
