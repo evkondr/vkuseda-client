@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import DialogModal from '../../Modal/DialogModal';
 import AddMemuItemForm from './AddMemuItemForm';
 import { useAppDispatch } from '../../../hooks';
 import { addNewMenuItem } from '../../../store/thunks/menuItemsThunk';
 import { TMenuItemFormValues } from '../../../types';
 import { getAllCategoriesAsync } from '../../../store/thunks/categoriesThunk';
+import { menuItemValidationSchema } from '../../../utils/validationSchemas';
 
 interface IProps {
   open: boolean;
@@ -27,6 +29,7 @@ const MenuItemModal = ({ open, onClose }:IProps) => {
   // Init useForm
   const { handleSubmit, register, reset } = useForm({
     defaultValues,
+    resolver: yupResolver(menuItemValidationSchema),
   });
   // Registers
   const registers = {

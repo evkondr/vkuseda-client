@@ -31,12 +31,12 @@ export type TRegistrerFormData = {
 }
 export type TMenuItemFormValues = {
   name: string,
-  image: FileList | File | undefined,
+  image?: FileList | File | undefined,
   ingredients: string,
-  categoryId: string,
+  categoryId?: string,
   weight: number,
   price: number,
-  imageAlt?: string
+  imageAlt?: string | undefined,
 }
 export type TPromoItem = {
   id: string,
