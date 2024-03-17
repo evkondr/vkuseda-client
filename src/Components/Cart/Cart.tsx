@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Box, Button, Stack, Typography,
+  Box, Stack, Typography,
 } from '@mui/material';
 import { useAppDispatch } from '../../hooks';
 import { TCartItem } from '../../types';
 import CartItem from './CartItem';
 import { changeAmount, removeCartItem } from '../../store/features/cartSlice';
-import CartModal from './CartModal';
 
 type TCartProps = {
   cartItems: TCartItem[],
@@ -17,7 +16,6 @@ type TCartProps = {
 const Cart = ({
   cartItems, amount, total, loading,
 }:TCartProps) => {
-  const [open, setOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const amountHandler = (value: {id:string, action:string}) => {
     dispatch(changeAmount({ id: value.id, action: value.action }));
@@ -34,6 +32,11 @@ const Cart = ({
           {' '}
           {amount}
         </Typography>
+      </Box>
+      <Box padding={3}>
+        В данный момент заказ с сайта недоступен, так как мы работаем над дневным меню.
+        С доступными блюдами вы можете ознакомится на странице дневного меню.
+        Приносим извинения за доставленные неудобства.
       </Box>
       <Stack padding={1}>
         {cartItems.length === 0 && <Typography sx={{ opacity: '.7' }}>Корзина пуста</Typography>}
@@ -59,10 +62,8 @@ const Cart = ({
           {' '}
           руб.
         </p>
-        <Button variant="contained" onClick={() => setOpen(true)}>Отправить</Button>
       </Box>
       )}
-      <CartModal open={open} onClose={() => setOpen(!open)} />
     </>
   );
 };
