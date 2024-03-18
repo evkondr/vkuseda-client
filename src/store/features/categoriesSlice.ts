@@ -23,7 +23,7 @@ const categoriesSlice = createSlice({
   initialState,
   reducers: {
     removeCategory(state, action) {
-      state.categories.filter((item) => item.id !== action.payload);
+      state.categories = state.categories.filter((item) => item.id !== action.payload);
     },
   },
   extraReducers: (builder) => {

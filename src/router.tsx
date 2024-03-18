@@ -11,7 +11,6 @@ import CategoriesPage from './Components/AdminPart/Pages/CategoriesPage';
 import SettingsPage from './Components/AdminPart/Pages/SettingsPage';
 import AboutPage from './Components/Pages/AboutPage';
 import DeliveryPage from './Components/Pages/DeliveryPage';
-import ContactsPage from './Components/Pages/ContactsPage';
 import AuthPage from './Components/AdminPart/Pages/AuthPage';
 import OrdersPage from './Components/AdminPart/Pages/OrdersPage';
 import PrivacyAgreementPage from './Components/Pages/PrivacyAgreementPage';
@@ -41,10 +40,6 @@ const router = createBrowserRouter([
       {
         path: 'delivery',
         element: <DeliveryPage />,
-      },
-      {
-        path: 'contacts',
-        element: <ContactsPage />,
       },
       {
         path: 'agreement',

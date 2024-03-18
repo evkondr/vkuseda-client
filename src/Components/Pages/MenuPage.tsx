@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Grid } from '@mui/material';
+import { Box, Grid, CircularProgress } from '@mui/material';
 import MenuFilter from '../MenuFilter/MenuFilter';
 import { filterMenu } from '../../store/features/menuSlice';
 import { addToCart } from '../../store/features/cartSlice';
@@ -12,7 +12,7 @@ import { getMenuItemsOnClientAync } from '../../store/thunks/menuItemsThunk';
 const MenuPage = () => {
   const { categories } = useAppSelector((state) => state.categories);
   const filterCategories = [{ id: '1', name: 'Все' }, ...categories];
-  const { filtered } = useAppSelector((state) => state.menu);
+  const { filtered, loading } = useAppSelector((state) => state.menu);
   const dispatch = useAppDispatch();
   const handleCategory = (categoryName: string) => {
     dispatch(filterMenu(categoryName));
@@ -29,11 +29,14 @@ const MenuPage = () => {
     dispatch(getAllCategoriesOnClientAsync());
     dispatch(getMenuItemsOnClientAync());
   }, [dispatch]);
-  // Default filter
-  useEffect(() => {
-    dispatch(filterMenu('Все'));
-  }, [dispatch, categories]);
-  console.log(categories);
+  // eslint-disable-next-line no-constant-condition
+  if (loading) {
+    return (
+      <Box width="100%" display="flex" justifyContent="center" padding={3}>
+        <CircularProgress />
+      </Box>
+    );
+  }
   return (
     <div>
       <MenuFilter categories={filterCategories} handleFilterButton={handleCategory} />

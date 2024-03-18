@@ -33,7 +33,7 @@ const menuSlice = createSlice({
     addOrDeleteFromPromo: (state, action: PayloadAction<string>) => {
       state.menuItems = state.menuItems.map((item) => {
         if (item.id === action.payload) {
-          return { ...item, isInPromo: item.isInPromo };
+          return { ...item, isInPromo: !item.isInPromo };
         }
         return item;
       });
@@ -46,6 +46,7 @@ const menuSlice = createSlice({
     });
     builder.addCase(getMenuItemsOnClientAync.fulfilled, (state, action) => {
       state.menuItems = action.payload;
+      state.filtered = action.payload;
       state.loading = false;
     });
     builder.addCase(addNewMenuItem.fulfilled, (state, action) => {

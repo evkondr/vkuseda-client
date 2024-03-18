@@ -38,34 +38,4 @@ export const mainPageMenuItemLinks:TMenuItemLink[] = [
     name: 'Доставк',
     link: '/main/delivery',
   },
-  {
-    name: 'Контакты',
-    link: '/main/contacts',
-  },
-];
-export const categories: TCategory[] = [
-  {
-    id: '0',
-    name: 'Все',
-  },
-  {
-    id: '1',
-    name: 'Первые блюда',
-  },
-  {
-    id: '2',
-    name: 'Вторые блюда',
-  },
-  {
-    id: '3',
-    name: 'Гарниры',
-  },
-  {
-    id: '4',
-    name: 'Десерты',
-  },
-  {
-    id: '5',
-    name: 'Салаты',
-  },
 ];
