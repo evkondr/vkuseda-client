@@ -1,8 +1,0 @@
-version: "2"
-services:
-  nginx-react:
-    container_name: ngixreactapp
-    build:
-      context: .
-    ports:
-      - 80:80
