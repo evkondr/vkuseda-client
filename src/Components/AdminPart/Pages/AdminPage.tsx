@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   AppBar, Typography, Button, Box,
 } from '@mui/material/';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate, useLocation } from 'react-router-dom';
 import AdminSidebar from '../AdminSidebar/AdminSidebar';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { logout } from '../../../store/features/authSlice';
+import { checkAuthAsync } from '../../../store/thunks/authThunks';
 
 const content = {
   marginTop: '69px',
@@ -19,6 +22,15 @@ const aSide = {
 };
 
 const AdminPage = () => {
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+  useEffect(() => {
+    dispatch(checkAuthAsync());
+  }, [dispatch]);
+  if (!isAuth) {
+    return <Navigate to="/adm-dashboard/authorization" state={{ from: location.pathname }} />;
+  }
   return (
     <main style={{ maxHeight: '100vh' }}>
       <AppBar position="fixed">
@@ -26,7 +38,7 @@ const AdminPage = () => {
           <Typography>
             Администратор
           </Typography>
-          <Button variant="contained">Выход</Button>
+          <Button variant="contained" onClick={() => dispatch(logout())}>Выход</Button>
         </Box>
       </AppBar>
       <Box

@@ -13,34 +13,44 @@ const AdminSidebar = () => {
     <nav>
       <List disablePadding>
         <ListItem>
-          <ListItemButton>
-            <Link to="posts" className="admin-sidebar-link">
+          <Link to="menu-items" className="admin-sidebar-link">
+            <ListItemButton>
               <ListItemIcon>
                 <PostAddIcon />
               </ListItemIcon>
               <ListItemText primary="Записи" />
-            </Link>
-          </ListItemButton>
+            </ListItemButton>
+          </Link>
         </ListItem>
         <ListItem>
-          <ListItemButton>
-            <Link to="categories" className="admin-sidebar-link">
+          <Link to="categories" className="admin-sidebar-link">
+            <ListItemButton>
               <ListItemIcon>
                 <CategoryIcon />
               </ListItemIcon>
               <ListItemText primary="Категории" />
-            </Link>
-          </ListItemButton>
+            </ListItemButton>
+          </Link>
         </ListItem>
         <ListItem>
-          <ListItemButton>
-            <Link to="settings" className="admin-sidebar-link">
+          <Link to="settings" className="admin-sidebar-link">
+            <ListItemButton>
               <ListItemIcon>
                 <SettingsIcon />
               </ListItemIcon>
               <ListItemText primary="Настройки" />
-            </Link>
-          </ListItemButton>
+            </ListItemButton>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link to="orders" className="admin-sidebar-link">
+            <ListItemButton>
+              <ListItemIcon>
+                <SettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Заказы" />
+            </ListItemButton>
+          </Link>
         </ListItem>
       </List>
     </nav>

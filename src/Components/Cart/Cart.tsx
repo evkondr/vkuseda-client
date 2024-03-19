@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Box, Button, Stack, Typography,
+  Box, Stack, Typography,
 } from '@mui/material';
 import { useAppDispatch } from '../../hooks';
 import { TCartItem } from '../../types';
@@ -33,6 +33,11 @@ const Cart = ({
           {amount}
         </Typography>
       </Box>
+      <Box padding={3} sx={{ color: 'red' }}>
+        В данный момент заказ с сайта недоступен, так как мы работаем над дневным меню.
+        Уточнить актуальное меню можно по номеру телефона +7 902 300 1991
+        Приносим извинения за доставленные неудобства.
+      </Box>
       <Stack padding={1}>
         {cartItems.length === 0 && <Typography sx={{ opacity: '.7' }}>Корзина пуста</Typography>}
         {loading && <div>Loading</div>}
@@ -57,7 +62,6 @@ const Cart = ({
           {' '}
           руб.
         </p>
-        <Button variant="contained">Отправить</Button>
       </Box>
       )}
     </>
