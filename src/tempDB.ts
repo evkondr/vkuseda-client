@@ -35,7 +35,7 @@ export const mainPageMenuItemLinks:TMenuItemLink[] = [
     link: '/main/about',
   },
   {
-    name: 'Доставк',
+    name: 'Доставка',
     link: '/main/delivery',
   },
 ];
