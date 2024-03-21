@@ -1,10 +1,12 @@
 import React from 'react';
 import {
-  Box, List, Divider, Button, ListItem, ListItemButton, Link,
+  Box, List, Divider, Button, ListItem, ListItemButton,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { TMenuItemLink } from '../../types';
 import Logo from '../Logo/Logo';
+import './style.scss';
 
 type TMemuDrawerProps = {
   menuItemsLinks: TMenuItemLink[],
@@ -30,7 +32,7 @@ const MemuDrawer = ({ menuItemsLinks, handleDrawerToggle, phoneNumber }:TMemuDra
         {menuItemsLinks.map((item:TMenuItemLink) => (
           <ListItem key={item.name} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <Link key={item.name} variant="button" underline="none" color="inherit" href={item.link} sx={{ textAlign: 'center', width: '100%' }}>
+              <Link className="drawer-link" to={item.link} key={item.name}>
                 {item.name}
               </Link>
             </ListItemButton>

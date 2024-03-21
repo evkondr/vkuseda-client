@@ -6,6 +6,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import './header.scss';
+import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import NavBar from '../NavBar/NavBar';
 import MemuDrawer from '../MenuDrawer/MemuDrawer';
@@ -15,11 +16,12 @@ import CustomCartIcon from '../Cart/CustomCartIcon';
 type THeaderProps = {
   menuItemsLinks: TMenuItemLink[],
   phoneNumber?: string,
-  cart?: boolean,
+  cart?: boolean
+  cartAmount?: number,
   position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative' | undefined
 }
 const Header = ({
-  menuItemsLinks, phoneNumber, position, cart,
+  menuItemsLinks, phoneNumber, position, cartAmount, cart,
 }:THeaderProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -43,7 +45,11 @@ const Header = ({
             phoneNumber={phoneNumber}
           />
         </NavBar>
-        {cart && <CustomCartIcon amount={0} /> }
+        {cart && cartAmount !== undefined && (
+        <Link to="cart">
+          <CustomCartIcon amount={cartAmount} />
+        </Link>
+        ) }
         <IconButton
           color="inherit"
           aria-label="open drawer"

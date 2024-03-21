@@ -1,0 +1,26 @@
+.contacts{
+  padding-bottom: 30px;
+  &__content{
+    padding: 0 20px;
+  }
+  &__text{
+    font-size: 20px!important;
+    margin-bottom: 10px!important;
+  }
+  &__map-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  iframe{
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 600px)  {
+  .contacts{
+    &__map-text{
+      column-gap: 10px;
+    }
+  }
+  
+}

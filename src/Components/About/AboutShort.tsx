@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable max-len */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Box, Container, Grid, Typography, Button,
 } from '@mui/material/';
@@ -19,14 +20,16 @@ const AboutShort = () => {
             </SectionHeader>
             <Box component="section">
               <Typography className="about-short__info">
-                Добро пожаловать в "Вкусная Еда" - вашего надежного партнера в мире вкусной, русской кухни с удобной доставкой прямо к вашему порогу в Нижнем Новгороде.
-                "Вкусная Еда" была основана с любовью к традиционным рецептам русской кухни и стремлению подарить каждому клиенту незабываемый опыт.
+                Добро пожаловать в "Вкусная Еда" - вашего надежного партнера в мире вкусной кухни с удобной доставкой прямо к вашему порогу в Нижнем Новгороде.
+                "Вкусная Еда" была основана с любовью к традиционным рецептам кухни разных народов и стремлению подарить каждому клиенту незабываемый опыт.
                 Наша команда поваров тщательно отбирает лучшие ингредиенты, чтобы создавать блюда, полные вкуса и тепла домашней кухни.
                 {' '}
                 {/* <Link href="##" underline="hover" className="">Узнать больше</Link> */}
               </Typography>
               <Box sx={{ display: 'flex', justifyContent: 'center' }} padding={2}>
-                <Button variant="contained" className="about-short__btn">Узнать больше</Button>
+                <Button variant="contained" className="about-short__btn">
+                  <Link to="main/about">Узнать больше</Link>
+                </Button>
               </Box>
             </Box>
           </Grid>

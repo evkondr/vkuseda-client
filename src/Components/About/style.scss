@@ -15,6 +15,9 @@
     color: $theme-color-2!important;
     border: 1px solid $theme-color-2!important;
     transition: all .2s ease-in-out;
+    a{
+      text-decoration: none;
+    }
     &:hover{
       background: $theme-color-2!important;
       color: $theme-color-1!important;

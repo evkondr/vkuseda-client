@@ -1,3 +1,4 @@
+@import "../../sass/vars.scss";
 .menu-item{
   position: relative;
   max-height: 350px!important;
@@ -19,15 +20,34 @@
     p{
       margin: 5px 0;
       span{
-        color: #ffd900;
+        color: $theme-color-2;
       }
     }
   }
   &__name{
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 1rem;
     font-weight: 300;
     padding-bottom: 5px;
-    border-bottom: 1px solid #ffd900;
+    border-bottom: 1px solid $theme-color-2;
+  }
+  &__description{
+    overflow: hidden;
+    max-height: 100px;
+  }
+  &__btn-box{
+    padding: 0;
+    position: absolute;
+    bottom: 10px;
+  }
+  &__add-btn{
+    padding: 10px;
+    background-color: $theme-color-2!important;
+    color: $theme-color-1!important;
+    &:active{
+      transform: scale(95%);
+    }
   }
   &:hover {
     .menu-item__content{
