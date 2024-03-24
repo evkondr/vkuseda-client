@@ -12,10 +12,13 @@ import './index.scss';
 type PostCardProps ={
     menuItem: TMenuItem,
     deleteHandler: () => void,
-    promoHandler: () => void
+    promoHandler: () => void,
+    editHandler: () => void,
 };
 
-const MenuItemCard = ({ menuItem, deleteHandler, promoHandler }:PostCardProps) => {
+const MenuItemCard = ({
+  menuItem, deleteHandler, promoHandler, editHandler,
+}:PostCardProps) => {
   const {
     name, ingredients, image, imageAlt, category,
   } = menuItem;
@@ -52,7 +55,7 @@ const MenuItemCard = ({ menuItem, deleteHandler, promoHandler }:PostCardProps) =
           <IconButton aria-label="Add or delete from promo" onClick={promoHandler}>
             {menuItem.isInPromo ? <TurnedInIcon /> : <TurnedInNotIcon />}
           </IconButton>
-          <IconButton aria-label="Edit">
+          <IconButton aria-label="Edit" onClick={editHandler}>
             <EditNoteIcon />
           </IconButton>
           <IconButton aria-label="Delete" onClick={deleteHandler}>

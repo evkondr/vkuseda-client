@@ -43,7 +43,7 @@ const AddMemuItemForm = ({ registers }:IProps) => {
   return (
     <DialogContent>
       <DialogContentText>
-        Добавление очередного гулинарного шедевра
+        Добавление очередного кулинарного шедевра
       </DialogContentText>
       <Box paddingY={2}>
         <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
