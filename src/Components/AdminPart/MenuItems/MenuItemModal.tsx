@@ -20,10 +20,12 @@ const MenuItemModal = ({
   open, onClose, itemForEdit, defaultValues,
 }:IProps) => {
   // Std
-  console.log(defaultValues);
   const dispatch = useAppDispatch();
+  const buttonTitle = itemForEdit ? 'Сохранить' : 'Создать';
   // Init useForm
-  const { handleSubmit, register, reset } = useForm({
+  const {
+    handleSubmit, register, reset, setValue,
+  } = useForm({
     defaultValues,
     resolver: yupResolver(menuItemValidationSchema),
   });
@@ -54,9 +56,20 @@ const MenuItemModal = ({
   };
   useEffect(() => {
     dispatch(getAllCategoriesAsync());
-  }, [dispatch]);
+    setValue('name', itemForEdit?.name || '');
+    setValue('imageAlt', itemForEdit?.imageAlt || '');
+    setValue('ingredients', itemForEdit?.ingredients || '');
+    setValue('categoryId', itemForEdit?.category.id || '');
+    setValue('weight', itemForEdit?.weight || 0);
+    setValue('price', itemForEdit?.price || 0);
+  }, [dispatch, itemForEdit, setValue]);
   return (
-    <DialogModal open={open} onClose={onClose} onSubmit={handleSubmit(onSubmit)} buttonTitle={itemForEdit && 'сохранить'}>
+    <DialogModal
+      open={open}
+      onClose={onClose}
+      onSubmit={handleSubmit(onSubmit)}
+      buttonTitle={buttonTitle}
+    >
       <AddMemuItemForm registers={registers} />
     </DialogModal>
   );
