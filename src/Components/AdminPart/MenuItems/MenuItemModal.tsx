@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import DialogModal from '../../Modal/DialogModal';
 import AddMemuItemForm from './AddMemuItemForm';
 import { useAppDispatch } from '../../../hooks';
-import { addNewMenuItem } from '../../../store/thunks/menuItemsThunk';
+import { addNewMenuItem, updateMenuItemAsync } from '../../../store/thunks/menuItemsThunk';
 import { TMenuItem, TMenuItemFormValues } from '../../../types';
 import { getAllCategoriesAsync } from '../../../store/thunks/categoriesThunk';
 import { menuItemValidationSchema } from '../../../utils/validationSchemas';
@@ -42,7 +42,17 @@ const MenuItemModal = ({
   // Submit
   const onSubmit: SubmitHandler<TMenuItemFormValues> = (data) => {
     if (itemForEdit) {
-      console.log(data);
+      const { image, ...rest } = data;
+      const imageSet = image as FileList;
+      if (imageSet.length === 0) {
+        dispatch(updateMenuItemAsync({ id: itemForEdit.id, values: { ...rest } }));
+      } else {
+        console.log(imageSet[0]);
+        dispatch(updateMenuItemAsync({
+          id: itemForEdit.id,
+          values: { ...rest, image: imageSet[0] },
+        }));
+      }
     } else {
       if (data.image) {
         const image = (data.image as unknown as FileList)[0];

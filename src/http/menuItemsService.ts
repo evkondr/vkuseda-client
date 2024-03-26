@@ -27,7 +27,7 @@ class MenuItemsService {
     return response.data;
   };
 
-  static editMenuItem = async (id:string, changes: Partial<TMenuItemFormValues>) => {
+  static updateMenuItem = async (id:string, changes: Partial<TMenuItemFormValues>) => {
     const response = await authHttpRequest.patch(`${URL}/${id}`, changes);
     return response.data;
   };
