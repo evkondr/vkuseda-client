@@ -59,7 +59,7 @@ export const addNewMenuItem = createAsyncThunk<TMenuItem, TMenuItemFormValues, {
 // EDIT MENU ITEM
 export const updateMenuItemAsync = createAsyncThunk<undefined, {id:string, values:TMenuItemFormValues}, { rejectValue: string }>(asyncThuncName('editMenuItem'), async ({ id, values }, { rejectWithValue, dispatch }) => {
   try {
-    const response = await MenuItemsService.updateMenuItem(id, values);
+    const response = await MenuItemsService.updateMenuItem(id, values, 'multipart/form-data');
     dispatch(getMenuItemsAync());
     return response.result;
   } catch (error) {

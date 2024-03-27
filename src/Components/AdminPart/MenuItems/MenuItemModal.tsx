@@ -42,18 +42,20 @@ const MenuItemModal = ({
   // Submit
   const onSubmit: SubmitHandler<TMenuItemFormValues> = (data) => {
     if (itemForEdit) {
+      // if item provided, we can edit it
       const { image, ...rest } = data;
       const imageSet = image as FileList;
       if (imageSet.length === 0) {
         dispatch(updateMenuItemAsync({ id: itemForEdit.id, values: { ...rest } }));
       } else {
-        console.log(imageSet[0]);
         dispatch(updateMenuItemAsync({
           id: itemForEdit.id,
           values: { ...rest, image: imageSet[0] },
         }));
       }
+      onClose();
     } else {
+      // if item not provided we create new one
       if (data.image) {
         const image = (data.image as unknown as FileList)[0];
         dispatch(addNewMenuItem({ ...data, image }));
@@ -65,8 +67,10 @@ const MenuItemModal = ({
     }
   };
   useEffect(() => {
+    // Set form values with menu item data
     dispatch(getAllCategoriesAsync());
     setValue('name', itemForEdit?.name || '');
+    setValue('image', undefined);
     setValue('imageAlt', itemForEdit?.imageAlt || '');
     setValue('ingredients', itemForEdit?.ingredients || '');
     setValue('categoryId', itemForEdit?.category.id || '');

@@ -27,8 +27,14 @@ class MenuItemsService {
     return response.data;
   };
 
-  static updateMenuItem = async (id:string, changes: Partial<TMenuItemFormValues>) => {
-    const response = await authHttpRequest.patch(`${URL}/${id}`, changes);
+  static updateMenuItem = async (
+    id:string, changes: Partial<TMenuItemFormValues>, contentType?:string
+    ) => {
+    const response = await authHttpRequest.patch(`${URL}/${id}`, changes, {
+      headers: {
+        'Content-Type': contentType || 'application/json',
+      },
+    });
     return response.data;
   };
 }
