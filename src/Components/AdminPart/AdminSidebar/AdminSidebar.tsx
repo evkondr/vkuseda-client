@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import CategoryIcon from '@mui/icons-material/Category';
 import SettingsIcon from '@mui/icons-material/Settings';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import './style.scss';
 
 const AdminSidebar = () => {
@@ -19,6 +21,16 @@ const AdminSidebar = () => {
                 <PostAddIcon />
               </ListItemIcon>
               <ListItemText primary="Записи" />
+            </ListItemButton>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link to="daily-menu" className="admin-sidebar-link">
+            <ListItemButton>
+              <ListItemIcon>
+                <DateRangeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Дневное меню" />
             </ListItemButton>
           </Link>
         </ListItem>
@@ -46,7 +58,7 @@ const AdminSidebar = () => {
           <Link to="orders" className="admin-sidebar-link">
             <ListItemButton>
               <ListItemIcon>
-                <SettingsIcon />
+                <ListAltIcon />
               </ListItemIcon>
               <ListItemText primary="Заказы" />
             </ListItemButton>

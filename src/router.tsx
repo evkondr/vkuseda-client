@@ -14,6 +14,7 @@ import DeliveryPage from './Components/Pages/DeliveryPage';
 import AuthPage from './Components/AdminPart/Pages/AuthPage';
 import OrdersPage from './Components/AdminPart/Pages/OrdersPage';
 import PrivacyAgreementPage from './Components/Pages/PrivacyAgreementPage';
+import DailyMenuPage from './Components/AdminPart/Pages/DailyMenuPage';
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: 'orders',
         element: <OrdersPage />,
+      },
+      {
+        path: 'daily-menu',
+        element: <DailyMenuPage />,
       },
     ],
   },

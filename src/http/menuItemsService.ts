@@ -28,8 +28,10 @@ class MenuItemsService {
   };
 
   static updateMenuItem = async (
-    id:string, changes: Partial<TMenuItemFormValues>, contentType?:string
-    ) => {
+    id:string,
+    changes: Partial<TMenuItemFormValues>,
+    contentType?:string,
+  ) => {
     const response = await authHttpRequest.patch(`${URL}/${id}`, changes, {
       headers: {
         'Content-Type': contentType || 'application/json',
