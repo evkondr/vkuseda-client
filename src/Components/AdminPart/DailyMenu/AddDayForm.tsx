@@ -3,15 +3,19 @@ import {
   Box, InputLabel, MenuItem, Select, FormControl,
 } from '@mui/material';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { TWeekDay } from '../../../types';
 
 interface IProps {
   registers: {
     nameRegister: UseFormRegisterReturn<'name'>
-  }
+  },
+  weekDays: TWeekDay[],
 }
-const AddDayForm = ({ registers }:IProps) => {
+// Component
+const AddDayForm = ({ registers, weekDays }:IProps) => {
+  // init data
   const { nameRegister } = registers;
-  const weekDays = [
+  const allWeekDays = [
     'понедельник',
     'вторник',
     'среда',
@@ -20,6 +24,9 @@ const AddDayForm = ({ registers }:IProps) => {
     'суббота',
     'воскресенье',
   ];
+  const createdDays = weekDays.map((item) => item.name);
+  // Make new array of available week days to exclude repetitive days in the DB
+  const availableWeekDays = allWeekDays.filter((item) => !createdDays.includes(item));
   return (
     <Box padding={2}>
       <FormControl fullWidth>
@@ -29,13 +36,12 @@ const AddDayForm = ({ registers }:IProps) => {
           labelId="week-day"
           id="week-day"
           label="День"
-          defaultValue={weekDays[0]}
           name={nameRegister.name}
           onBlur={nameRegister.onBlur}
           onChange={nameRegister.onChange}
           ref={nameRegister.ref}
         >
-          {weekDays.map((day) => <MenuItem key={day} value={day}>{day}</MenuItem>)}
+          {availableWeekDays.map((day) => <MenuItem key={day} value={day}>{day}</MenuItem>)}
         </Select>
       </FormControl>
     </Box>

@@ -59,6 +59,10 @@ export type TOrder = {
   date: string,
   isDone: boolean,
 }
+export type TWeekDay ={
+  id?: string,
+  name: string
+}
 export interface IStateStdProps {
   loading: boolean,
   error: string | undefined

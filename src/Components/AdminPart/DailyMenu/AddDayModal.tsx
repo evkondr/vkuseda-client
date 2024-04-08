@@ -3,7 +3,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import DialogModal from '../../Modal/DialogModal';
 import AddDayForm from './AddDayForm';
-// import { useAppDispatch } from '../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { addWeekDayAsync, getAllDaysAsync } from '../../../store/thunks/dailyMenuThunk';
+import Loader from '../../Loader/Loader';
 
 interface IProps {
   open: boolean;
@@ -16,6 +18,8 @@ const defaultValues: TFormValues = {
   name: '',
 };
 const AddDayModal = ({ open, onClose }:IProps) => {
+  const { weekDays, loading } = useAppSelector((state) => state.dailyMenu);
+  const dispatch = useAppDispatch();
   // useForm
   const {
     register, handleSubmit, reset, formState: { errors },
@@ -26,11 +30,16 @@ const AddDayModal = ({ open, onClose }:IProps) => {
   const nameRegister = register('name');
   // Submit
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
-    console.log(data);
+    dispatch(addWeekDayAsync(data.name));
     reset(defaultValues);
     onClose();
   };
   // UseEffect
+  useEffect(() => {
+    if (open) {
+      dispatch(getAllDaysAsync());
+    }
+  }, [dispatch, open]);
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
       toast.error('Ошибка формы');
@@ -39,7 +48,8 @@ const AddDayModal = ({ open, onClose }:IProps) => {
   }, [errors]);
   return (
     <DialogModal open={open} onClose={onClose} onSubmit={handleSubmit(onSubmit)} title="Выбрать день">
-      <AddDayForm registers={{ nameRegister }} />
+      {loading
+        ? <Loader fullWidth /> : <AddDayForm registers={{ nameRegister }} weekDays={weekDays} />}
     </DialogModal>
   );
 };
