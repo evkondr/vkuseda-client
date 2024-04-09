@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Tab, Tabs } from '@mui/material';
+import {
+  Box, Tab, Tabs, Typography,
+} from '@mui/material';
 import DailyMenuTabPanel from './DailyMenuTabPanel';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { getAllDaysAsync } from '../../../store/thunks/dailyMenuThunk';
+import { deleteWeekDayAsync, getAllDaysAsync } from '../../../store/thunks/dailyMenuThunk';
+import Loader from '../../Loader/Loader';
 
 const DailyMemuContainer = () => {
-  const { weekDays } = useAppSelector((state) => state.dailyMenu);
+  const { weekDays, loading } = useAppSelector((state) => state.dailyMenu);
   const dispatch = useAppDispatch();
   const [value, setValue] = useState(0);
+
+  const onDelete = (dayId:string) => {
+    dispatch(deleteWeekDayAsync(dayId));
+  };
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -22,6 +29,19 @@ const DailyMemuContainer = () => {
   useEffect(() => {
     dispatch(getAllDaysAsync());
   }, [dispatch]);
+  console.log('DailyMemuContainer');
+  if (loading) {
+    return (
+      <Loader fullWidth />
+    );
+  }
+  if (weekDays.length === 0) {
+    return (
+      <Box padding={2}>
+        <Typography>Добавьте день для составления меню</Typography>
+      </Box>
+    );
+  }
   return (
     <Box padding={2}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -31,9 +51,13 @@ const DailyMemuContainer = () => {
         </Tabs>
       </Box>
       {weekDays.map((day, index) => (
-        <DailyMenuTabPanel key={day.id} value={value} index={index}>
-          {day.id}
-        </DailyMenuTabPanel>
+        <DailyMenuTabPanel
+          key={day.id}
+          value={value}
+          index={index}
+          menuItems={day.menuItems}
+          onDeleteHandler={() => onDelete(day.id as string)}
+        />
       ))}
     </Box>
   );

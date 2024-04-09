@@ -61,7 +61,8 @@ export type TOrder = {
 }
 export type TWeekDay ={
   id?: string,
-  name: string
+  name: string,
+  menuItems?: TMenuItem[]
 }
 export interface IStateStdProps {
   loading: boolean,

@@ -12,4 +12,9 @@ export default class DailyMenuService {
     const response = await authHttpRequest.post(URL, { name });
     return response.data;
   }
+
+  static async deleteWeekDay(daiId: string) {
+    const response = await authHttpRequest.delete(`${URL}/${daiId}`);
+    return response.data;
+  }
 }

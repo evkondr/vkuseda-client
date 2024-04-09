@@ -1,12 +1,17 @@
-import { Box, Typography } from '@mui/material';
 import React from 'react';
+import { Box, IconButton, Typography } from '@mui/material';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { TMenuItem } from '../../../types';
 
 interface ITabPanelProps {
-  children?: React.ReactNode;
   index: number;
   value: number;
+  menuItems?: TMenuItem[];
+  onDeleteHandler: () => void
 }
-const DailyMenuTabPanel = ({ value, index, children }:ITabPanelProps) => {
+const DailyMenuTabPanel = ({
+  value, index, menuItems, onDeleteHandler,
+}:ITabPanelProps) => {
   return (
     <div
       role="tabpanel"
@@ -15,8 +20,11 @@ const DailyMenuTabPanel = ({ value, index, children }:ITabPanelProps) => {
       aria-labelledby={`simple-tab-${index}`}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box padding={2} position="relative">
+          <IconButton aria-label="Delete" sx={{ position: 'absolute', right: '10px', top: '10px' }} onClick={onDeleteHandler}>
+            <DeleteOutlineIcon sx={{ color: 'red' }} />
+          </IconButton>
+          {menuItems?.length === 0 && <Typography>Меню еще не добавлено</Typography>}
         </Box>
       )}
     </div>

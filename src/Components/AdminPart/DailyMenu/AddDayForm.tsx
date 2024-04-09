@@ -36,12 +36,17 @@ const AddDayForm = ({ registers, weekDays }:IProps) => {
           labelId="week-day"
           id="week-day"
           label="День"
+          defaultValue={availableWeekDays[0]}
           name={nameRegister.name}
           onBlur={nameRegister.onBlur}
           onChange={nameRegister.onChange}
           ref={nameRegister.ref}
         >
-          {availableWeekDays.map((day) => <MenuItem key={day} value={day}>{day}</MenuItem>)}
+          {availableWeekDays.map((day) => (
+            <MenuItem key={day} value={day}>
+              {day}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>
