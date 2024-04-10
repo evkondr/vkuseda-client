@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import {
   Box, Tab, Tabs, Typography,
 } from '@mui/material';
@@ -62,5 +62,4 @@ const DailyMemuContainer = () => {
     </Box>
   );
 };
-
-export default DailyMemuContainer;
+export default memo(DailyMemuContainer);

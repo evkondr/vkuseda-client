@@ -5,6 +5,7 @@ import AddDayModal from '../DailyMenu/AddDayModal';
 
 const DailyMenuPage = () => {
   const [open, setOpen] = useState<boolean>(false);
+  console.log('DailyMenuPage');
   return (
     <AdminContainer headerText="Ежедневное меню" buttonHandler={() => setOpen(true)}>
       <DailyMemuContainer />
