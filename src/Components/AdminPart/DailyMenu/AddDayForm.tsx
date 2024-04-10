@@ -36,7 +36,7 @@ const AddDayForm = ({ registers, weekDays }:IProps) => {
           labelId="week-day"
           id="week-day"
           label="День"
-          defaultValue={availableWeekDays[0]}
+          defaultValue=""
           name={nameRegister.name}
           onBlur={nameRegister.onBlur}
           onChange={nameRegister.onChange}

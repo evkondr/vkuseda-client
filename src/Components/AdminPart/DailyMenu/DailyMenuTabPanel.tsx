@@ -6,7 +6,7 @@ import { TMenuItem } from '../../../types';
 interface ITabPanelProps {
   index: number;
   value: number;
-  menuItems?: TMenuItem[];
+  menuItems: TMenuItem[];
   onDeleteHandler: () => void
 }
 const DailyMenuTabPanel = ({
@@ -24,7 +24,7 @@ const DailyMenuTabPanel = ({
           <IconButton aria-label="Delete" sx={{ position: 'absolute', right: '10px', top: '10px' }} onClick={onDeleteHandler}>
             <DeleteOutlineIcon sx={{ color: 'red' }} />
           </IconButton>
-          {menuItems?.length === 0 && <Typography>Меню еще не добавлено</Typography>}
+          {menuItems.length === 0 && <Typography>Меню еще не добавлено</Typography>}
         </Box>
       )}
     </div>

@@ -6,7 +6,7 @@ interface IProps {
 }
 const Loader = ({ fullWidth }:IProps) => {
   return (
-    <Box display="flex" justifyContent="center" sx={{ width: fullWidth ? '100%' : 'auto' }}>
+    <Box padding={3} display="flex" justifyContent="center" sx={{ width: fullWidth ? '100%' : 'auto' }}>
       <CircularProgress />
     </Box>
   );
