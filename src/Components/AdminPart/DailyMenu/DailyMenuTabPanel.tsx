@@ -5,6 +5,7 @@ import {
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { TMenuItem } from '../../../types';
 import SimpleModal from '../../Modal/SimpleModal';
+import DailyMenuItemCard from './DailyMenuItemCard';
 
 interface ITabPanelProps {
   index: number;
@@ -26,7 +27,10 @@ const DailyMenuTabPanel = ({
       aria-labelledby={`simple-tab-${index}`}
     >
       <SimpleModal open={openModal} handleClose={() => setOpenModal(!openModal)}>
-        Test
+        <Box display="flex" flexDirection="column" rowGap={2}>
+          {allMenuItems.map((item) => (
+            <DailyMenuItemCard add menuItem={{ id: item.id, name: item.name }} />))}
+        </Box>
       </SimpleModal>
       {value === index && (
         <Box padding={2} position="relative">
