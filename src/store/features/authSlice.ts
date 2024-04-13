@@ -3,9 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { checkAuthAsync, loginUser } from '../thunks/authThunks';
 import TokenManager from '../../utils/tokenManager';
-import { IStateStdProps } from '../../types';
+import { IInitialState } from '../../types';
 
-interface IAuthState extends IStateStdProps{
+interface IAuthState extends IInitialState{
   token: undefined | string,
   isAuth: boolean,
 }

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { IStateStdProps, TCategory } from '../../types';
+import { IInitialState, TCategory } from '../../types';
 import {
   addNewCategory,
   getAllCategoriesAsync,
@@ -9,7 +9,7 @@ import {
   removeCategoryAsync,
 } from '../thunks/categoriesThunk';
 
-interface ICategoriesState extends IStateStdProps {
+interface ICategoriesState extends IInitialState {
   categories: TCategory[],
 }
 const initialState:ICategoriesState = {

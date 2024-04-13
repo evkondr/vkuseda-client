@@ -1,4 +1,6 @@
-import React, { useEffect, useState, memo } from 'react';
+import React, {
+  useEffect, useState, memo,
+} from 'react';
 import {
   Box, Tab, Tabs, Typography,
 } from '@mui/material';
@@ -6,12 +8,9 @@ import DailyMenuTabPanel from './DailyMenuTabPanel';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { deleteWeekDayAsync, getAllDaysAsync } from '../../../store/thunks/dailyMenuThunk';
 import Loader from '../../Loader/Loader';
-import { TMenuItem } from '../../../types';
-import { getMenuItemsAync } from '../../../store/thunks/menuItemsThunk';
 
 const DailyMemuContainer = () => {
   const { weekDays, loading } = useAppSelector((state) => state.dailyMenu);
-  const { menuItems } = useAppSelector((state) => state.menu);
   const dispatch = useAppDispatch();
   const [value, setValue] = useState(0);
 
@@ -19,6 +18,7 @@ const DailyMemuContainer = () => {
     dispatch(deleteWeekDayAsync(dayId));
     setValue(0);
   };
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -31,7 +31,6 @@ const DailyMemuContainer = () => {
   // UseEffect logic
   useEffect(() => {
     dispatch(getAllDaysAsync());
-    dispatch(getMenuItemsAync());
   }, [dispatch]);
   if (loading) {
     return (
@@ -59,8 +58,6 @@ const DailyMemuContainer = () => {
           dayId={day.id}
           value={value}
           index={index}
-          allMenuItems={menuItems}
-          dayMenuItems={day.menuItems as TMenuItem[]}
           onDeleteHandler={() => onDelete(day.id as string)}
         />
       ))}

@@ -1,12 +1,12 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { IStateStdProps, TWeekDay } from '../../types';
+import { IInitialState, TWeekDay } from '../../types';
 import {
   addWeekDayAsync, addWeekDayMenuItem, deleteWeekDayAsync, getAllDaysAsync,
 } from '../thunks/dailyMenuThunk';
 
-interface IDailyMenu extends IStateStdProps {
+interface IDailyMenu extends IInitialState {
   weekDays: TWeekDay[]
 }
 const initialState: IDailyMenu = {

@@ -3,22 +3,23 @@ import {
   Box, Button, IconButton, Typography,
 } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { TMenuItem } from '../../../types';
 import SimpleModal from '../../Modal/SimpleModal';
 import DailyMenuItemCard from './DailyMenuItemCard';
+import { useAppSelector } from '../../../hooks';
 
 interface ITabPanelProps {
   index: number;
   value: number;
   dayId: string | undefined;
-  allMenuItems: TMenuItem[];
-  dayMenuItems: TMenuItem[];
   onDeleteHandler: () => void;
 }
 const DailyMenuTabPanel = ({
-  value, index, dayMenuItems, onDeleteHandler, allMenuItems, dayId,
+  value, index, dayId, onDeleteHandler,
 }:ITabPanelProps) => {
+  const { currentDayMenu } = useAppSelector((state) => state.currentDayMenu);
+  const { menuItems } = useAppSelector((state) => state.menu);
   const [openModal, setOpenModal] = useState<boolean>(false);
+
   const deleteItemHandler = (itemId:string) => {
     console.log({ dayId, itemId });
   };
@@ -35,7 +36,7 @@ const DailyMenuTabPanel = ({
     >
       <SimpleModal open={openModal} handleClose={() => setOpenModal(!openModal)}>
         <Box display="flex" flexDirection="column" rowGap={2}>
-          {allMenuItems.map((item) => (
+          {menuItems.map((item) => (
             <DailyMenuItemCard
               key={item.id}
               add
@@ -51,7 +52,8 @@ const DailyMenuTabPanel = ({
           <IconButton aria-label="Delete" sx={{ position: 'absolute', right: '10px', top: '10px' }} onClick={onDeleteHandler}>
             <DeleteOutlineIcon sx={{ color: 'red' }} />
           </IconButton>
-          {dayMenuItems.length === 0 && <Typography>Меню еще не добавлено</Typography>}
+          {(!currentDayMenu || currentDayMenu.menuItems?.length === 0)
+            && <Typography>Меню еще не добавлено</Typography>}
           <Button onClick={() => setOpenModal(true)}>Добавить</Button>
         </Box>
       )}
@@ -59,4 +61,4 @@ const DailyMenuTabPanel = ({
   );
 };
 
-export default memo(DailyMenuTabPanel, (prev, next) => prev.value !== next.value);
+export default memo(DailyMenuTabPanel);

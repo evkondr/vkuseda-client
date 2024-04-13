@@ -1,14 +1,14 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { IStateStdProps, TMenuItem } from '../../types';
+import { IInitialState, TMenuItem } from '../../types';
 import {
   getMenuItemsAync,
   addNewMenuItem, deleteMenuItem, getMenuItemsOnClientAync, updateMenuItemAsync,
 } from '../thunks/menuItemsThunk';
 import { getAllCategoriesAsync } from '../thunks/categoriesThunk';
 
-interface IMenuState extends IStateStdProps {
+interface IMenuState extends IInitialState {
   menuItems: TMenuItem[],
   filtered: TMenuItem[],
 }

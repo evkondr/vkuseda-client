@@ -1,10 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { IStateStdProps, TOrder } from '../../types';
+import { IInitialState, TOrder } from '../../types';
 import { getAllOrdersAsync, sendOrderAsync } from '../thunks/ordersThunk';
 
-interface IOrdersState extends IStateStdProps {
+interface IOrdersState extends IInitialState {
   orders: TOrder[],
 }
 const initialState:IOrdersState = {

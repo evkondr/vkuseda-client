@@ -64,10 +64,12 @@ export type TWeekDay ={
   name: string,
   menuItems?: TMenuItem[]
 }
-export interface IStateStdProps {
-  loading: boolean,
-  error: string | undefined
-}
 export type TLoginFormData = Omit<TRegistrerFormData, 'email'>
 export type TMenuItemFormData = Omit<TMenuItem, 'id'>
 export type TSendOrderValues = Omit<TOrder, 'id' | 'orderNumber' | 'date' | 'isDone'>
+
+// Interfaces
+export interface IInitialState {
+  loading: boolean,
+  error: string | undefined
+}
