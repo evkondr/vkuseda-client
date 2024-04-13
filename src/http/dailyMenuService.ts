@@ -17,4 +17,9 @@ export default class DailyMenuService {
     const response = await authHttpRequest.delete(`${URL}/${daiId}`);
     return response.data;
   }
+
+  static async addMenuItem(dayId:string, menuItemId:string) {
+    const response = await authHttpRequest.post(`${URL}/add-menu-items`, { dayId, menuItemId });
+    return response.data;
+  }
 }

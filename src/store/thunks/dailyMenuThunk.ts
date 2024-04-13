@@ -62,3 +62,21 @@ export const deleteWeekDayAsync = createAsyncThunk<string, string, { rejectValue
     return rejectWithValue('Неизвестная ошибка');
   }
 });
+// Add menu item to daily menu
+export const addWeekDayMenuItem = createAsyncThunk<TWeekDay, { dayId: string, menuItemId: string }, { rejectValue: string }>(asyncThuncName('addWeekDayMenuItem'), async (data, { rejectWithValue, dispatch }) => {
+  try {
+    const response = await DailyMenuService.addMenuItem(data.dayId, data.menuItemId);
+    return response.result;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      if (error.response?.data.message === 'jwt expired') {
+        return dispatch(logout());
+      }
+      return rejectWithValue(error.response?.data.message);
+    }
+    if (error instanceof Error) {
+      return rejectWithValue(error.message);
+    }
+    return rejectWithValue('Неизвестная ошибка');
+  }
+});

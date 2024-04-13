@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import {
   Box, Button, IconButton, Typography,
 } from '@mui/material';
@@ -10,15 +10,22 @@ import DailyMenuItemCard from './DailyMenuItemCard';
 interface ITabPanelProps {
   index: number;
   value: number;
+  dayId: string | undefined;
   allMenuItems: TMenuItem[];
   dayMenuItems: TMenuItem[];
-  onDeleteHandler: () => void
+  onDeleteHandler: () => void;
 }
 const DailyMenuTabPanel = ({
-  value, index, dayMenuItems, onDeleteHandler, allMenuItems,
+  value, index, dayMenuItems, onDeleteHandler, allMenuItems, dayId,
 }:ITabPanelProps) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
-  console.log(allMenuItems);
+  const deleteItemHandler = (itemId:string) => {
+    console.log({ dayId, itemId });
+  };
+  const addItemHandler = (itemId:string) => {
+    console.log({ dayId, itemId });
+  };
+  console.log('DailyMenuTabPanel');
   return (
     <div
       role="tabpanel"
@@ -29,7 +36,14 @@ const DailyMenuTabPanel = ({
       <SimpleModal open={openModal} handleClose={() => setOpenModal(!openModal)}>
         <Box display="flex" flexDirection="column" rowGap={2}>
           {allMenuItems.map((item) => (
-            <DailyMenuItemCard add menuItem={{ id: item.id, name: item.name }} />))}
+            <DailyMenuItemCard
+              key={item.id}
+              add
+              menuItem={{ id: item.id, name: item.name }}
+              addHandler={() => addItemHandler(item.id)}
+              deleteHandler={() => deleteItemHandler(item.id)}
+            />
+          ))}
         </Box>
       </SimpleModal>
       {value === index && (
@@ -45,4 +59,4 @@ const DailyMenuTabPanel = ({
   );
 };
 
-export default DailyMenuTabPanel;
+export default memo(DailyMenuTabPanel, (prev, next) => prev.value !== next.value);

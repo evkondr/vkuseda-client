@@ -48,7 +48,7 @@ const DailyMemuContainer = () => {
   return (
     <Box padding={2}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Tabs value={value} onChange={handleChange} aria-label="days tabs">
           {weekDays.map((day, index) => (
             <Tab key={day.id} label={day.name} id={tabProps(index).id} />))}
         </Tabs>
@@ -56,6 +56,7 @@ const DailyMemuContainer = () => {
       {weekDays.map((day, index) => (
         <DailyMenuTabPanel
           key={day.id}
+          dayId={day.id}
           value={value}
           index={index}
           allMenuItems={menuItems}

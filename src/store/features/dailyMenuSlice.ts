@@ -2,7 +2,9 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { IStateStdProps, TWeekDay } from '../../types';
-import { addWeekDayAsync, deleteWeekDayAsync, getAllDaysAsync } from '../thunks/dailyMenuThunk';
+import {
+  addWeekDayAsync, addWeekDayMenuItem, deleteWeekDayAsync, getAllDaysAsync,
+} from '../thunks/dailyMenuThunk';
 
 interface IDailyMenu extends IStateStdProps {
   weekDays: TWeekDay[]
@@ -32,6 +34,12 @@ const dailyMenuSlice = createSlice({
       state.error = undefined;
     });
     builder.addCase(deleteWeekDayAsync.fulfilled, (state) => {
+      state.loading = false;
+      state.error = undefined;
+    });
+    builder.addCase(addWeekDayMenuItem.fulfilled, (state, action) => {
+      const currentDay = action.payload;
+      console.log(currentDay);
       state.loading = false;
       state.error = undefined;
     });

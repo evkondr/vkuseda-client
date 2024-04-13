@@ -10,9 +10,13 @@ interface IProps {
     id: string,
     name: string
   }
-  add?: boolean
+  add?: boolean,
+  deleteHandler: () => void
+  addHandler: () => void
 }
-const DailyMenuItemCard = ({ menuItem, add }:IProps) => {
+const DailyMenuItemCard = ({
+  menuItem, add, deleteHandler, addHandler,
+}:IProps) => {
   return (
     <Card>
       <Stack flexDirection="row" justifyContent="space-between">
@@ -21,12 +25,12 @@ const DailyMenuItemCard = ({ menuItem, add }:IProps) => {
         </CardContent>
         <CardActions>
           {add ? (
-            <Button>
+            <Button onClick={addHandler}>
               <AddCircleOutlineIcon />
             </Button>
           )
             : (
-              <Button>
+              <Button onClick={deleteHandler}>
                 <RemoveCircleOutlineIcon />
               </Button>
             )}
