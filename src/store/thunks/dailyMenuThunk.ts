@@ -25,6 +25,24 @@ export const getAllDaysAsync = createAsyncThunk<TWeekDay[], undefined, { rejectV
     return rejectWithValue('Неизвестная ошибка');
   }
 });
+// Get current day
+export const getCurrentDayAsync = createAsyncThunk<TWeekDay, string, { rejectValue: string }>(asyncThuncName('allWeekDays'), async (id, { rejectWithValue, dispatch }) => {
+  try {
+    const response = await DailyMenuService.getCurrentWeekDay(id);
+    return response.result;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      if (error.response?.data.message === 'jwt expired') {
+        return dispatch(logout());
+      }
+      return rejectWithValue(error.response?.data.message);
+    }
+    if (error instanceof Error) {
+      return rejectWithValue(error.message);
+    }
+    return rejectWithValue('Неизвестная ошибка');
+  }
+});
 // Add week day
 export const addWeekDayAsync = createAsyncThunk<TWeekDay, string, { rejectValue: string }>(asyncThuncName('addWeekDay'), async (name, { rejectWithValue, dispatch }) => {
   try {
@@ -63,9 +81,26 @@ export const deleteWeekDayAsync = createAsyncThunk<string, string, { rejectValue
   }
 });
 // Add menu item to daily menu
-export const addWeekDayMenuItem = createAsyncThunk<TWeekDay, { dayId: string, menuItemId: string }, { rejectValue: string }>(asyncThuncName('addWeekDayMenuItem'), async (data, { rejectWithValue, dispatch }) => {
+export const addWeekDayMenuItemAsync = createAsyncThunk<TWeekDay, { dayId: string, menuItemId: string }, { rejectValue: string }>(asyncThuncName('addWeekDayMenuItem'), async (data, { rejectWithValue, dispatch }) => {
   try {
     const response = await DailyMenuService.addMenuItem(data.dayId, data.menuItemId);
+    return response.result;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      if (error.response?.data.message === 'jwt expired') {
+        return dispatch(logout());
+      }
+      return rejectWithValue(error.response?.data.message);
+    }
+    if (error instanceof Error) {
+      return rejectWithValue(error.message);
+    }
+    return rejectWithValue('Неизвестная ошибка');
+  }
+});
+export const deleteWeekDayMenuItemAsync = createAsyncThunk<TWeekDay, { dayId: string, menuItemId: string }, { rejectValue: string }>(asyncThuncName('deleteWeekDayMenuItem'), async (data, { rejectWithValue, dispatch }) => {
+  try {
+    const response = await DailyMenuService.deleteMenuItem(data.dayId, data.menuItemId);
     return response.result;
   } catch (error) {
     if (isAxiosError(error)) {

@@ -8,6 +8,11 @@ export default class DailyMenuService {
     return response.data;
   }
 
+  static async getCurrentWeekDay(id:string) {
+    const response = await httpRequest.get(`${URL}/${id}`);
+    return response.data;
+  }
+
   static async addWeekDay(name: string) {
     const response = await authHttpRequest.post(URL, { name });
     return response.data;
@@ -20,6 +25,11 @@ export default class DailyMenuService {
 
   static async addMenuItem(dayId:string, menuItemId:string) {
     const response = await authHttpRequest.post(`${URL}/add-menu-items`, { dayId, menuItemId });
+    return response.data;
+  }
+
+  static async deleteMenuItem(dayId:string, menuItemId:string) {
+    const response = await authHttpRequest.post(`${URL}/delete-menu-item`, { dayId, menuItemId });
     return response.data;
   }
 }

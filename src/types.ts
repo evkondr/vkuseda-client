@@ -62,7 +62,7 @@ export type TOrder = {
 export type TWeekDay ={
   id?: string,
   name: string,
-  menuItems?: TMenuItem[]
+  menuItems: TMenuItem[]
 }
 export type TLoginFormData = Omit<TRegistrerFormData, 'email'>
 export type TMenuItemFormData = Omit<TMenuItem, 'id'>

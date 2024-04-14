@@ -3,7 +3,8 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { IInitialState, TWeekDay } from '../../types';
 import {
-  addWeekDayAsync, addWeekDayMenuItem, deleteWeekDayAsync, getAllDaysAsync,
+  addWeekDayAsync,
+  addWeekDayMenuItemAsync, deleteWeekDayAsync, deleteWeekDayMenuItemAsync, getAllDaysAsync,
 } from '../thunks/dailyMenuThunk';
 
 interface IDailyMenu extends IInitialState {
@@ -37,9 +38,27 @@ const dailyMenuSlice = createSlice({
       state.loading = false;
       state.error = undefined;
     });
-    builder.addCase(addWeekDayMenuItem.fulfilled, (state, action) => {
-      const currentDay = action.payload;
-      console.log(currentDay);
+    builder.addCase(addWeekDayMenuItemAsync.fulfilled, (state, action) => {
+      const newDayMenu = action.payload;
+      state.weekDays = state.weekDays.map((day) => {
+        if (day.id === newDayMenu.id) {
+          day.menuItems = [...newDayMenu.menuItems];
+          return day;
+        }
+        return day;
+      });
+      state.loading = false;
+      state.error = undefined;
+    });
+    builder.addCase(deleteWeekDayMenuItemAsync.fulfilled, (state, action) => {
+      const newDayMenu = action.payload;
+      state.weekDays = state.weekDays.map((day) => {
+        if (day.id === newDayMenu.id) {
+          day.menuItems = [...newDayMenu.menuItems];
+          return day;
+        }
+        return day;
+      });
       state.loading = false;
       state.error = undefined;
     });
@@ -48,6 +67,7 @@ const dailyMenuSlice = createSlice({
       getAllDaysAsync.pending,
       addWeekDayAsync.pending,
       deleteWeekDayAsync.pending,
+      addWeekDayMenuItemAsync.pending,
     ), (state) => {
       state.loading = true;
       state.error = undefined;
@@ -58,6 +78,7 @@ const dailyMenuSlice = createSlice({
         getAllDaysAsync.rejected,
         addWeekDayAsync.rejected,
         deleteWeekDayAsync.rejected,
+        addWeekDayMenuItemAsync.rejected,
       ),
       (state, action) => {
         state.loading = false;

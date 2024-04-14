@@ -8,9 +8,11 @@ import DailyMenuTabPanel from './DailyMenuTabPanel';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { deleteWeekDayAsync, getAllDaysAsync } from '../../../store/thunks/dailyMenuThunk';
 import Loader from '../../Loader/Loader';
+import { getMenuItemsAync } from '../../../store/thunks/menuItemsThunk';
 
 const DailyMemuContainer = () => {
   const { weekDays, loading } = useAppSelector((state) => state.dailyMenu);
+  const { menuItems } = useAppSelector((state) => state.menu);
   const dispatch = useAppDispatch();
   const [value, setValue] = useState(0);
 
@@ -31,6 +33,7 @@ const DailyMemuContainer = () => {
   // UseEffect logic
   useEffect(() => {
     dispatch(getAllDaysAsync());
+    dispatch(getMenuItemsAync());
   }, [dispatch]);
   if (loading) {
     return (
@@ -55,9 +58,11 @@ const DailyMemuContainer = () => {
       {weekDays.map((day, index) => (
         <DailyMenuTabPanel
           key={day.id}
-          dayId={day.id}
+          dayId={day.id as string}
           value={value}
           index={index}
+          allMenuItems={menuItems}
+          menuItems={day.menuItems}
           onDeleteHandler={() => onDelete(day.id as string)}
         />
       ))}

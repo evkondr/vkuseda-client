@@ -1,32 +1,46 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useEffect } from 'react';
 import {
   Box, Button, IconButton, Typography,
 } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SimpleModal from '../../Modal/SimpleModal';
 import DailyMenuItemCard from './DailyMenuItemCard';
-import { useAppSelector } from '../../../hooks';
+import { TMenuItem } from '../../../types';
+import { addWeekDayMenuItemAsync, deleteWeekDayMenuItemAsync } from '../../../store/thunks/dailyMenuThunk';
+import { useAppDispatch } from '../../../hooks';
+import filterDataArray from '../../../utils/filterDataArray';
 
 interface ITabPanelProps {
   index: number;
   value: number;
-  dayId: string | undefined;
+  dayId: string;
+  allMenuItems: TMenuItem[],
+  menuItems: TMenuItem[],
   onDeleteHandler: () => void;
 }
 const DailyMenuTabPanel = ({
-  value, index, dayId, onDeleteHandler,
+  value, index, dayId, allMenuItems, menuItems, onDeleteHandler,
 }:ITabPanelProps) => {
-  const { currentDayMenu } = useAppSelector((state) => state.currentDayMenu);
-  const { menuItems } = useAppSelector((state) => state.menu);
+  // State
   const [openModal, setOpenModal] = useState<boolean>(false);
-
-  const deleteItemHandler = (itemId:string) => {
-    console.log({ dayId, itemId });
+  const [availableMenu, setMenu] = useState<TMenuItem[]>([]);
+  const dispatch = useAppDispatch();
+  // Handlers
+  const deleteItemHandler = (menuItemId:string) => {
+    const data = { dayId, menuItemId };
+    dispatch(deleteWeekDayMenuItemAsync(data));
   };
-  const addItemHandler = (itemId:string) => {
-    console.log({ dayId, itemId });
+  const addItemHandler = (menuItemId:string) => {
+    const data = { dayId, menuItemId };
+    dispatch(addWeekDayMenuItemAsync(data));
   };
-  console.log('DailyMenuTabPanel');
+  // Effects
+  useEffect(() => {
+    if (openModal) {
+      // Filter already added menu items
+      setMenu(filterDataArray(allMenuItems, menuItems, 'id'));
+    }
+  }, [allMenuItems, menuItems, openModal]);
   return (
     <div
       role="tabpanel"
@@ -36,13 +50,11 @@ const DailyMenuTabPanel = ({
     >
       <SimpleModal open={openModal} handleClose={() => setOpenModal(!openModal)}>
         <Box display="flex" flexDirection="column" rowGap={2}>
-          {menuItems.map((item) => (
+          {availableMenu.map((item) => (
             <DailyMenuItemCard
               key={item.id}
-              add
               menuItem={{ id: item.id, name: item.name }}
               addHandler={() => addItemHandler(item.id)}
-              deleteHandler={() => deleteItemHandler(item.id)}
             />
           ))}
         </Box>
@@ -52,9 +64,18 @@ const DailyMenuTabPanel = ({
           <IconButton aria-label="Delete" sx={{ position: 'absolute', right: '10px', top: '10px' }} onClick={onDeleteHandler}>
             <DeleteOutlineIcon sx={{ color: 'red' }} />
           </IconButton>
-          {(!currentDayMenu || currentDayMenu.menuItems?.length === 0)
+          {menuItems.length === 0
             && <Typography>Меню еще не добавлено</Typography>}
           <Button onClick={() => setOpenModal(true)}>Добавить</Button>
+          <Box paddingTop={2} display="flex" flexDirection="column" rowGap={2}>
+            {menuItems.map((item) => (
+              <DailyMenuItemCard
+                key={item.id}
+                menuItem={{ id: item.id, name: item.name }}
+                deleteHandler={() => deleteItemHandler(item.id)}
+              />
+            ))}
+          </Box>
         </Box>
       )}
     </div>
