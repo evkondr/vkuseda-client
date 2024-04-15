@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { menuItemsLinks, mainPageMenuItemLinks } from '../../tempDB';
+import { menuItemsLinks, mainPageMenuItemLinks } from '../../app-data';
 import { TMenuItemLink } from '../../types';
 
 type TNavState = {

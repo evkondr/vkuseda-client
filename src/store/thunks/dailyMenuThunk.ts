@@ -8,15 +8,12 @@ import { deleteWeekDay } from '../features/dailyMenuSlice';
 
 const asyncThuncName = createAsyncThunkName('daily-menu');
 
-export const getAllDaysAsync = createAsyncThunk<TWeekDay[], undefined, { rejectValue: string }>(asyncThuncName('allWeekDays'), async (_, { rejectWithValue, dispatch }) => {
+export const getAllDaysAsync = createAsyncThunk<TWeekDay[], undefined, { rejectValue: string }>(asyncThuncName('allWeekDays'), async (_, { rejectWithValue }) => {
   try {
     const response = await DailyMenuService.getAllWeekDays();
     return response.result;
   } catch (error) {
     if (isAxiosError(error)) {
-      if (error.response?.data.message === 'jwt expired') {
-        return dispatch(logout());
-      }
       return rejectWithValue(error.response?.data.message);
     }
     if (error instanceof Error) {
@@ -26,15 +23,12 @@ export const getAllDaysAsync = createAsyncThunk<TWeekDay[], undefined, { rejectV
   }
 });
 // Get current day
-export const getCurrentDayAsync = createAsyncThunk<TWeekDay, string, { rejectValue: string }>(asyncThuncName('allWeekDays'), async (id, { rejectWithValue, dispatch }) => {
+export const getCurrentDayAsync = createAsyncThunk<TWeekDay, string, { rejectValue: string }>(asyncThuncName('allWeekDays'), async (name, { rejectWithValue }) => {
   try {
-    const response = await DailyMenuService.getCurrentWeekDay(id);
-    return response.result;
+    const response = await DailyMenuService.getCurrentWeekDay(name);
+    return response.result[0];
   } catch (error) {
     if (isAxiosError(error)) {
-      if (error.response?.data.message === 'jwt expired') {
-        return dispatch(logout());
-      }
       return rejectWithValue(error.response?.data.message);
     }
     if (error instanceof Error) {

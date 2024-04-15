@@ -8,8 +8,9 @@ export default class DailyMenuService {
     return response.data;
   }
 
-  static async getCurrentWeekDay(id:string) {
-    const response = await httpRequest.get(`${URL}/${id}`);
+  static async getCurrentWeekDay(name:string) {
+    console.log(name);
+    const response = await httpRequest.get(`${URL}/current?name=${name}`);
     return response.data;
   }
 

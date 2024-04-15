@@ -27,8 +27,12 @@ export const mainPageMenuItemLinks:TMenuItemLink[] = [
     link: '/',
   },
   {
-    name: 'Меню',
+    name: 'Все меню',
     link: '/main/menu',
+  },
+  {
+    name: 'Ежедневное меню',
+    link: '/main/daily-menu',
   },
   {
     name: 'О нас',

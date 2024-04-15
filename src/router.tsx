@@ -15,6 +15,7 @@ import AuthPage from './Components/AdminPart/Pages/AuthPage';
 import OrdersPage from './Components/AdminPart/Pages/OrdersPage';
 import PrivacyAgreementPage from './Components/Pages/PrivacyAgreementPage';
 import DailyMenuPage from './Components/AdminPart/Pages/DailyMenuPage';
+import DailyMenuClientPage from './Components/Pages/DailyMenuClientPage';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: 'delivery',
         element: <DeliveryPage />,
+      },
+      {
+        path: 'daily-menu',
+        element: <DailyMenuClientPage />,
       },
       {
         path: 'agreement',

@@ -5,7 +5,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from '../Logo/Logo';
 import './style.scss';
-import { menuItemsLinks } from '../../tempDB';
+import { menuItemsLinks } from '../../app-data';
 import NavBar from '../NavBar/NavBar';
 import MemuDrawer from '../MenuDrawer/MemuDrawer';
 
