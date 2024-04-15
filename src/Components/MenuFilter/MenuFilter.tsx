@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import {
   Box, Chip, Stack, Divider, Button, Menu, MenuItem, ChipOwnProps,
 } from '@mui/material';
-import { TCategory } from '../../types';
+import { TCategory, TWeekDay } from '../../types';
 import './style.scss';
 
 type TMenuFilterProps = {
-  categories: TCategory[],
+  data: TCategory[] | TWeekDay[],
   // eslint-disable-next-line no-unused-vars
-  handleFilterButton: (name:string) => void
+  handleFilter: (name:string) => void
 }
-const MenuFilter = ({ categories, handleFilterButton }:TMenuFilterProps) => {
+const MenuFilter = ({ data, handleFilter }:TMenuFilterProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [activeFilter, setActiveFilter] = useState<number>(0);
   const open = Boolean(anchorEl);
@@ -25,7 +25,7 @@ const MenuFilter = ({ categories, handleFilterButton }:TMenuFilterProps) => {
       {/* Filter for large screen */}
       <Stack className="filter-lg" spacing={1}>
         <p>Фильтр:</p>
-        {categories.map((category:TCategory, index:number) => {
+        {data.map((item, index) => {
           let variant:ChipOwnProps['variant'] = 'outlined';
           if (activeFilter === index) {
             variant = 'filled';
@@ -33,12 +33,12 @@ const MenuFilter = ({ categories, handleFilterButton }:TMenuFilterProps) => {
           return (
             <Chip
               style={{ marginBottom: '5px' }}
-              label={category.name}
+              label={item.name}
               variant={variant}
               color="success"
-              key={category.id}
+              key={item.id}
               onClick={() => {
-                handleFilterButton(category.name);
+                handleFilter(item.name);
                 setActiveFilter(index);
               }}
             />
@@ -73,15 +73,15 @@ const MenuFilter = ({ categories, handleFilterButton }:TMenuFilterProps) => {
             horizontal: 'left',
           }}
         >
-          {categories.map((category:TCategory) => (
+          {data.map((item) => (
             <MenuItem
-              key={category.id}
+              key={item.id}
               onClick={() => {
-                handleFilterButton(category.name);
+                handleFilter(item.name);
                 setAnchorEl(null);
               }}
             >
-              {category.name}
+              {item.name}
 
             </MenuItem>
           ))}
