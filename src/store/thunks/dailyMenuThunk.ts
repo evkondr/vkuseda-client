@@ -23,7 +23,7 @@ export const getAllDaysAsync = createAsyncThunk<TWeekDay[], undefined, { rejectV
   }
 });
 // Get current day
-export const getCurrentDayAsync = createAsyncThunk<TWeekDay, string, { rejectValue: string }>(asyncThuncName('allWeekDays'), async (name, { rejectWithValue }) => {
+export const getCurrentDayAsync = createAsyncThunk<TWeekDay, string, { rejectValue: string }>(asyncThuncName('getCurrentDay'), async (name, { rejectWithValue }) => {
   try {
     const response = await DailyMenuService.getCurrentWeekDay(name);
     return response.result[0];
