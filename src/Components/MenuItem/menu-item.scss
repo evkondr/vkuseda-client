@@ -1,7 +1,9 @@
 @import "../../sass/vars.scss";
 .menu-item{
   position: relative;
+  max-width: 300px;
   max-height: 350px!important;
+  margin: 0 auto;
   overflow: hidden;
   &__img{
     width: 100%;

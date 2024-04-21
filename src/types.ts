@@ -73,3 +73,20 @@ export interface IInitialState {
   loading: boolean,
   error: string | undefined
 }
+export type TWeekDayUnion = 'понедельник' |
+  'вторник' |
+  'среда' |
+  'четверг' |
+  'пятнциа' |
+  'суббота' |
+  'воскресенье'
+
+// export enum EWeekDays {
+//   'понедельник',
+//   'вторник',
+//   'среда',
+//   'четверг',
+//   'пятнциа',
+//   'суббота',
+//   'воскресенье',
+// }
