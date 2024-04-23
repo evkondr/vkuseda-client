@@ -1,5 +1,8 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect } from 'react';
-import { Box, Grid, CircularProgress } from '@mui/material';
+import {
+  Box, Grid, CircularProgress, Typography,
+} from '@mui/material';
 import MenuFilter from '../MenuFilter/MenuFilter';
 import { filterMenu } from '../../store/features/menuSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -29,7 +32,14 @@ const MenuPage = () => {
     );
   }
   return (
-    <div>
+    <Box>
+      <Box paddingTop={2} paddingBottom={2}>
+        <Typography>
+          На данной странице представлены все блюда для ознакомления,
+          которые вы можете встретить на нашей кухни.
+          Посмотреть меню на день и сделать заказ вы можете на странице "Ежедневное меню".
+        </Typography>
+      </Box>
       <MenuFilter data={filterCategories} handleFilter={handleCategory} />
       <Grid container spacing={3} paddingTop={2}>
         {filtered.map((menuItem:TMenuItem) => (
@@ -38,7 +48,7 @@ const MenuPage = () => {
           </Grid>
         ))}
       </Grid>
-    </div>
+    </Box>
   );
 };
 

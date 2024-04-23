@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import MenuFilter from '../MenuFilter/MenuFilter';
@@ -30,7 +31,6 @@ const DailyMenuClientPage = () => {
       id, name, price, amount: 1, totalPrice: price,
     }));
   };
-  console.log(weekDays);
   // Effects
   useEffect(() => {
     dispatch(getAllDaysAsync());
@@ -47,6 +47,12 @@ const DailyMenuClientPage = () => {
   }
   return (
     <Box>
+      <Box paddingTop={2} paddingBottom={2}>
+        <Typography>
+          На данной странице вы можете сделать заказ блюд в соответствующий день недели.
+          С условиями доставки можно ознакомиться на странице "Доставка".
+        </Typography>
+      </Box>
       <MenuFilter data={weekDays} handleFilter={handleFilter} />
       {loadingCurrent && <Loader />}
       <Grid container spacing={3} paddingTop={2}>
