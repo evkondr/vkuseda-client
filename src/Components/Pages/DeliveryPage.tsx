@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import SectionHeader from '../SectionHeader/SectionHeader';
@@ -29,8 +30,14 @@ const DeliveryPage = () => {
         </Typography>
         <Typography>
           Мы ориентированы на офисы и предприятия, в связи с чем,
-          минимальная сумма заказа 1500 рублей
+          сумма заказа от 800 до 1500 рублей.
         </Typography>
+        <Typography>
+          Зоны доставки:
+        </Typography>
+        <Box className="delivery-map">
+          <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A430f491260a90cccf03b8be3e34b9108d08295b93bc41f45b05acdaf0faf7a02&amp;;height=504&amp;lang=ru_RU&amp;scroll=true" width="500" height="400" frameBorder="0" />
+        </Box>
       </Container>
     </Box>
   );
