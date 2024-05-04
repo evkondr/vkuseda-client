@@ -6,9 +6,9 @@ import PromoService from '../../http/promoService';
 import { TPromoItem } from '../../types';
 import { addOrDeleteFromPromo } from '../features/menuSlice';
 
-const asyncThuncName = createAsyncThunkName('promoItems');
+const asyncThunkName = createAsyncThunkName('promoItems');
 // Get all categories
-export const getAllPromoAsync = createAsyncThunk<TPromoItem[], undefined, { rejectValue: string }>(asyncThuncName('getAllpromos'), async (_, { rejectWithValue, dispatch }) => {
+export const getAllPromoAsync = createAsyncThunk<TPromoItem[], undefined, { rejectValue: string }>(asyncThunkName('getAllpromos'), async (_, { rejectWithValue, dispatch }) => {
   try {
     const response = await PromoService.getAllPromos();
     return response.result;
@@ -25,7 +25,7 @@ export const getAllPromoAsync = createAsyncThunk<TPromoItem[], undefined, { reje
     return rejectWithValue('Неизвестная ошибка');
   }
 });
-export const addToPromoAsync = createAsyncThunk<TPromoItem[], string, { rejectValue: string }>(asyncThuncName('addToPromo'), async (menuItemId, { rejectWithValue, dispatch }) => {
+export const addToPromoAsync = createAsyncThunk<TPromoItem[], string, { rejectValue: string }>(asyncThunkName('addToPromo'), async (menuItemId, { rejectWithValue, dispatch }) => {
   try {
     const response = await PromoService.addToPromo(menuItemId);
     dispatch(addOrDeleteFromPromo(menuItemId));
@@ -43,7 +43,7 @@ export const addToPromoAsync = createAsyncThunk<TPromoItem[], string, { rejectVa
     return rejectWithValue('Неизвестная ошибка');
   }
 });
-export const deleteFromPromoAsync = createAsyncThunk<undefined, string, { rejectValue: string }>(asyncThuncName('deleteFromPromo'), async (menuItemId, { rejectWithValue, dispatch }) => {
+export const deleteFromPromoAsync = createAsyncThunk<undefined, string, { rejectValue: string }>(asyncThunkName('deleteFromPromo'), async (menuItemId, { rejectWithValue, dispatch }) => {
   try {
     const response = await PromoService.deleteFromPromo(menuItemId);
     dispatch(addOrDeleteFromPromo(menuItemId));

@@ -8,6 +8,7 @@ import promoReducer from './features/promoSlice';
 import ordersReducer from './features/ordersSlice';
 import dailyMenuSlice from './features/dailyMenuSlice';
 import currentDayMenuReducer from './features/currentDayMemuSlice';
+import settingsReducer from './features/settingsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     orders: ordersReducer,
     dailyMenu: dailyMenuSlice,
     currentDayMenu: currentDayMenuReducer,
+    settings: settingsReducer,
   },
 });
 
