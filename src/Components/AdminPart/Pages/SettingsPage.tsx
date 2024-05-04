@@ -61,7 +61,6 @@ const SettingsPage = () => {
                     defaultValue={item.value}
                     label={item.name}
                     variant="outlined"
-                    sx={{ maxWidth: '250px' }}
                     name={reg.name}
                     ref={reg.ref}
                     onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
