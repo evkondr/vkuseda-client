@@ -43,3 +43,12 @@ export const mainPageMenuItemLinks:TMenuItemLink[] = [
     link: '/main/delivery',
   },
 ];
+
+export const settingsConstants = {
+  headerText: 'Название сайта',
+  slogan: 'Слоган',
+  phoneNumber: 'Телефон',
+  minPrice: 'Минимальная сумма',
+  manPrice: 'Максимальная сумма',
+  order: 'Возможность заказа',
+};
