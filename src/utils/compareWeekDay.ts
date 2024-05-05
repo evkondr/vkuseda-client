@@ -3,7 +3,8 @@ import { TWeekDayUnion } from '../types';
 export default (weekDay: TWeekDayUnion) => {
   const week = [
     'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
-  const menuDayNumber = week.indexOf(weekDay) + 1;
-  const currenDayNumber = new Date().getDay();
-  return menuDayNumber === currenDayNumber;
+  let menuDayNumber = week.indexOf(weekDay) + 1;
+  if (menuDayNumber > 6) menuDayNumber = 0;
+  const currentDayNumber = new Date().getDay();
+  return menuDayNumber === currentDayNumber;
 };

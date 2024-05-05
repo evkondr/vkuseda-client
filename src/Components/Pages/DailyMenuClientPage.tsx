@@ -23,7 +23,7 @@ const DailyMenuClientPage = () => {
   const handleFilter = (name: string) => {
     dispatch(getCurrentDayAsync(name));
   };
-  const addToCartHandelr = (menuItem: TMenuItem) => {
+  const addToCartHandler = (menuItem: TMenuItem) => {
     const {
       id, name, price,
     } = menuItem;
@@ -66,7 +66,7 @@ const DailyMenuClientPage = () => {
             <MenuItem
               menuItem={menuItem}
               addToCurtHandler={
-              isCurrentDay ? () => addToCartHandelr(menuItem) : undefined
+              isCurrentDay ? () => addToCartHandler(menuItem) : undefined
               }
             />
           </Grid>
