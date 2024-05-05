@@ -6,6 +6,7 @@ import {
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { TMenuItemLink } from '../../types';
 import './style.scss';
+import formatPhoneNumber from '../../utils/formatPhoneNomber';
 
 type TNavBarProps = {
   menuItemsLinks: TMenuItemLink[],
@@ -29,9 +30,9 @@ const NavBar = ({
           </Link>
         ))}
         {phoneNumber && (
-        <Button href="tel:+79023001991" color="inherit">
+        <Button href={`tel:+7${phoneNumber}`} color="inherit">
           <PhoneIphoneIcon />
-          {phoneNumber}
+          {formatPhoneNumber(phoneNumber)}
         </Button>
         )}
       </Box>

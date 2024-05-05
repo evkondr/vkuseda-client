@@ -5,8 +5,12 @@ import {
 import RoomIcon from '@mui/icons-material/Room';
 import SectionHeader from '../SectionHeader/SectionHeader';
 import './style.scss';
+import formatPhoneNumber from '../../utils/formatPhoneNomber';
 
-const Contacts = () => {
+type TContacts = {
+  phoneNumber: string | undefined
+}
+const Contacts = ({ phoneNumber }:TContacts) => {
   return (
     <Box component="section" id="contacts" className="contacts">
       <Container maxWidth="lg">
@@ -18,7 +22,7 @@ const Contacts = () => {
             По вопросам организации обедов обращаться по телефону:
           </Typography>
           <Typography textAlign="center" className="contacts__text">
-            <Link href="tel:+79023001991">+7 (902) 300 19 91</Link>
+            {phoneNumber && <Link href={`tel:+7${phoneNumber}`}>{formatPhoneNumber(phoneNumber)}</Link>}
           </Typography>
           <Typography className="contacts__text contacts__map-text">
             <RoomIcon />

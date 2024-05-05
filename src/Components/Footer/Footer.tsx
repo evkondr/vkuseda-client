@@ -9,11 +9,11 @@ import { menuItemsLinks } from '../../app-data';
 import NavBar from '../NavBar/NavBar';
 import MemuDrawer from '../MenuDrawer/MemuDrawer';
 
-const phoneNumber = '+7 (902) 300 19 91';
-
-const Footer = () => {
+type TFooterProps = {
+  phoneNumber: string | undefined
+}
+const Footer = ({ phoneNumber }:TFooterProps) => {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
-
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };

@@ -49,6 +49,6 @@ export const settingsConstants = {
   slogan: 'Слоган',
   phoneNumber: 'Телефон',
   minPrice: 'Минимальная сумма',
-  manPrice: 'Максимальная сумма',
+  maxPrice: 'Максимальная сумма',
   order: 'Возможность заказа',
 };

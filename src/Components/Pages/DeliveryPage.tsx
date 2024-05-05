@@ -1,10 +1,22 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import SectionHeader from '../SectionHeader/SectionHeader';
 import './index.scss';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getAllSettingsAsync } from '../../store/thunks/settingsThunk';
+import { settingsConstants } from '../../app-data';
 
 const DeliveryPage = () => {
+  // Init state
+  const { settings: { textSettings } } = useAppSelector((state) => state.settings);
+  const dispatch = useAppDispatch();
+  const minPrice = textSettings.find((item) => item.name === settingsConstants.minPrice);
+  const maxPrice = textSettings.find((item) => item.name === settingsConstants.maxPrice);
+  // Effects
+  useEffect(() => {
+    dispatch(getAllSettingsAsync());
+  });
   return (
     <Box component="section" className="delivery-page">
       <Container maxWidth="lg">
@@ -30,7 +42,15 @@ const DeliveryPage = () => {
         </Typography>
         <Typography>
           Мы ориентированы на офисы и предприятия, в связи с чем,
-          сумма заказа от 800 до 1500 рублей.
+          сумма заказа от
+          {' '}
+          {minPrice?.value}
+          {' '}
+          до
+          {' '}
+          {maxPrice?.value}
+          {' '}
+          рублей.
         </Typography>
         <Typography>
           Зоны доставки:
