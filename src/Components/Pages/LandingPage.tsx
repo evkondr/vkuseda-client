@@ -8,7 +8,7 @@ import Welcome from '../Welcome/Welcome';
 import Contacts from '../Contacts/Contacts';
 import ScrollToAnchor from '../ScrollToAnchor';
 import { getAllPromoAsync } from '../../store/thunks/promoThunk';
-import { getAllSettingsAsync } from '../../store/thunks/settingsThunk';
+import { getAllSettingsClientAsync } from '../../store/thunks/settingsThunk';
 import { settingsConstants } from '../../app-data';
 
 const LandingPage = () => {
@@ -24,7 +24,7 @@ const LandingPage = () => {
   const phoneNumber = textSettings.find((item) => item.name === settingsConstants.phoneNumber);
   useEffect(() => {
     dispatch(getAllPromoAsync());
-    dispatch(getAllSettingsAsync());
+    dispatch(getAllSettingsClientAsync());
   }, [dispatch]);
   return (
     <>

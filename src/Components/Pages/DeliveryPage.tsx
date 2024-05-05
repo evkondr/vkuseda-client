@@ -4,7 +4,7 @@ import { Box, Container, Typography } from '@mui/material';
 import SectionHeader from '../SectionHeader/SectionHeader';
 import './index.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getAllSettingsAsync } from '../../store/thunks/settingsThunk';
+import { getAllSettingsClientAsync } from '../../store/thunks/settingsThunk';
 import { settingsConstants } from '../../app-data';
 
 const DeliveryPage = () => {
@@ -15,7 +15,7 @@ const DeliveryPage = () => {
   const maxPrice = textSettings.find((item) => item.name === settingsConstants.maxPrice);
   // Effects
   useEffect(() => {
-    dispatch(getAllSettingsAsync());
+    dispatch(getAllSettingsClientAsync());
   });
   return (
     <Box component="section" className="delivery-page">

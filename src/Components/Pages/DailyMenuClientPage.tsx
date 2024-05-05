@@ -9,6 +9,8 @@ import MenuItem from '../MenuItem/MenuItem';
 import { TMenuItem, TWeekDayUnion } from '../../types';
 import { addToCart } from '../../store/features/cartSlice';
 import compareWeekDay from '../../utils/compareWeekDay';
+import { settingsConstants } from '../../app-data';
+import { getAllSettingsClientAsync } from '../../store/thunks/settingsThunk';
 
 const DailyMenuClientPage = () => {
   // State
@@ -17,6 +19,8 @@ const DailyMenuClientPage = () => {
     currentDayMenu,
     loading: loadingCurrent,
   } = useAppSelector((state) => state.currentDayMenu);
+  const { settings: { boolSettings } } = useAppSelector((state) => state.settings);
+  const orderOption = boolSettings.find((item) => item.name === settingsConstants.order);
   const dispatch = useAppDispatch();
   const isCurrentDay = compareWeekDay(currentDayMenu?.name as TWeekDayUnion);
   // Handlers
@@ -34,6 +38,7 @@ const DailyMenuClientPage = () => {
   // Effects
   useEffect(() => {
     dispatch(getAllDaysAsync());
+    dispatch(getAllSettingsClientAsync());
   }, [dispatch]);
   useEffect(() => {
     if (weekDays.length > 0) {
@@ -66,7 +71,7 @@ const DailyMenuClientPage = () => {
             <MenuItem
               menuItem={menuItem}
               addToCurtHandler={
-              isCurrentDay ? () => addToCartHandler(menuItem) : undefined
+              isCurrentDay && orderOption?.value ? () => addToCartHandler(menuItem) : undefined
               }
             />
           </Grid>

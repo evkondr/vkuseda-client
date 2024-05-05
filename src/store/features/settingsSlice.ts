@@ -2,7 +2,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { IInitialState, TAllSettings } from '../../types';
-import { getAllSettingsAsync, updateAllSettingsAsync } from '../thunks/settingsThunk';
+import { getAllSettingsAdminAsync, getAllSettingsClientAsync, updateAllSettingsAsync } from '../thunks/settingsThunk';
 
 interface ISettingsState extends IInitialState {
   settings: TAllSettings
@@ -15,12 +15,16 @@ const initialState:ISettingsState = {
   loading: false,
   error: undefined,
 };
-const settitngsSlice = createSlice({
+const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getAllSettingsAsync.fulfilled, (state, action) => {
+    builder.addCase(getAllSettingsAdminAsync.fulfilled, (state, action) => {
+      state.settings = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(getAllSettingsClientAsync.fulfilled, (state, action) => {
       state.settings = action.payload;
       state.loading = false;
     });
@@ -30,7 +34,8 @@ const settitngsSlice = createSlice({
     });
     // Matching for loader
     builder.addMatcher(isAnyOf(
-      getAllSettingsAsync.pending,
+      getAllSettingsAdminAsync.pending,
+      getAllSettingsClientAsync.pending,
       updateAllSettingsAsync.pending,
     ), (state) => {
       state.loading = true;
@@ -39,7 +44,8 @@ const settitngsSlice = createSlice({
     // Matching for error
     builder.addMatcher(
       isAnyOf(
-        getAllSettingsAsync.rejected,
+        getAllSettingsAdminAsync.rejected,
+        getAllSettingsClientAsync.rejected,
         updateAllSettingsAsync.rejected,
       ),
       (state, action) => {
@@ -50,4 +56,4 @@ const settitngsSlice = createSlice({
     );
   },
 });
-export default settitngsSlice.reducer;
+export default settingsSlice.reducer;

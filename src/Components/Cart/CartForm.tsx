@@ -17,7 +17,7 @@ const CartForm = ({ registers }:IProps) => {
   return (
     <Box padding={3} rowGap={2} display="flex" flexDirection="column">
       <Box>
-        Оставьте Ваши данные для доставки.
+        Оставьте Ваши данные для доставки
       </Box>
       <TextField
         required

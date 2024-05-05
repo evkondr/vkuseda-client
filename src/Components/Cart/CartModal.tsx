@@ -56,7 +56,7 @@ const CartModal = ({ open, onClose }:IProps) => {
     }
   }, [errors]);
   return (
-    <DialogModal open={open} onClose={onClose} buttonTitle="Отправить" onSubmit={handleSubmit(onSubmit)}>
+    <DialogModal title="Оформление заказа" open={open} onClose={onClose} buttonTitle="Отправить" onSubmit={handleSubmit(onSubmit)}>
       <CartForm registers={registers} />
     </DialogModal>
   );

@@ -3,8 +3,13 @@ import { TSettings } from '../types';
 
 const URL = '/settings';
 class SettingsService {
-  static async getAllSettings() {
-    const response = await authHttpRequest.get(URL);
+  static async getAllSettingsAdminSide() {
+    const response = await authHttpRequest.get(`${URL}/admin`);
+    return response.data;
+  }
+
+  static async getAllSettingsClientSide() {
+    const response = await authHttpRequest.get(`${URL}`);
     return response.data;
   }
 

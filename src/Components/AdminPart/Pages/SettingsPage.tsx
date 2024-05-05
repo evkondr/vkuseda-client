@@ -4,7 +4,7 @@ import {
   Box, FormGroup, FormControlLabel, Switch, TextField, Stack, Button,
 } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { getAllSettingsAsync, updateAllSettingsAsync } from '../../../store/thunks/settingsThunk';
+import { getAllSettingsAdminAsync, updateAllSettingsAsync } from '../../../store/thunks/settingsThunk';
 import AdminContainer from '../AdminContainer/AdminContainer';
 import { TSettings } from '../../../types';
 
@@ -22,7 +22,7 @@ const SettingsPage = () => {
   };
   // Effects
   useEffect(() => {
-    dispatch(getAllSettingsAsync());
+    dispatch(getAllSettingsAdminAsync());
   }, [dispatch]);
   return (
     <AdminContainer headerText="Настройка сайта">
