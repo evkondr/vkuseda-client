@@ -51,6 +51,7 @@ const Header = ({
         </Link>
         ) }
         <IconButton
+          className="hamburger-btn"
           color="inherit"
           aria-label="open drawer"
           edge="start"
