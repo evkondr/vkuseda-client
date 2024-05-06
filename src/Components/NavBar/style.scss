@@ -1,6 +1,12 @@
 .nav__footer{
   color: #fff!important;
 }
+.nav{
+  a{
+    display: flex;
+    text-decoration: none;
+  }
+}
 @media screen and (max-width: 600px) {
   .MuiDrawer-paper{
     width: 90%!important;

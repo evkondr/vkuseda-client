@@ -21,7 +21,7 @@ const NavBar = ({
 }:TNavBarProps) => {
   return (
     <>
-      <Box component="nav" className={footer ? 'nav__footer' : ''} sx={{ display: { xs: 'none', md: 'block' } }}>
+      <Box component="nav" className={footer ? 'nav nav__footer' : 'nav'} sx={{ display: { xs: 'none', md: 'flex' } }}>
         {menuItemsLinks.map((item:TMenuItemLink) => (
           <Link key={item.name} to={item.link}>
             <Button key={item.name} color="inherit">
