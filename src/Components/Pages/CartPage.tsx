@@ -9,8 +9,9 @@ const CartPage = () => {
   const {
     cartItems, amount, total, loading,
   } = useAppSelector((state) => state.cart);
-  const { settings: { boolSettings } } = useAppSelector((state) => state.settings);
+  const { settings: { boolSettings, textSettings } } = useAppSelector((state) => state.settings);
   const orderOption = boolSettings.find((item) => item.name === settingsConstants.order);
+  const minPrice = textSettings.find((item) => item.name === settingsConstants.minPrice);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(calculateTotal());
@@ -23,6 +24,7 @@ const CartPage = () => {
       amount={amount}
       total={total}
       loading={loading}
+      minPrice={minPrice?.value as string | undefined}
       ordersOn={orderOption?.value as boolean | undefined}
     />
   );

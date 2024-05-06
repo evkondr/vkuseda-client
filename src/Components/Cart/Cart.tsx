@@ -14,9 +14,10 @@ type TCartProps = {
   total: number,
   loading?: boolean,
   ordersOn: boolean | undefined,
+  minPrice: string | undefined,
 }
 const Cart = ({
-  cartItems, amount, total, loading, ordersOn = true,
+  cartItems, amount, total, loading, ordersOn = true, minPrice,
 }:TCartProps) => {
   // Init state
   const dispatch = useAppDispatch();
@@ -71,7 +72,8 @@ const Cart = ({
         </p>
       </Box>
       )}
-      {ordersOn && cartItems.length > 0 && <Button variant="contained" onClick={() => setOpen(true)}>Заказать</Button>}
+      {total < Number(minPrice) && <Box component="p">{`Минимальная сумма заказа ${minPrice} рублей`}</Box>}
+      {ordersOn && cartItems.length > 0 && total > Number(minPrice) && <Button variant="contained" onClick={() => setOpen(true)}>Заказать</Button>}
       <CartModal open={open} onClose={() => setOpen(!open)} />
     </>
   );
