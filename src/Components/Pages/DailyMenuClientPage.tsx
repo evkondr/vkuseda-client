@@ -19,10 +19,15 @@ const DailyMenuClientPage = () => {
     currentDayMenu,
     loading: loadingCurrent,
   } = useAppSelector((state) => state.currentDayMenu);
-  const { settings: { boolSettings } } = useAppSelector((state) => state.settings);
+  const {
+    settings: { boolSettings, textSettings },
+    ...restSettingsState
+  } = useAppSelector((state) => state.settings);
   const orderOption = boolSettings.find((item) => item.name === settingsConstants.order);
   const dispatch = useAppDispatch();
   const isCurrentDay = compareWeekDay(currentDayMenu?.name as TWeekDayUnion);
+  const endTime = textSettings.find((item) => item.name === settingsConstants.endTime);
+  const currentTime = new Date().getHours();
   // Handlers
   const handleFilter = (name: string) => {
     dispatch(getCurrentDayAsync(name));
@@ -57,6 +62,12 @@ const DailyMenuClientPage = () => {
           На данной странице вы можете сделать заказ блюд в соответствующий день недели.
           С условиями доставки можно ознакомиться на странице "Доставка".
         </Typography>
+        {!restSettingsState.loading && !(currentTime < Number(endTime?.value || 12))
+        && (
+        <Typography variant="body2" color="red" marginTop={2}>
+          К сожалению прием заказов на сегодня уже закрыт.
+        </Typography>
+        )}
       </Box>
       <MenuFilter data={weekDays} handleFilter={handleFilter} />
       {loadingCurrent && <Loader />}
@@ -71,7 +82,10 @@ const DailyMenuClientPage = () => {
             <MenuItem
               menuItem={menuItem}
               addToCurtHandler={
-              isCurrentDay && orderOption?.value ? () => addToCartHandler(menuItem) : undefined
+              isCurrentDay
+              && orderOption?.value
+              && currentTime < Number(endTime?.value || 12)
+                ? () => addToCartHandler(menuItem) : undefined
               }
             />
           </Grid>

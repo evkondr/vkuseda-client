@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { getAllSettingsAdminAsync, updateAllSettingsAsync } from '../../../store/thunks/settingsThunk';
 import AdminContainer from '../AdminContainer/AdminContainer';
 import { TSettings } from '../../../types';
+import { settingsConstants } from '../../../app-data';
 
 const SettingsPage = () => {
   // Init state
@@ -52,7 +53,7 @@ const SettingsPage = () => {
           </FormGroup>
           <Stack direction="column" rowGap={2} paddingTop={2} maxWidth="500px">
             {textSettings.map((item) => {
-              if (item.name === 'Название сайта') {
+              if (item.name === settingsConstants.headerText) {
                 const reg = register(item.name as 'name');
                 return (
                   <TextField
@@ -73,7 +74,7 @@ const SettingsPage = () => {
               return null;
             })}
             {textSettings.map((item) => {
-              if (item.name === 'Слоган') {
+              if (item.name === settingsConstants.slogan) {
                 const reg = register(item.name as 'name');
                 return (
                   <TextField
@@ -119,7 +120,30 @@ const SettingsPage = () => {
               return null;
             })}
             {textSettings.map((item) => {
-              if (item.name === 'Телефон') {
+              if (item.name === settingsConstants.phoneNumber) {
+                const reg = register(item.name as 'name');
+                return (
+                  <TextField
+                    type="number"
+                    id="outlined-basic"
+                    key={item.id}
+                    defaultValue={item.value}
+                    label={item.name}
+                    variant="outlined"
+                    sx={{ maxWidth: '250px' }}
+                    name={reg.name}
+                    ref={reg.ref}
+                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
+                      reg.onChange(e);
+                      setEdit(true);
+                    }}
+                  />
+                );
+              }
+              return null;
+            })}
+            {textSettings.map((item) => {
+              if (item.name === settingsConstants.endTime) {
                 const reg = register(item.name as 'name');
                 return (
                   <TextField

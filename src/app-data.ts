@@ -51,4 +51,5 @@ export const settingsConstants = {
   minPrice: 'Минимальная сумма',
   maxPrice: 'Максимальная сумма',
   order: 'Возможность заказа',
+  endTime: 'Время отключения заказа',
 };
