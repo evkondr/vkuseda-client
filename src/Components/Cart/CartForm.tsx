@@ -1,8 +1,12 @@
 import React from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { Box, TextField } from '@mui/material';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface IProps {
+  reCapKey?: string,
+  // eslint-disable-next-line no-unused-vars
+  onReCapChange: (value: string | null) => void
   registers: {
     customerName: UseFormRegisterReturn<'customerName'>,
     customerAddress: UseFormRegisterReturn<'customerAddress'>,
@@ -10,7 +14,7 @@ interface IProps {
     comment: UseFormRegisterReturn<'comment'>,
   }
 }
-const CartForm = ({ registers }:IProps) => {
+const CartForm = ({ registers, reCapKey, onReCapChange }:IProps) => {
   const {
     customerName, customerAddress, customerPhone, comment,
   } = registers;
@@ -64,6 +68,7 @@ const CartForm = ({ registers }:IProps) => {
         onChange={comment.onChange}
         ref={comment.ref}
       />
+      <ReCAPTCHA sitekey={reCapKey || ''} onChange={onReCapChange} />
     </Box>
   );
 };

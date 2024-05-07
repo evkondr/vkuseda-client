@@ -41,7 +41,7 @@ const MenuPage = () => {
         </Typography>
       </Box>
       <MenuFilter data={filterCategories} handleFilter={handleCategory} />
-      <Grid container spacing={3} paddingTop={2}>
+      <Grid container spacing={3} paddingTop={2} paddingBottom={2}>
         {filtered.map((menuItem:TMenuItem) => (
           <Grid key={menuItem.id} item xs={12} sm={6} md={4} lg={3}>
             <MenuItem menuItem={menuItem} />

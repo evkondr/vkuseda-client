@@ -165,6 +165,27 @@ const SettingsPage = () => {
               }
               return null;
             })}
+            {textSettings.map((item) => {
+              if (item.name === settingsConstants.reCAPTCHA) {
+                const reg = register(item.name as 'name');
+                return (
+                  <TextField
+                    id="outlined-basic"
+                    key={item.id}
+                    defaultValue={item.value}
+                    label={item.name}
+                    variant="outlined"
+                    name={reg.name}
+                    ref={reg.ref}
+                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
+                      reg.onChange(e);
+                      setEdit(true);
+                    }}
+                  />
+                );
+              }
+              return null;
+            })}
           </Stack>
           {isEdit && (
           <Box marginTop={2}>

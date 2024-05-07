@@ -52,4 +52,5 @@ export const settingsConstants = {
   maxPrice: 'Максимальная сумма',
   order: 'Возможность заказа',
   endTime: 'Время отключения заказа',
+  reCAPTCHA: 'reCAPTCHA',
 };
