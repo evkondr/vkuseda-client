@@ -27,10 +27,10 @@ const defaultValues: TFormValues = {
 };
 const CartModal = ({ open, onClose }:IProps) => {
   // Init state
+  const [isReCapPassed, setReCapPassed] = useState<null | string>(null);
   const { cartItems, total } = useAppSelector((state) => state.cart);
   const { settings: { textSettings } } = useAppSelector((state) => state.settings);
   const capKey = textSettings.find((item) => item.name === settingsConstants.reCAPTCHA);
-  const [isReCapPassed, setReCapPassed] = useState<null | string>(null);
   const dispatch = useAppDispatch();
   // useForm
   const {
@@ -56,9 +56,11 @@ const CartModal = ({ open, onClose }:IProps) => {
       reset(defaultValues);
       dispatch(clearCart());
       onClose();
+    } else {
+      toast.error('Не пройдена проверка reCAPTCHA');
     }
   };
-  // UseEffect
+  // Effects
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
       toast.error('Ошибка формы');

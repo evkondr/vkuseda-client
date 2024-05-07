@@ -23,10 +23,6 @@ export const menuItemsLinks:TMenuItemLink[] = [
 ];
 export const mainPageMenuItemLinks:TMenuItemLink[] = [
   {
-    name: 'Главная',
-    link: '/',
-  },
-  {
     name: 'Все меню',
     link: '/main/menu',
   },
