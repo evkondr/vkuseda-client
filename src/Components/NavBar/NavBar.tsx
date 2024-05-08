@@ -6,7 +6,7 @@ import {
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { TMenuItemLink } from '../../types';
 import './style.scss';
-import formatPhoneNumber from '../../utils/formatPhoneNomber';
+import formatPhoneNumber from '../../utils/formatPhoneNumber';
 
 type TNavBarProps = {
   menuItemsLinks: TMenuItemLink[],
@@ -15,15 +15,18 @@ type TNavBarProps = {
   children: React.ReactNode,
   mobileOpen: boolean,
   handleDrawerToggle: () => void
+  activeClassName?: string
 }
+// className={({ isActive }) => (isActive ? 'active' : '')}
 const NavBar = ({
-  menuItemsLinks, footer, phoneNumber, children, mobileOpen, handleDrawerToggle,
+  menuItemsLinks,
+  footer, phoneNumber, children, mobileOpen, handleDrawerToggle, activeClassName,
 }:TNavBarProps) => {
   return (
     <>
       <Box component="nav" className={footer ? 'nav nav__footer' : 'nav'} sx={{ display: { xs: 'none', md: 'flex' } }}>
         {menuItemsLinks.map((item:TMenuItemLink) => (
-          <NavLink key={item.name} to={item.link} className={({ isActive }) => (isActive ? 'active' : '')}>
+          <NavLink key={item.name} to={item.link} className={({ isActive }) => (isActive ? activeClassName : '')}>
             <Button key={item.name} color="inherit">
               {item.name}
             </Button>

@@ -5,7 +5,7 @@ import {
 import RoomIcon from '@mui/icons-material/Room';
 import SectionHeader from '../SectionHeader/SectionHeader';
 import './style.scss';
-import formatPhoneNumber from '../../utils/formatPhoneNomber';
+import formatPhoneNumber from '../../utils/formatPhoneNumber';
 
 type TContacts = {
   phoneNumber: string | undefined

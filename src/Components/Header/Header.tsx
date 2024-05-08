@@ -19,9 +19,10 @@ type THeaderProps = {
   cart?: boolean
   cartAmount?: number,
   position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative' | undefined
+  activeClassName?: string
 }
 const Header = ({
-  menuItemsLinks, phoneNumber, position, cartAmount, cart,
+  menuItemsLinks, phoneNumber, position, cartAmount, cart, activeClassName,
 }:THeaderProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -38,6 +39,7 @@ const Header = ({
           mobileOpen={mobileOpen}
           handleDrawerToggle={handleDrawerToggle}
           phoneNumber={phoneNumber}
+          activeClassName={activeClassName}
         >
           <MemuDrawer
             handleDrawerToggle={handleDrawerToggle}
