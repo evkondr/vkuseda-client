@@ -37,7 +37,7 @@ const MainPage = () => {
   }, [dispatch, isOrderOn, endTime, currentTime, cartItems]);
   return (
     <>
-      <Header position="fixed" menuItemsLinks={mainPageNavLinks} cart cartAmount={amount} />
+      <Header position="fixed" menuItemsLinks={mainPageNavLinks} cart cartAmount={amount} activeClassName="active" />
       <Box component="section">
         <Container maxWidth="lg" sx={{ marginTop: '100px' }}>
           <Outlet />

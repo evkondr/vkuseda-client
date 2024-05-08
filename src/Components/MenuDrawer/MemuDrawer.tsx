@@ -7,7 +7,7 @@ import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { TMenuItemLink } from '../../types';
 import Logo from '../Logo/Logo';
 import './style.scss';
-import formatPhoneNumber from '../../utils/formatPhoneNomber';
+import formatPhoneNumber from '../../utils/formatPhoneNumber';
 
 type TMemuDrawerProps = {
   menuItemsLinks: TMenuItemLink[],
