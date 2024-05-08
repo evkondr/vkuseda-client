@@ -1,14 +1,14 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { IStateStdProps, TMenuItem } from '../../types';
+import { IInitialState, TMenuItem } from '../../types';
 import {
   getMenuItemsAync,
-  addNewMenuItem, deleteMenuItem, getMenuItemsOnClientAync,
+  addNewMenuItem, deleteMenuItem, getMenuItemsOnClientAync, updateMenuItemAsync,
 } from '../thunks/menuItemsThunk';
 import { getAllCategoriesAsync } from '../thunks/categoriesThunk';
 
-interface IMenuState extends IStateStdProps {
+interface IMenuState extends IInitialState {
   menuItems: TMenuItem[],
   filtered: TMenuItem[],
 }
@@ -53,6 +53,10 @@ const menuSlice = createSlice({
       state.menuItems.push(action.payload);
       state.loading = false;
     });
+    builder.addCase(updateMenuItemAsync.fulfilled, (state) => {
+      toast.success('Запись успешно обновлена');
+      state.loading = false;
+    });
     builder.addCase(deleteMenuItem.fulfilled, (state) => {
       toast.success('Запись успешно удалена');
       state.loading = false;
@@ -62,6 +66,7 @@ const menuSlice = createSlice({
       getMenuItemsAync.pending,
       addNewMenuItem.pending,
       deleteMenuItem.pending,
+      updateMenuItemAsync.pending,
       getMenuItemsOnClientAync.pending,
     ), (state) => {
       state.loading = true;
@@ -73,6 +78,7 @@ const menuSlice = createSlice({
         getAllCategoriesAsync.rejected,
         addNewMenuItem.rejected,
         deleteMenuItem.rejected,
+        updateMenuItemAsync.rejected,
         getMenuItemsOnClientAync.rejected,
       ),
       (state, action) => {

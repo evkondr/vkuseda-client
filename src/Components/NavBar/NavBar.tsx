@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {
   Box, Button, Drawer,
 } from '@mui/material/';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { TMenuItemLink } from '../../types';
 import './style.scss';
+import formatPhoneNumber from '../../utils/formatPhoneNomber';
 
 type TNavBarProps = {
   menuItemsLinks: TMenuItemLink[],
@@ -20,18 +21,18 @@ const NavBar = ({
 }:TNavBarProps) => {
   return (
     <>
-      <Box component="nav" className={footer ? 'nav__footer' : ''} sx={{ display: { xs: 'none', md: 'block' } }}>
+      <Box component="nav" className={footer ? 'nav nav__footer' : 'nav'} sx={{ display: { xs: 'none', md: 'flex' } }}>
         {menuItemsLinks.map((item:TMenuItemLink) => (
-          <Link key={item.name} to={item.link}>
+          <NavLink key={item.name} to={item.link} className={({ isActive }) => (isActive ? 'active' : '')}>
             <Button key={item.name} color="inherit">
               {item.name}
             </Button>
-          </Link>
+          </NavLink>
         ))}
         {phoneNumber && (
-        <Button href="tel:+79023001991" color="inherit">
+        <Button href={`tel:+7${phoneNumber}`} color="inherit">
           <PhoneIphoneIcon />
-          {phoneNumber}
+          {formatPhoneNumber(phoneNumber)}
         </Button>
         )}
       </Box>

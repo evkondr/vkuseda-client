@@ -1,6 +1,8 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Box } from '@mui/material/';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo.svg';
+import './index.scss';
 
 type LogoProps = {
   size?: 'sm' | 'lg'
@@ -8,9 +10,11 @@ type LogoProps = {
 const Logo = ({ size }:LogoProps) => {
   const logoClass = size ? `logo logo__${size}` : 'logo';
   return (
-    <Box className={logoClass}>
-      <img src={logo} alt="Лого сайта доставки обедов Вкуная Еда" />
-    </Box>
+    <NavLink to="/">
+      <Box className={logoClass}>
+        <img src={logo} alt="Лого сайта доставки обедов Вкусная Еда" />
+      </Box>
+    </NavLink>
   );
 };
 

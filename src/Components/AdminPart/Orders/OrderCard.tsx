@@ -1,13 +1,14 @@
 import React from 'react';
 import {
-  Card, CardContent, Divider, Stack, Typography,
+  Card, CardContent, Divider, Stack, Typography, Button,
 } from '@mui/material';
 import { TOrder } from '../../../types';
 
-type TPorps = {
-  item: TOrder
+type TProps = {
+  item: TOrder,
+  updateHandler: () => void;
 }
-const OrderCard = ({ item }:TPorps) => {
+const OrderCard = ({ item, updateHandler }:TProps) => {
   return (
     <Card sx={{ marginBottom: '10px', maxWidth: '500px' }}>
       <CardContent>
@@ -21,7 +22,7 @@ const OrderCard = ({ item }:TPorps) => {
             {' '}
             {item.date}
             {' - '}
-            {item.isDone ? 'Выполнен' : 'Не выполнен'}
+            {item.isDone ? <span style={{ color: 'green' }}>Выполнен</span> : <span style={{ color: 'red' }}>Не выполнен</span> }
           </Typography>
           <Divider />
           <Typography>
@@ -39,6 +40,7 @@ const OrderCard = ({ item }:TPorps) => {
             {' '}
             {item.customerAddress}
           </Typography>
+          <Button type="button" sx={{ alignSelf: 'flex-start' }} variant="contained" onClick={updateHandler}>{!item.isDone ? 'Завершить' : 'Вернуть в работу'}</Button>
         </Stack>
       </CardContent>
     </Card>

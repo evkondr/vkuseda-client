@@ -1,10 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { IStateStdProps, TPromoItem } from '../../types';
+import { IInitialState, TPromoItem } from '../../types';
 import { addToPromoAsync, deleteFromPromoAsync, getAllPromoAsync } from '../thunks/promoThunk';
 
-interface IPromoState extends IStateStdProps {
+interface IPromoState extends IInitialState {
   promoItems: TPromoItem[];
 }
 const initialState:IPromoState = {

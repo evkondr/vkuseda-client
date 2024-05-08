@@ -1,10 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { IStateStdProps, TOrder } from '../../types';
-import { getAllOrdersAsync, sendOrderAsync } from '../thunks/ordersThunk';
+import { IInitialState, TOrder } from '../../types';
+import { getAllOrdersAsync, sendOrderAsync, updateOrderAsync } from '../thunks/ordersThunk';
 
-interface IOrdersState extends IStateStdProps {
+interface IOrdersState extends IInitialState {
   orders: TOrder[],
 }
 const initialState:IOrdersState = {
@@ -16,11 +16,25 @@ const initialState:IOrdersState = {
 const categoriesSlice = createSlice({
   name: 'orders',
   initialState,
-  reducers: {},
+  reducers: {
+    updateOrder(state, action) {
+      state.orders = state.orders.map((item) => {
+        if (item.id === action.payload) {
+          return { ...item, isDone: !item.isDone };
+        }
+        return item;
+      });
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getAllOrdersAsync.fulfilled, (state, action) => {
       state.orders = action.payload;
       state.loading = false;
+    });
+    builder.addCase(updateOrderAsync.fulfilled, (state) => {
+      state.error = undefined;
+      state.loading = false;
+      toast.success('Статус заказа обновлен');
     });
     builder.addCase(sendOrderAsync.fulfilled, (state, action) => {
       state.orders.push(action.payload);
@@ -50,3 +64,4 @@ const categoriesSlice = createSlice({
   },
 });
 export default categoriesSlice.reducer;
+export const { updateOrder } = categoriesSlice.actions;

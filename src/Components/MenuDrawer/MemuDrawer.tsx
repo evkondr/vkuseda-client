@@ -7,6 +7,7 @@ import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { TMenuItemLink } from '../../types';
 import Logo from '../Logo/Logo';
 import './style.scss';
+import formatPhoneNumber from '../../utils/formatPhoneNomber';
 
 type TMemuDrawerProps = {
   menuItemsLinks: TMenuItemLink[],
@@ -23,9 +24,9 @@ const MemuDrawer = ({ menuItemsLinks, handleDrawerToggle, phoneNumber }:TMemuDra
         <Divider sx={{ marginBottom: '20px' }} />
         {
           phoneNumber && (
-          <Button href="tel:+79023001991" color="inherit">
+          <Button href={`tel:+7${phoneNumber}`} color="inherit">
             <PhoneIphoneIcon />
-            {phoneNumber}
+            {formatPhoneNumber(phoneNumber)}
           </Button>
           )
         }

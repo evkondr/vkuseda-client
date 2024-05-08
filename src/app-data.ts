@@ -23,12 +23,12 @@ export const menuItemsLinks:TMenuItemLink[] = [
 ];
 export const mainPageMenuItemLinks:TMenuItemLink[] = [
   {
-    name: 'Главная',
-    link: '/',
+    name: 'Все меню',
+    link: '/main/menu',
   },
   {
-    name: 'Меню',
-    link: '/main/menu',
+    name: 'Ежедневное меню',
+    link: '/main/daily-menu',
   },
   {
     name: 'О нас',
@@ -39,3 +39,14 @@ export const mainPageMenuItemLinks:TMenuItemLink[] = [
     link: '/main/delivery',
   },
 ];
+
+export const settingsConstants = {
+  headerText: 'Название сайта',
+  slogan: 'Слоган',
+  phoneNumber: 'Телефон',
+  minPrice: 'Минимальная сумма',
+  maxPrice: 'Максимальная сумма',
+  order: 'Возможность заказа',
+  endTime: 'Время отключения заказа',
+  reCAPTCHA: 'reCAPTCHA',
+};

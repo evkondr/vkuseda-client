@@ -56,6 +56,25 @@ export const addNewMenuItem = createAsyncThunk<TMenuItem, TMenuItemFormValues, {
     return rejectWithValue('Неизвестная ошибка');
   }
 });
+// EDIT MENU ITEM
+export const updateMenuItemAsync = createAsyncThunk<undefined, {id:string, values:TMenuItemFormValues}, { rejectValue: string }>(asyncThuncName('editMenuItem'), async ({ id, values }, { rejectWithValue, dispatch }) => {
+  try {
+    const response = await MenuItemsService.updateMenuItem(id, values, 'multipart/form-data');
+    dispatch(getMenuItemsAync());
+    return response.result;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      if (error.response?.data.message === 'jwt expired') {
+        return dispatch(logout());
+      }
+      return rejectWithValue(error.response?.data.message);
+    }
+    if (error instanceof Error) {
+      return rejectWithValue(error.message);
+    }
+    return rejectWithValue('Неизвестная ошибка');
+  }
+});
 // DELETE MENU ITEM
 export const deleteMenuItem = createAsyncThunk<string, string, { rejectValue: string }>(asyncThuncName('deleteMenuItem'), async (id, { rejectWithValue, dispatch }) => {
   try {

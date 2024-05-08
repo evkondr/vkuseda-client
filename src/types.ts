@@ -59,10 +59,33 @@ export type TOrder = {
   date: string,
   isDone: boolean,
 }
-export interface IStateStdProps {
-  loading: boolean,
-  error: string | undefined
+export type TWeekDay ={
+  id?: string,
+  name: string,
+  menuItems: TMenuItem[]
 }
+export type TSettings = {
+  id?: string,
+  name: string,
+  value: string | boolean,
+}
+export type TAllSettings = {
+  boolSettings: TSettings[],
+  textSettings: TSettings[]
+};
 export type TLoginFormData = Omit<TRegistrerFormData, 'email'>
 export type TMenuItemFormData = Omit<TMenuItem, 'id'>
 export type TSendOrderValues = Omit<TOrder, 'id' | 'orderNumber' | 'date' | 'isDone'>
+
+// Interfaces
+export interface IInitialState {
+  loading: boolean,
+  error: string | undefined
+}
+export type TWeekDayUnion = 'понедельник' |
+  'вторник' |
+  'среда' |
+  'четверг' |
+  'пятнциа' |
+  'суббота' |
+  'воскресенье'

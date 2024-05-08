@@ -15,7 +15,7 @@ import CustomCartIcon from '../Cart/CustomCartIcon';
 
 type THeaderProps = {
   menuItemsLinks: TMenuItemLink[],
-  phoneNumber?: string,
+  phoneNumber?: string | undefined,
   cart?: boolean
   cartAmount?: number,
   position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative' | undefined
@@ -51,6 +51,7 @@ const Header = ({
         </Link>
         ) }
         <IconButton
+          className="hamburger-btn"
           color="inherit"
           aria-label="open drawer"
           edge="start"

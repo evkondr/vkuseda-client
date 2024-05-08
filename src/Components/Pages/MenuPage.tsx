@@ -1,8 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect } from 'react';
-import { Box, Grid, CircularProgress } from '@mui/material';
+import {
+  Box, Grid, CircularProgress, Typography,
+} from '@mui/material';
 import MenuFilter from '../MenuFilter/MenuFilter';
 import { filterMenu } from '../../store/features/menuSlice';
-import { addToCart } from '../../store/features/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { TMenuItem } from '../../types';
 import MenuItem from '../MenuItem/MenuItem';
@@ -17,14 +19,6 @@ const MenuPage = () => {
   const handleCategory = (categoryName: string) => {
     dispatch(filterMenu(categoryName));
   };
-  const addToCartHandelr = (menuItem: TMenuItem) => {
-    const {
-      id, name, price,
-    } = menuItem;
-    dispatch(addToCart({
-      id, name, price, amount: 1, totalPrice: price,
-    }));
-  };
   useEffect(() => {
     dispatch(getAllCategoriesOnClientAsync());
     dispatch(getMenuItemsOnClientAync());
@@ -38,16 +32,23 @@ const MenuPage = () => {
     );
   }
   return (
-    <div>
-      <MenuFilter categories={filterCategories} handleFilterButton={handleCategory} />
-      <Grid container spacing={3} paddingTop={2}>
+    <Box>
+      <Box paddingTop={2} paddingBottom={2}>
+        <Typography>
+          На данной странице представлены все блюда для ознакомления,
+          которые вы можете встретить на нашей кухни.
+          Посмотреть меню на день и сделать заказ вы можете на странице "Ежедневное меню".
+        </Typography>
+      </Box>
+      <MenuFilter data={filterCategories} handleFilter={handleCategory} />
+      <Grid container spacing={3} paddingTop={2} paddingBottom={2}>
         {filtered.map((menuItem:TMenuItem) => (
           <Grid key={menuItem.id} item xs={12} sm={6} md={4} lg={3}>
-            <MenuItem menuItem={menuItem} addToCurtHandler={() => addToCartHandelr(menuItem)} />
+            <MenuItem menuItem={menuItem} />
           </Grid>
         ))}
       </Grid>
-    </div>
+    </Box>
   );
 };
 
