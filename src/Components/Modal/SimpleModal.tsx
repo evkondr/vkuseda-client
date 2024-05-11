@@ -8,6 +8,8 @@ interface IProps {
 }
 const style = {
   position: 'absolute',
+  maxHeight: '350px',
+  overflowY: 'scroll',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',

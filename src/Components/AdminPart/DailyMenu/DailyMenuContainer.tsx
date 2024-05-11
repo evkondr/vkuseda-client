@@ -10,7 +10,7 @@ import { deleteWeekDayAsync, getAllDaysAsync } from '../../../store/thunks/daily
 import Loader from '../../Loader/Loader';
 import { getMenuItemsAync } from '../../../store/thunks/menuItemsThunk';
 
-const DailyMemuContainer = () => {
+const DailyMenuContainer = () => {
   const { weekDays, loading } = useAppSelector((state) => state.dailyMenu);
   const { menuItems } = useAppSelector((state) => state.menu);
   const dispatch = useAppDispatch();
@@ -69,4 +69,4 @@ const DailyMemuContainer = () => {
     </Box>
   );
 };
-export default memo(DailyMemuContainer);
+export default memo(DailyMenuContainer);
