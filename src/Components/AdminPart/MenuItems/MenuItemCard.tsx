@@ -50,6 +50,15 @@ const MenuItemCard = ({
         <Typography variant="body1">
           {ingredients}
         </Typography>
+        <Typography variant="body1">
+          Вес:
+          {' '}
+          { menuItem.weight }
+          {' '}
+          Цена:
+          {' '}
+          { menuItem.price }
+        </Typography>
         <Box className="post-card__buttons">
           {/* Card control */}
           <IconButton aria-label="Add or delete from promo" onClick={promoHandler}>
