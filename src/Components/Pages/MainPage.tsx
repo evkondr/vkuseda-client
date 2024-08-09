@@ -10,6 +10,7 @@ import { getAllSettingsClientAsync } from '../../store/thunks/settingsThunk';
 const MainPage = () => {
   const { mainPageNavLinks } = useAppSelector((state) => state.navigation);
   const { amount, cartItems } = useAppSelector((state) => state.cart);
+  const { weekDays } = useAppSelector((state) => state.dailyMenu);
   const { settings: { boolSettings, textSettings } } = useAppSelector((state) => state.settings);
   const endTime = textSettings.find((item) => item.name === settingsConstants.endTime);
   const isOrderOn = boolSettings.find((item) => item.name === settingsConstants.order);
@@ -17,6 +18,16 @@ const MainPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  console.log(weekDays);
+  const filteredMainPageNavLinks = mainPageNavLinks.filter((link) => {
+    if (weekDays.length === 0) {
+      if (link.name === 'Ежедневное меню') {
+        return false;
+      }
+      return true;
+    }
+    return true;
+  });
   // Effects
   useEffect(() => {
     if (location.pathname.match(/^\/main\/?$/)) {
@@ -37,7 +48,7 @@ const MainPage = () => {
   }, [dispatch, isOrderOn, endTime, currentTime, cartItems]);
   return (
     <>
-      <Header position="fixed" menuItemsLinks={mainPageNavLinks} cart cartAmount={amount} activeClassName="active" />
+      <Header position="fixed" menuItemsLinks={filteredMainPageNavLinks} cart cartAmount={amount} activeClassName="active" />
       <Box component="section">
         <Container maxWidth="lg" sx={{ marginTop: '100px' }}>
           <Outlet />
