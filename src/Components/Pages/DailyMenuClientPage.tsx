@@ -55,6 +55,15 @@ const DailyMenuClientPage = () => {
       <Loader />
     );
   }
+  if (weekDays.length === 0) {
+    return (
+      <Box>
+        <Typography>
+          Дневное меню еше не готово. Приносим свои извинения.
+        </Typography>
+      </Box>
+    );
+  }
   return (
     <Box>
       <Box paddingTop={2} paddingBottom={2}>
