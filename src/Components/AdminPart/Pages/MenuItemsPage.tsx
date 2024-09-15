@@ -23,7 +23,7 @@ const MenuItemsPage = () => {
     image: undefined,
     imageAlt: itemForEdit?.imageAlt || '',
     price: itemForEdit?.price || 0,
-    weight: itemForEdit?.weight || 0,
+    weight: itemForEdit?.weight || '0',
   };
   // Handlers
   const promoHandler = (id:string, isInPromo: boolean) => {

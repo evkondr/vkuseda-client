@@ -20,6 +20,6 @@ export const menuItemValidationSchema = yup.object().shape({
     (input): input is File | FileList => input instanceof File || input instanceof FileList,
   ),
   imageAlt: yup.string(),
-  price: yup.number().required(),
-  weight: yup.number().required(),
+  price: yup.number().positive('Цена должна быть цифрой').required('Поле обязательно для заполнения'),
+  weight: yup.string().matches(/^[0-9/]{1,}$/, 'Неверный формат для веса').required('Необходимо указать вес'),
 });

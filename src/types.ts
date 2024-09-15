@@ -12,7 +12,7 @@ export type TMenuItem = {
   image: string | undefined,
   ingredients: string,
   category: TCategory,
-  weight: number,
+  weight: string,
   price: number,
   imageAlt?: string,
   isInPromo?: boolean
@@ -34,7 +34,7 @@ export type TMenuItemFormValues = {
   image?: FileList | File | undefined,
   ingredients: string,
   categoryId?: string,
-  weight: number,
+  weight: string,
   price: number,
   imageAlt?: string | undefined,
 }

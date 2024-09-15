@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import DialogModal from '../../Modal/DialogModal';
-import AddMemuItemForm from './AddMemuItemForm';
+import AddMenuItemForm from './AddMenuItemForm';
 import { useAppDispatch } from '../../../hooks';
 import { addNewMenuItem, updateMenuItemAsync } from '../../../store/thunks/menuItemsThunk';
 import { TMenuItem, TMenuItemFormValues } from '../../../types';
@@ -24,7 +24,7 @@ const MenuItemModal = ({
   const buttonTitle = itemForEdit ? 'Сохранить' : 'Создать';
   // Init useForm
   const {
-    handleSubmit, register, reset, setValue,
+    handleSubmit, register, reset, setValue, formState: { errors },
   } = useForm({
     defaultValues,
     resolver: yupResolver(menuItemValidationSchema),
@@ -74,7 +74,7 @@ const MenuItemModal = ({
     setValue('imageAlt', itemForEdit?.imageAlt || '');
     setValue('ingredients', itemForEdit?.ingredients || '');
     setValue('categoryId', itemForEdit?.category.id || '');
-    setValue('weight', itemForEdit?.weight || 0);
+    setValue('weight', itemForEdit?.weight || '0');
     setValue('price', itemForEdit?.price || 0);
   }, [dispatch, itemForEdit, setValue]);
   return (
@@ -84,7 +84,7 @@ const MenuItemModal = ({
       onSubmit={handleSubmit(onSubmit)}
       buttonTitle={buttonTitle}
     >
-      <AddMemuItemForm registers={registers} />
+      <AddMenuItemForm registers={registers} errors={errors} />
     </DialogModal>
   );
 };
